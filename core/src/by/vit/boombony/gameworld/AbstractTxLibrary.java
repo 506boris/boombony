@@ -11,7 +11,7 @@ public abstract class AbstractTxLibrary implements TxLibrary{
     private List<Texture> textures = new ArrayList();
 
 
-    protected Texture texture(String file) {
+    protected Texture createTexture(String file) {
         Texture texture = new Texture(Gdx.files.internal(Const.ASSERT_PATH + file));
         textures.add(texture);
         return texture;

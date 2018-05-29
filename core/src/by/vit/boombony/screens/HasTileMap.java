@@ -5,6 +5,6 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 
 public interface HasTileMap {
-    public TiledMapTileLayer getLayer(WorldLayerType worldLayerType);
-    public TiledMap getTiledMap();
+    TiledMapTileLayer getLayer(WorldLayerType worldLayerType);
+    TiledMap getTiledMap();
 }

@@ -9,8 +9,8 @@ public class MenuTxLibrary extends AbstractTxLibrary {
     public TextureRegion buttonGo;
 
     @Override
-    public void load(Scenario scenario) {
-        bg = new TextureRegion(texture("back/bg_screen.png"), 0, 0, 800, 480);
-        buttonGo = new TextureRegion(texture("button/menu_button.png"), 0, 0, 130, 38);
+    public void load() {
+        bg = new TextureRegion(createTexture("back/bg_screen.png"), 0, 0, 800, 480);
+        buttonGo = new TextureRegion(createTexture("button/menu_button.png"), 0, 0, 130, 38);
     }
 }

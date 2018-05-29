@@ -1,18 +1,11 @@
 package by.vit.boombony.screens;
 
-import by.vit.boombony.gameworld.Scenario;
 import by.vit.boombony.gameworld.TxLibrary;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 
 public abstract class AbstractScreen implements Screen {
     private TxLibrary txLibrary;
-    private Scenario scenario;
-
-    public AbstractScreen(TxLibrary txLibrary, Scenario scenario) {
-        this.txLibrary = txLibrary;
-        this.scenario = scenario;
-    }
 
     public AbstractScreen(TxLibrary txLibrary) {
         this.txLibrary = txLibrary;
@@ -25,7 +18,7 @@ public abstract class AbstractScreen implements Screen {
     }
 
     public void loadTx() {
-        txLibrary.load(scenario);
+        txLibrary.load();
     }
 
     @Override

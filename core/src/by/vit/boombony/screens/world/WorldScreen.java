@@ -7,13 +7,13 @@ import by.vit.boombony.helpers.Coo;
 import by.vit.boombony.helpers.MoveHelper;
 import by.vit.boombony.screens.AbstractScreen;
 import by.vit.boombony.screens.ScreenManager;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 
 public class WorldScreen extends AbstractScreen {
-    protected ScreenManager screenManager;
+    private ScreenManager screenManager;
     private WorldRenderer worldRenderer;
     private InputController inputController;
     private WorldTxLibrary txLibrary;
@@ -23,7 +23,7 @@ public class WorldScreen extends AbstractScreen {
     Hero hero;
 
     public WorldScreen(ScreenManager screenManager, Scenario scenario) {
-        super(new WorldTxLibrary(), scenario);
+        super(new WorldTxLibrary(scenario));
         this.screenManager = screenManager;
     }
 
@@ -32,7 +32,7 @@ public class WorldScreen extends AbstractScreen {
         this.txLibrary = getTxLibrary();
 
         HUDTxLibrary hudTxLibrary = new HUDTxLibrary();
-        hudTxLibrary.load(null);
+        hudTxLibrary.load();
         this.hudStage = new HUDStage(hudTxLibrary);
         this.worldRenderer = new WorldRenderer(this, hudStage);
         this.worldRenderer.init();

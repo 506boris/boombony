@@ -8,7 +8,7 @@ public class SplashTxLibrary extends AbstractTxLibrary {
     public TextureRegion splashLabel;
 
     @Override
-    public void load(Scenario scenario) {
-        splashLabel = new TextureRegion(texture("back/splash_text.png"), 0, 0, 203, 114);
+    public void load() {
+        splashLabel = new TextureRegion(createTexture("back/splash_text.png"), 0, 0, 203, 114);
     }
 }

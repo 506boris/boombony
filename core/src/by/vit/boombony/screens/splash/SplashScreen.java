@@ -3,38 +3,49 @@ package by.vit.boombony.screens.splash;
 import by.vit.boombony.screens.ScreenManager;
 import by.vit.boombony.screens.AbstractScreen;
 import by.vit.boombony.screens.menu.MenuScreen;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Timer;
 
 /**
- * Splash сцена. Ожидается что это будет просто первый скрин при старте,
+ * Splash сцена. Просто первый скрин при старте,
  * на котором будет отображено лого - после этого идет меню.
  */
 public class SplashScreen extends AbstractScreen {
     private final ScreenManager screenManager;
     private Sprite sprite;
     private SpriteBatch batch;
-    private boolean timerIsOn = false;
-    private static final int SPLASH_SCREEN_DELAY = 1;
+    private boolean timerInProgress = false;
+    private static final int SPLASH_SCREEN_DELAY = 3;//todo
 
     public SplashScreen(ScreenManager screenManager) {
         super(new SplashTxLibrary());
-        this.screenManager = screenManager;
-        this.batch = new SpriteBatch();
         loadTx();
+        this.screenManager = screenManager;
+        this.batch = screenManager.getGame().getBatch();
     }
 
     @Override
     public void show() {
         // как только показали скрин Splash сразу начинаем загрузку след. скрин.
-
-
         SplashTxLibrary txLibrary = getTxLibrary();
         sprite = new Sprite(txLibrary.splashLabel);
-        sprite.setPosition(200, 150);
+        sprite.setPosition(calculateWidth(), calculateHeight());
         this.screenManager.init();
+    }
+
+    private float calculateWidth() {
+        float width = Gdx.graphics.getWidth();
+        float spriteWidth = sprite.getWidth();
+        return width / 2 - spriteWidth / 2;
+    }
+
+    private float calculateHeight() {
+        float height = Gdx.graphics.getHeight();
+        float spriteHeight = sprite.getHeight();
+        return height / 2 - spriteHeight / 2;
     }
 
     @Override
@@ -43,8 +54,8 @@ public class SplashScreen extends AbstractScreen {
         sprite.draw(batch);
         batch.end();
 
-        if (!timerIsOn) {
-            timerIsOn = true;
+        if (!timerInProgress) {
+            timerInProgress = true;
 
             Timer.schedule(new Timer.Task() {
                 @Override
@@ -54,11 +65,11 @@ public class SplashScreen extends AbstractScreen {
 
             }, SplashScreen.SPLASH_SCREEN_DELAY);
 
-        } else if (Gdx.input.isTouched()) {
+        }/* else if (Gdx.input.isTouched()) {
             // Remove the task so we don't call changeScreen twice:
             Timer.instance().clear();
             this.screenManager.show(new MenuScreen(this.screenManager));
-        }
+        }*/
     }
 
 

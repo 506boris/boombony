@@ -9,8 +9,8 @@ public class HUDTxLibrary extends AbstractTxLibrary {
     public TextureRegion nextStepDisabled;
 
     @Override
-    public void load(Scenario scenario) {
-        nextStep = new TextureRegion(texture("button/next_step.png"), 0, 0, 53, 54);
-        nextStepDisabled = new TextureRegion(texture("button/next_step_disabled.png"), 0, 0, 53, 54);
+    public void load() {
+        nextStep = new TextureRegion(createTexture("button/next_step.png"), 0, 0, 53, 54);
+        nextStepDisabled = new TextureRegion(createTexture("button/next_step_disabled.png"), 0, 0, 53, 54);
     }
 }

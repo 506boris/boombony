@@ -1,15 +1,16 @@
 package by.vit.boombony.screens;
 
+import by.vit.boombony.BoombonyGame;
 import by.vit.boombony.screens.loading.LoadingScreen;
-import com.badlogic.gdx.Game;
+
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.utils.Timer;
 
 public class ScreenManager {
-    private Game game;
+    private BoombonyGame game;
     private LoadingScreen loadingScreen;
 
-    public ScreenManager(Game game) {
+    public ScreenManager(BoombonyGame game) {
         this.game = game;
     }
 
@@ -18,26 +19,30 @@ public class ScreenManager {
         this.loadingScreen.loadTx();
     }
 
-    public void show(final AbstractScreen screen) {
-        Screen oldScreen = game.getScreen();
+    public void show(AbstractScreen newScreen) {
+        if (newScreen != null) {
+            Screen oldScreen = game.getScreen();
 
-        // временно показываем скрин загрузки
-        game.setScreen(loadingScreen);
-        loadingScreen.hide();
+            // временно показываем скрин загрузки
+            game.setScreen(loadingScreen);
+            loadingScreen.show();
 
-        // зачищаем из старого скрина все загруженнные ресурсы
-        oldScreen.dispose();
+            // зачищаем из старого скрина все загруженнные ресурсы
+            oldScreen.dispose();
 
-        // загружаем ресурсы для отображаемого скрина
-        if (screen != null) {
+            // загружаем ресурсы для отображаемого скрина
             Timer.schedule(new Timer.Task() {
                 @Override
                 public void run() {
-                    screen.loadTx();
+                    newScreen.loadTx();
                     // как только загрузились текстуры показываем новый скрин
-                    game.setScreen(screen);
+                    game.setScreen(newScreen);
                 }
-            }, 0);
+            }, 1);// 1 it is just delay beetwen loading resources
         }
+    }
+
+    public BoombonyGame getGame() {
+        return game;
     }
 }
