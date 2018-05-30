@@ -25,7 +25,6 @@ public class ScreenManager {
 
             // временно показываем скрин загрузки
             game.setScreen(loadingScreen);
-            loadingScreen.show();
 
             // зачищаем из старого скрина все загруженнные ресурсы
             oldScreen.dispose();
