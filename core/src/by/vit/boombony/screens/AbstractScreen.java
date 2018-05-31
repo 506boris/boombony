@@ -1,13 +1,14 @@
 package by.vit.boombony.screens;
 
 import by.vit.boombony.gameworld.TxLibrary;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 
-public abstract class AbstractScreen implements Screen {
-    private TxLibrary txLibrary;
+public abstract class AbstractScreen<T extends TxLibrary> implements Screen {
+    protected T txLibrary;
 
-    public AbstractScreen(TxLibrary txLibrary) {
+    public AbstractScreen(T txLibrary) {
         this.txLibrary = txLibrary;
     }
 
@@ -17,6 +18,9 @@ public abstract class AbstractScreen implements Screen {
         txLibrary.dispose();
     }
 
+    /**
+     * Don't call it manually.
+     */
     public void loadTx() {
         txLibrary.load();
     }
@@ -42,7 +46,7 @@ public abstract class AbstractScreen implements Screen {
     }
 
     @SuppressWarnings("unchecked")
-    public <T> T getTxLibrary() {
+    public <T extends TxLibrary> T getTxLibrary() {
         return (T) txLibrary;
     }
 }

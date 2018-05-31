@@ -1,13 +1,7 @@
 package by.vit.boombony.helpers;
 
-import by.vit.boombony.gameobjects.BCell;
-import by.vit.boombony.maps.Cell;
-import by.vit.boombony.screens.menu.MenuScreen;
-import com.badlogic.gdx.Gdx;
+import by.vit.boombony.gameobjects.Cell;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.utils.Timer;
-
-import java.util.List;
 
 public class MoveHelper {
     /**
@@ -17,21 +11,21 @@ public class MoveHelper {
      * @param cursor         cursor
      * @param newCoo         new coordinate for cursor
      */
-    public static void moveCursor(final BCell cursor, final Coo newCoo, final TiledMapTileLayer cursorMapLayer) {
-        if (cursor.getCoo() != null) {
-            TiledMapTileLayer.Cell cell = cursorMapLayer.getCell(cursor.getCoo().x, cursor.getCoo().y);
-            if (cell != null) {
-                cursorMapLayer.setCell(cursor.getCoo().x, cursor.getCoo().y, null);
-            }
-        }
+//    public static void moveCursor(final Cell cursor, final Coo newCoo, final TiledMapTileLayer cursorMapLayer) {
+//        if (cursor.getCoo() != null) {
+//            TiledMapTileLayer.Cell cell = cursorMapLayer.getCell(cursor.getCoo().x, cursor.getCoo().y);
+//            if (cell != null) {
+//                cursorMapLayer.setCell(cursor.getCoo().x, cursor.getCoo().y, null);
+//            }
+//        }
+//
+//        cursor.setCoo(newCoo);
+//
+////        Gdx.app.log("new coordinate ", "(" + String.valueOf(newCoo.x) + " : " + String.valueOf(newCoo.y) + ")");
+//        cursorMapLayer.setCell(newCoo.x, newCoo.y, cursor);
+//    }
 
-        cursor.setCoo(newCoo);
-
-//        Gdx.app.log("new coordinate ", "(" + String.valueOf(newCoo.x) + " : " + String.valueOf(newCoo.y) + ")");
-        cursorMapLayer.setCell(newCoo.x, newCoo.y, cursor);
-    }
-
-    public static void move(final BCell worldObject, final Coo newCoo, final TiledMapTileLayer mapLayer) {
+    public static void move(Cell worldObject, Coo newCoo, TiledMapTileLayer mapLayer) {
         if (worldObject.getCoo() != null) {
             TiledMapTileLayer.Cell cell = mapLayer.getCell(worldObject.getCoo().x, worldObject.getCoo().y);
             if (cell != null) {

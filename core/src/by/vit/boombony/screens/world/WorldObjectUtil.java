@@ -1,6 +1,6 @@
 package by.vit.boombony.screens.world;
 
-import by.vit.boombony.gameobjects.BCell;
+import by.vit.boombony.gameobjects.Cell;
 import by.vit.boombony.gameobjects.Step;
 import by.vit.boombony.gameworld.WorldLayerType;
 import by.vit.boombony.gameworld.WorldObjectType;
@@ -16,7 +16,7 @@ public final class WorldObjectUtil {
      * @param mapLayer слой
      * @param worldObject очищаемый обьект
      */
-    public static void clearCell(final TiledMapTileLayer mapLayer, final BCell worldObject) {
+    public static void clearCell(final TiledMapTileLayer mapLayer, final Cell worldObject) {
         mapLayer.setCell(worldObject.getCoo().x, worldObject.getCoo().y, null);
         worldObject.setCoo(null);
     }

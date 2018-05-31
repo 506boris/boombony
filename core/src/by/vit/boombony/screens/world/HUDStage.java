@@ -5,13 +5,14 @@ import by.vit.boombony.gameobjects.TextureButton;
 import by.vit.boombony.gameworld.ActType;
 import by.vit.boombony.gameworld.WorldState;
 import by.vit.boombony.screens.AbstractStage;
+
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 
 public class HUDStage extends AbstractStage<HUDTxLibrary> {
     TextureButton nextStep;
 
-    public HUDStage(HUDTxLibrary txLibrary) {
-        super(txLibrary);
+    public HUDStage() {
+        super(new HUDTxLibrary());
     }
 
     @Override

@@ -73,7 +73,7 @@ public class InputController implements InputProcessor {
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         int layerX = screenX + Float.valueOf(camera.position.x - camera.viewportWidth / 2).intValue();
         int layerY = Float.valueOf(camera.position.y - camera.viewportHeight / 2).intValue() + Float.valueOf(camera.viewportHeight - screenY).intValue();
-        Coo coo = CoordinateUtil.getCellCoordinate(layerX, layerY);
+        Coo coo = CoordinateUtil.getCellCenter(layerX, layerY);
         return touchUp(coo);
     }
 

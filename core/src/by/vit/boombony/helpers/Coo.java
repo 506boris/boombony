@@ -1,5 +1,8 @@
 package by.vit.boombony.helpers;
 
+/**
+ * Object contain x and y coordinate. Simple object.
+ */
 public class Coo {
     public int x;
     public int y;
@@ -25,7 +28,7 @@ public class Coo {
 
     @Override
     public String toString() {
-        return "[" + x + ","+ y + ']';
+        return "[" + x + "," + y + ']';
     }
 
     @Override

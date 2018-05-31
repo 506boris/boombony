@@ -3,12 +3,14 @@ package by.vit.boombony.screens.menu;
 import by.vit.boombony.events.ClickListener;
 import by.vit.boombony.gameobjects.TextureButton;
 import by.vit.boombony.screens.AbstractStage;
+
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 
 public class MenuStage extends AbstractStage<MenuTxLibrary> {
     private TextureButton startGameButton;
     private MenuScreenView screenView;
 
+    // todo need to spli tx library for menu and main
     public MenuStage(MenuTxLibrary txLibrary) {
         super(txLibrary);
     }

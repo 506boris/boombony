@@ -4,7 +4,7 @@ import by.vit.boombony.gameworld.WorldObjectType;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 
-public abstract class WorldObject extends BCell {
+public abstract class WorldObject extends Cell {
     private final TextureRegion texturePerson;
 
     public WorldObject(TextureRegion texturePerson, WorldObjectType type) {

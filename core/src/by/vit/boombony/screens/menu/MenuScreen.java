@@ -9,13 +9,13 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
- * Меню игры.
+ * Main menu
  */
-public class MenuScreen extends AbstractScreen implements MenuScreenView {
+public class MenuScreen extends AbstractScreen<MenuTxLibrary> implements MenuScreenView {
     private SpriteBatch batch;
     private MenuStage menuStage;
     private Sprite bgSprite;
-    protected ScreenManager screenManager;
+    private ScreenManager screenManager;
 
     public MenuScreen(ScreenManager screenManager) {
         super(new MenuTxLibrary());
@@ -24,10 +24,10 @@ public class MenuScreen extends AbstractScreen implements MenuScreenView {
 
     @Override
     public void show() {
-        MenuTxLibrary txLibrary = getTxLibrary();
 
-        batch = new SpriteBatch();
+        batch = screenManager.getGame().getBatch();
         menuStage = new MenuStage(txLibrary);
+        menuStage.init();
         menuStage.setScreenView(this);
 
         bgSprite = new Sprite(txLibrary.bg);
@@ -35,6 +35,12 @@ public class MenuScreen extends AbstractScreen implements MenuScreenView {
 
 
         Gdx.input.setInputProcessor(menuStage);
+    }
+
+    @Override
+    public void loadTx() {
+        super.loadTx();
+        // todo menu.loadTx()
     }
 
     @Override

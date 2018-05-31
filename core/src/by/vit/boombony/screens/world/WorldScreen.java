@@ -12,46 +12,47 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.GL20;
 
-public class WorldScreen extends AbstractScreen {
+public class WorldScreen extends AbstractScreen<WorldTxLibrary> {
     private ScreenManager screenManager;
     private WorldRenderer worldRenderer;
-    private InputController inputController;
-    private WorldTxLibrary txLibrary;
     private HUDStage hudStage;
-    private InputMultiplexer inputMultiplexer = new InputMultiplexer();
-    StepCursor cursor;
+    private InputMultiplexer inputMultiplexer;
     Hero hero;
 
     public WorldScreen(ScreenManager screenManager, Scenario scenario) {
         super(new WorldTxLibrary(scenario));
         this.screenManager = screenManager;
+        this.hudStage = new HUDStage();
+        this.worldRenderer = new WorldRenderer(this, screenManager, hudStage);
+        this.inputMultiplexer = new InputMultiplexer();
+    }
+
+    @Override
+    public void loadTx() {
+        super.loadTx();
+        hudStage.loadTx();
     }
 
     @Override
     public void show() {
-        this.txLibrary = getTxLibrary();
-
-        HUDTxLibrary hudTxLibrary = new HUDTxLibrary();
-        hudTxLibrary.load();
-        this.hudStage = new HUDStage(hudTxLibrary);
-        this.worldRenderer = new WorldRenderer(this, hudStage);
+        this.hudStage.init();
         this.worldRenderer.init();
-
-        this.cursor = new StepCursor(txLibrary.cursorTexture);
-
-        //todo
         initPersons();
+        initInputProcessor();
+    }
 
-        this.inputController = new InputController(worldRenderer.getCamera(), cursor, hero, txLibrary);
+    private void initInputProcessor() {
+        StepCursor cursor = new StepCursor(txLibrary.cursorTexture);
+        InputController inputController = new InputController(worldRenderer.getCamera(), cursor, hero, txLibrary);
         // порядок важен, кто первый добавлен тот и выше преоритетом при клике
-        inputMultiplexer.addProcessor(hudStage);
-        inputMultiplexer.addProcessor(inputController);
+        this.inputMultiplexer.addProcessor(hudStage);
+        this.inputMultiplexer.addProcessor(inputController);
         Gdx.input.setInputProcessor(inputMultiplexer);
     }
 
     private void initPersons() {
         this.hero = new Hero(txLibrary.heroTexture);
-        MoveHelper.move(hero, new Coo(0, 0), txLibrary.getLayer(WorldLayerType.OBJECTS));
+        MoveHelper.move(hero, Coo.zero(), txLibrary.getLayer(WorldLayerType.OBJECTS));
     }
 
     @Override

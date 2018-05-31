@@ -13,7 +13,7 @@ import com.badlogic.gdx.utils.Timer;
  * Splash сцена. Просто первый скрин при старте,
  * на котором будет отображено лого - после этого идет меню.
  */
-public class SplashScreen extends AbstractScreen {
+public class SplashScreen extends AbstractScreen<SplashTxLibrary> {
     private final ScreenManager screenManager;
     private Sprite sprite;
     private SpriteBatch batch;
@@ -30,7 +30,6 @@ public class SplashScreen extends AbstractScreen {
     @Override
     public void show() {
         // как только показали скрин Splash сразу начинаем загрузку след. скрин.
-        SplashTxLibrary txLibrary = getTxLibrary();
         sprite = new Sprite(txLibrary.splashLabel);
         sprite.setPosition(calculateWidth(), calculateHeight());
         this.screenManager.init();
