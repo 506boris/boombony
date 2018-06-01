@@ -6,6 +6,7 @@ import by.vit.boombony.helpers.Const;
 import by.vit.boombony.screens.HasTileMap;
 import by.vit.boombony.screens.ScreenManager;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -37,7 +38,7 @@ public class WorldRenderer implements Disposable, Initializable {
         renderer = new OrthogonalTiledMapRenderer(hasTileMap.getTiledMap(), screenManager.getGame().getBatch());
 
         // camera
-        camera = new OrthographicCamera(Const.CAMERA_WIDTH, Const.CAMERA_HEIGHT);
+        camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera.position.set(0, 0, 0);
         camera.setToOrtho(false);
 
