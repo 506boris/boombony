@@ -59,10 +59,12 @@ public class WorldRenderer implements Disposable, Initializable {
     public void render(float delta) {
         worldScreen.hero.render(delta, objectLayer);
 
-        CameraHelper.followCamera(camera, worldScreen.hero, mapWidth, mapHeight);
+        CameraHelper.followCamera(camera, worldScreen.hero, this.mapWidth, this.mapHeight);
 
         if (renderer != null) {
-            renderer.setView(camera.combined, 0, 0, camera.viewportWidth, camera.viewportHeight);
+            // these view responsible for render full size of map with width and height.
+            // potentially it could be optimizated in future
+            renderer.setView(camera.combined, 0, 0, this.mapWidth, this.mapHeight);
             renderer.render();
         }
 

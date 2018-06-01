@@ -18,7 +18,7 @@ public class SplashScreen extends AbstractScreen<SplashTxLibrary> {
     private Sprite sprite;
     private SpriteBatch batch;
     private boolean timerInProgress = false;
-    private static final int SPLASH_SCREEN_DELAY = 3;//todo
+    private static final int SPLASH_SCREEN_DELAY = 1;//todo
 
     public SplashScreen(ScreenManager screenManager) {
         super(new SplashTxLibrary());

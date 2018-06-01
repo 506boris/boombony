@@ -64,11 +64,6 @@ public class WorldScreen extends AbstractScreen<WorldTxLibrary> {
     }
 
     @Override
-    public void resize(int width, int height) {
-//        extendViewport.update(width,height,false);
-    }
-
-    @Override
     public void dispose() {
         super.dispose();
         txLibrary.dispose();
