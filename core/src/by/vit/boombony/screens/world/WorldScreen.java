@@ -57,9 +57,7 @@ public class WorldScreen extends AbstractScreen<WorldTxLibrary> {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(0f / 255f, 0f / 255f, 0f / 255f, 1f);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
+        super.render(delta);
         worldRenderer.render(delta);
     }
 

@@ -7,17 +7,20 @@ import by.vit.boombony.gameworld.path.SearchPathUtil;
 import by.vit.boombony.helpers.Coo;
 import by.vit.boombony.helpers.CoordinateUtil;
 import by.vit.boombony.helpers.MoveHelper;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Camera;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
 public class InputController implements InputProcessor {
     private Camera camera;
     private StepCursor cursor;
-    private List<Coo> currentSteps;
+    private List<Coo> currentSteps = Collections.synchronizedList(new ArrayList<>());
     private Hero hero;
     private WorldTxLibrary txLibrary;
 
@@ -28,25 +31,41 @@ public class InputController implements InputProcessor {
         this.txLibrary = txLibrary;
     }
 
-    public boolean touchUp(Coo coo) {
-        if (WorldObjectUtil.canMove(coo, txLibrary)) {
-            if (cursor != null && cursor.getCoo() != null && cursor.getCoo().equals(coo)) {
+    public boolean heroInitMove(Coo targetCoo) {
+        if (WorldObjectUtil.canMove(targetCoo, txLibrary)) {
+            // if was init move and there are no any barriers at first we should stop hero
+            hero.setCanMove(false);
+
+            // if hero can move to target cursor
+            if (wantMove(targetCoo)) {
                 // повторное нажатие на курсор - то есть передвигаем туда героя + чистим степы и сам курсор
-//                MoveHelper.move(hero, currentSteps, objectLayer);
                 hero.addWalkingSteps(currentSteps);
+//                currentSteps.clear();
+
+                // clear target cell
                 WorldObjectUtil.clearCell(txLibrary.getLayer(WorldLayerType.CURSOR), cursor);
+
+                // now hero can move to target cell
+                hero.setCanMove(true);
+
+                // other way we should build path to target cursor
             } else {
                 WorldObjectUtil.clearCells(txLibrary.getLayer(WorldLayerType.OBJECTS), currentSteps);
-                MoveHelper.move(cursor, coo, txLibrary.getLayer(WorldLayerType.CURSOR));
+                currentSteps.clear();
+                MoveHelper.move(cursor, targetCoo, txLibrary.getLayer(WorldLayerType.CURSOR));
 
                 long start = System.currentTimeMillis();
                 Gdx.app.log("Search path start - ", String.valueOf(start));
-                currentSteps = SearchPathUtil.get().search(txLibrary.getLayer(WorldLayerType.OBJECTS), hero.getCoo(), coo);
+                currentSteps = SearchPathUtil.get().search(txLibrary.getLayer(WorldLayerType.OBJECTS), hero.getCoo(), targetCoo);
                 Gdx.app.log("Search path finish - ", String.valueOf(System.currentTimeMillis() - start));
-                WorldObjectUtil.buildSteps(currentSteps, hero.getMaxStepCount(), txLibrary);
+                WorldObjectUtil.drawSteps(currentSteps, hero.getMaxStepCount(), txLibrary);
             }
         }
         return true;
+    }
+
+    private boolean wantMove(Coo targetCoo) {
+        return cursor != null && cursor.getCoo() != null && cursor.getCoo().equals(targetCoo);
     }
 
     @Override
@@ -74,7 +93,7 @@ public class InputController implements InputProcessor {
         int layerX = screenX + Float.valueOf(camera.position.x - camera.viewportWidth / 2).intValue();
         int layerY = Float.valueOf(camera.position.y - camera.viewportHeight / 2).intValue() + Float.valueOf(camera.viewportHeight - screenY).intValue();
         Coo coo = CoordinateUtil.getCellCenter(layerX, layerY);
-        return touchUp(coo);
+        return heroInitMove(coo);
     }
 
     @Override

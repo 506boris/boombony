@@ -6,6 +6,7 @@ import by.vit.boombony.gameworld.WorldLayerType;
 import by.vit.boombony.gameworld.WorldObjectType;
 import by.vit.boombony.helpers.Coo;
 import by.vit.boombony.screens.HasTileMap;
+
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 
 import java.util.List;
@@ -13,7 +14,8 @@ import java.util.List;
 public final class WorldObjectUtil {
     /**
      * Очищаем клетку на слое
-     * @param mapLayer слой
+     *
+     * @param mapLayer    слой
      * @param worldObject очищаемый обьект
      */
     public static void clearCell(final TiledMapTileLayer mapLayer, final Cell worldObject) {
@@ -28,12 +30,12 @@ public final class WorldObjectUtil {
      * @param coos     список координат
      */
     public static void clearCells(final TiledMapTileLayer mapLayer, final List<Coo> coos) {
-        if(coos == null) {
+        if (coos == null) {
             return;
         }
         for (Coo coo : coos) {
             TiledMapTileLayer.Cell tileCell = mapLayer.getCell(coo.x, coo.y);
-            if(tileCell instanceof Step) {
+            if (tileCell instanceof Step) {
                 Step step = (Step) tileCell;
                 mapLayer.setCell(coo.x, coo.y, null);
                 step.setCoo(null);
@@ -46,7 +48,7 @@ public final class WorldObjectUtil {
      *
      * @param currentSteps список координат, где мы должны прорисовать степы
      */
-    public static void buildSteps(List<Coo> currentSteps, int maxStepCount, WorldTxLibrary txLibrary) {
+    public static void drawSteps(List<Coo> currentSteps, int maxStepCount, WorldTxLibrary txLibrary) {
         // currentSteps первый и последний элемент не должны прорисосываться в виде степов так как это герой и курсор.
         TiledMapTileLayer objectLayer = txLibrary.getLayer(WorldLayerType.OBJECTS);
         // currentSteps - степы в списке расположены с target к hero
@@ -57,9 +59,9 @@ public final class WorldObjectUtil {
             Coo currentCoo = currentSteps.get(i);
             // если шаги выходят за максимальное колличество, которое имеет герой, то помечаем как out
             if (currentSteps.size() - (i + 1) <= maxStepCount) {
-                objectLayer.setCell(currentCoo.x, currentCoo.y, new Step(txLibrary.stepTexture));
+                objectLayer.setCell(currentCoo.x, currentCoo.y, new Step(txLibrary.stepTexture, currentCoo));
             } else {
-                objectLayer.setCell(currentCoo.x, currentCoo.y, new Step(txLibrary.stepOutTexture));
+                objectLayer.setCell(currentCoo.x, currentCoo.y, new Step(txLibrary.stepOutTexture, currentCoo));
             }
         }
     }

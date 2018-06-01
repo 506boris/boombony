@@ -25,17 +25,17 @@ public class MoveHelper {
 //        cursorMapLayer.setCell(newCoo.x, newCoo.y, cursor);
 //    }
 
-    public static void move(Cell worldObject, Coo newCoo, TiledMapTileLayer mapLayer) {
-        if (worldObject.getCoo() != null) {
-            TiledMapTileLayer.Cell cell = mapLayer.getCell(worldObject.getCoo().x, worldObject.getCoo().y);
+    public static void move(Cell target, Coo newCoo, TiledMapTileLayer mapLayer) {
+        if (target.getCoo() != null) {
+            TiledMapTileLayer.Cell cell = mapLayer.getCell(target.getCoo().x, target.getCoo().y);
             if (cell != null) {
-                mapLayer.setCell(worldObject.getCoo().x, worldObject.getCoo().y, null);
+                mapLayer.setCell(target.getCoo().x, target.getCoo().y, null);
             }
         }
 
-        worldObject.setCoo(newCoo);
+        target.setCoo(newCoo);
 
 //        Gdx.app.log("WorldObject ", "(" + String.valueOf(newCoo.x) + " : " + String.valueOf(newCoo.y) + ")");
-        mapLayer.setCell(newCoo.x, newCoo.y, worldObject);
+        mapLayer.setCell(newCoo.x, newCoo.y, target);
     }
 }
