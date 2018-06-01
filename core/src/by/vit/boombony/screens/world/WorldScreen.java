@@ -10,7 +10,6 @@ import by.vit.boombony.screens.ScreenManager;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
-import com.badlogic.gdx.graphics.GL20;
 
 public class WorldScreen extends AbstractScreen<WorldTxLibrary> {
     private ScreenManager screenManager;
@@ -43,10 +42,10 @@ public class WorldScreen extends AbstractScreen<WorldTxLibrary> {
 
     private void initInputProcessor() {
         StepCursor cursor = new StepCursor(txLibrary.cursorTexture);
-        InputController inputController = new InputController(worldRenderer.getCamera(), cursor, hero, txLibrary);
+        WorldInputController worldInputController = new WorldInputController(worldRenderer.getCamera(), cursor, hero, txLibrary);
         // порядок важен, кто первый добавлен тот и выше преоритетом при клике
         this.inputMultiplexer.addProcessor(hudStage);
-        this.inputMultiplexer.addProcessor(inputController);
+        this.inputMultiplexer.addProcessor(worldInputController);
         Gdx.input.setInputProcessor(inputMultiplexer);
     }
 

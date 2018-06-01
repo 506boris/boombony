@@ -17,14 +17,14 @@ import java.util.Collections;
 import java.util.List;
 
 
-public class InputController implements InputProcessor {
+public class WorldInputController implements InputProcessor {
     private Camera camera;
     private StepCursor cursor;
     private List<Coo> currentSteps = Collections.synchronizedList(new ArrayList<>());
     private Hero hero;
     private WorldTxLibrary txLibrary;
 
-    public InputController(Camera camera, StepCursor cursor, Hero hero, WorldTxLibrary txLibrary) {
+    public WorldInputController(Camera camera, StepCursor cursor, Hero hero, WorldTxLibrary txLibrary) {
         this.camera = camera;
         this.cursor = cursor;
         this.hero = hero;

@@ -22,6 +22,9 @@ public class WorldTxLibrary extends AbstractTxLibrary implements HasTileMap {
     public TextureRegion stepOutTexture;
     public TextureRegion bombTexture;
     public TextureRegion nextStepTexture;
+    public TiledMapTileLayer OBJECTS_LAYER;
+    public TiledMapTileLayer GROUND_LAYER;
+    public TiledMapTileLayer CURSOR_LAYER;
 
     public WorldTxLibrary(Scenario scenario) {
         this.scenario = scenario;
@@ -40,6 +43,9 @@ public class WorldTxLibrary extends AbstractTxLibrary implements HasTileMap {
     @Override
     public void load() {
         this.tiledMap = new TmxMapLoader().load(scenario.getTmxMapPath());
+        OBJECTS_LAYER = getLayer(WorldLayerType.OBJECTS);
+        GROUND_LAYER = getLayer(WorldLayerType.GROUND);
+        CURSOR_LAYER = getLayer(WorldLayerType.CURSOR);
 
         // todo оптимизировать - - влияент на производительность.!!
         this.cursorTexture = new TextureRegion(createTexture("maps/activecell.png"), 0, 0, Const.TILE_SIZE, Const.TILE_SIZE);
