@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="96" tileheight="96" infinite="0" nextobjectid="1">
+ <tileset firstgid="1" source="tiles_96.tsx"/>
+ <layer name="ground" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztwwEJAAAMBKH7/qXXYyi4aqqqqurrBxngBAE=
+  </data>
+ </layer>
+ <layer name="objects" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJzFVksKxTAILGSV+1/4rQpBdD6a8oRsapwxZqp5Hmyb+JX9KgaL3QJWh38/NXbkz+KY3cx5FTmgMzDLMFT+KU/0M1P4K45ObWJcpkeE6+q3wkDnQbiOZl2durVgPLd6jXMnWcw6VvffYn1DySvDUXP5gh9ZVqtzvfVEPFP+L+wf/Go/VjTemb1OzESHLhbDZ5id+cP6p3NHN94Bynk7d1npN84Yd+agPadvBR+LV7CrO86+V/2pw6/wZRZnjpML83dm60TrX+TG3htqndE/1T0fwmYanOgNYTv1UOYFmtsOn5LLpJe9tsia5tmxm/ydHCL3D8roCJU=
+  </data>
+ </layer>
+ <layer name="cursor" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAADwbhAAAAE=
+  </data>
+ </layer>
+</map>
