@@ -9,7 +9,7 @@ public final class Const {
     public static final int CAMERA_HEIGHT = 1080;
     //    public static final int CAMERA_WIDTH = Gdx.graphics.getWidth();
 //    public static final int CAMERA_HEIGHT = Gdx.graphics.getHeight();
-    public static final int TILE_SIZE = 64;
+    public static final int TILE_SIZE = 96;
 
     /**
      * Speed delta for camera movement on world map.

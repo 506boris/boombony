@@ -5,7 +5,7 @@ import by.vit.boombony.gameworld.SimpleScenario;
 
 public class ScenarioHelper {
     public static Scenario getScenario0() {
-        Scenario scenario = new SimpleScenario("Default level", "0", "maps/level0.tmx");
+        Scenario scenario = new SimpleScenario("Default level", "0", "maps/level1.tmx");
         return scenario;
     }
 }

@@ -1,6 +1,11 @@
 package by.vit.boombony.helpers;
 
 import by.vit.boombony.gameobjects.Cell;
+import by.vit.boombony.gameobjects.HasWorldObjectType;
+import by.vit.boombony.gameworld.WorldObjectType;
+import by.vit.boombony.screens.world.WorldTxLibrary;
+
+import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 
 public class MoveHelper {
@@ -24,6 +29,21 @@ public class MoveHelper {
 ////        Gdx.app.log("new coordinate ", "(" + String.valueOf(newCoo.x) + " : " + String.valueOf(newCoo.y) + ")");
 //        cursorMapLayer.setCell(newCoo.x, newCoo.y, cursor);
 //    }
+    public static void moveCursor(Cell target, Coo newCoo) {
+        move(target, newCoo, WorldTxLibrary.CURSOR_LAYER);
+    }
+
+    public static void moveObject(Cell target, Coo newCoo) {
+        move(target, newCoo, WorldTxLibrary.OBJECTS_LAYER);
+    }
+
+    public static void moveCursor(Cell target, int x, int y) {
+        move(target, new Coo(x, y), WorldTxLibrary.CURSOR_LAYER);
+    }
+
+    public static void moveObject(Cell target, int x, int y) {
+        move(target, new Coo(x, y), WorldTxLibrary.OBJECTS_LAYER);
+    }
 
     public static void move(Cell target, Coo newCoo, TiledMapTileLayer mapLayer) {
         if (target.getCoo() != null) {

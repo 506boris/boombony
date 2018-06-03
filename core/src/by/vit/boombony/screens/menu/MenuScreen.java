@@ -4,6 +4,7 @@ import by.vit.boombony.helpers.ScenarioHelper;
 import by.vit.boombony.screens.AbstractScreen;
 import by.vit.boombony.screens.ScreenManager;
 import by.vit.boombony.screens.world.WorldScreen;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -50,6 +51,7 @@ public class MenuScreen extends AbstractScreen<MenuTxLibrary> implements MenuScr
 
     @Override
     public void render(float delta) {
+        super.render(delta);
         batch.begin();
         bgSprite.draw(batch);
         batch.end();

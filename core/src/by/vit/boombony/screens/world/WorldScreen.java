@@ -1,9 +1,8 @@
 package by.vit.boombony.screens.world;
 
 import by.vit.boombony.gameobjects.*;
-import by.vit.boombony.gameworld.WorldLayerType;
 import by.vit.boombony.gameworld.Scenario;
-import by.vit.boombony.helpers.Coo;
+import by.vit.boombony.gameworld.WorldObjectType;
 import by.vit.boombony.helpers.MoveHelper;
 import by.vit.boombony.screens.AbstractScreen;
 import by.vit.boombony.screens.ScreenManager;
@@ -11,12 +10,13 @@ import by.vit.boombony.screens.ScreenManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 
+
 public class WorldScreen extends AbstractScreen<WorldTxLibrary> {
     private ScreenManager screenManager;
     private WorldRenderer worldRenderer;
     private HUDStage hudStage;
     private InputMultiplexer inputMultiplexer;
-    Hero hero;
+    protected Hero hero;
 
     public WorldScreen(ScreenManager screenManager, Scenario scenario) {
         super(new WorldTxLibrary(scenario));
@@ -41,7 +41,7 @@ public class WorldScreen extends AbstractScreen<WorldTxLibrary> {
     }
 
     private void initInputProcessor() {
-        StepCursor cursor = new StepCursor(txLibrary.cursorTexture);
+        StepCursor cursor = new StepCursor(txLibrary.txRegion("maps/activecell.png"));
         WorldInputController worldInputController = new WorldInputController(worldRenderer.getCamera(), cursor, hero, txLibrary);
         // порядок важен, кто первый добавлен тот и выше преоритетом при клике
         this.inputMultiplexer.addProcessor(hudStage);
@@ -50,8 +50,11 @@ public class WorldScreen extends AbstractScreen<WorldTxLibrary> {
     }
 
     private void initPersons() {
-        this.hero = new Hero(txLibrary.heroTexture);
-        MoveHelper.move(hero, Coo.zero(), txLibrary.getLayer(WorldLayerType.OBJECTS));
+        this.hero = new Hero(txLibrary.txRegion("maps/hero.png"));
+        MoveHelper.moveObject(hero, 0, 0);
+
+        Person oldDukePerson = new Person(txLibrary.txRegion("maps/old_duke.png"), WorldObjectType.NEUTRAL);
+        MoveHelper.moveObject(oldDukePerson, 3, 0);
     }
 
     @Override

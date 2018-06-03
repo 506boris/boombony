@@ -49,6 +49,7 @@ public class SplashScreen extends AbstractScreen<SplashTxLibrary> {
 
     @Override
     public void render(float delta) {
+        super.render(delta);
         batch.begin();
         sprite.draw(batch);
         batch.end();
@@ -70,6 +71,4 @@ public class SplashScreen extends AbstractScreen<SplashTxLibrary> {
             this.screenManager.show(new MenuScreen(this.screenManager));
         }*/
     }
-
-
 }

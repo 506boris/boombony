@@ -14,7 +14,15 @@ public abstract class StaticWorldObject extends Cell {
     public StaticWorldObject(TextureRegion texturePerson, WorldObjectType type) {
         this.texturePerson = texturePerson;
         init();
+        setObjectType(type);
+    }
+
+    public void setObjectType(WorldObjectType type) {
         getTile().getProperties().put(WorldObjectType.TYPE, type);
+    }
+
+    public WorldObjectType getObjectType() {
+        return (WorldObjectType) getTile().getProperties().get(WorldObjectType.TYPE);
     }
 
     private void init() {

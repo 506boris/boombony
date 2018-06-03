@@ -2,7 +2,6 @@ package by.vit.boombony.gameworld.path;
 
 import by.vit.boombony.gameworld.WorldObjectType;
 import by.vit.boombony.helpers.Coo;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 
 import java.util.*;
@@ -16,6 +15,8 @@ public final class SearchPathUtil {
     private TiledMapTileLayer layer;
     private PriorityQueue<TreeCell> openSet;
     private PriorityQueue<TreeCell> closeSet;
+    private MyComparator myComparator = new MyComparator();
+    private boolean searchingInProgress;
 
     private static class MyComparator implements Comparator<TreeCell>{
         @Override
@@ -37,14 +38,15 @@ public final class SearchPathUtil {
         return instance;
     }
 
-    public List<Coo> search(TiledMapTileLayer layer, Coo startCoo, Coo targetCoo) {
+    public synchronized List<Coo> search(TiledMapTileLayer layer, Coo startCoo, Coo targetCoo) {
+        this.searchingInProgress = true;
         this.startCell = new TreeCell(startCoo, targetCoo, null);
         this.targetCell = new TreeCell(targetCoo, targetCoo, null);
         this.w = layer.getWidth();
         this.h = layer.getHeight();
         this.layer = layer;
-        this.openSet = new PriorityQueue(10, new MyComparator());
-        this.closeSet = new PriorityQueue(10, new MyComparator());
+        this.openSet = new PriorityQueue(10, myComparator);
+        this.closeSet = new PriorityQueue(10, myComparator);
 
         // Начинаем со стартовой точки A и добавляем ее в "открытый список" клеток, которые нужно обработать.
         // Открытый список это что-то наподобие списка покупок. В данный момент есть только один элемент в списке, но позже мы добавим еще.
@@ -80,6 +82,7 @@ public final class SearchPathUtil {
         }
 
 //        Gdx.app.log("SearchPathUtil", coos.toString());
+        this.searchingInProgress = false;
         return coos;
     }
 
@@ -131,5 +134,9 @@ public final class SearchPathUtil {
                 openSet.add(left);
             }
         }
+    }
+
+    public boolean isSearchingInProgress() {
+        return searchingInProgress;
     }
 }

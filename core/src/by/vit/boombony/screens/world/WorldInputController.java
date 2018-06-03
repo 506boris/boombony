@@ -43,22 +43,26 @@ public class WorldInputController implements InputProcessor {
 //                currentSteps.clear();
 
                 // clear target cell
-                WorldObjectUtil.clearCell(txLibrary.getLayer(WorldLayerType.CURSOR), cursor);
+                WorldObjectUtil.clearCell(txLibrary.CURSOR_LAYER, cursor);
 
                 // now hero can move to target cell
                 hero.setCanMove(true);
 
                 // other way we should build path to target cursor
             } else {
-                WorldObjectUtil.clearCells(txLibrary.getLayer(WorldLayerType.OBJECTS), currentSteps);
+                WorldObjectUtil.clearCells(txLibrary.OBJECTS_LAYER, currentSteps);
                 currentSteps.clear();
-                MoveHelper.move(cursor, targetCoo, txLibrary.getLayer(WorldLayerType.CURSOR));
+                MoveHelper.move(cursor, targetCoo, txLibrary.CURSOR_LAYER);
 
                 long start = System.currentTimeMillis();
                 Gdx.app.log("Search path start - ", String.valueOf(start));
-                currentSteps = SearchPathUtil.get().search(txLibrary.getLayer(WorldLayerType.OBJECTS), hero.getCoo(), targetCoo);
-                Gdx.app.log("Search path finish - ", String.valueOf(System.currentTimeMillis() - start));
-                WorldObjectUtil.drawSteps(currentSteps, hero.getMaxStepCount(), txLibrary);
+                SearchPathUtil searchPathUtil = SearchPathUtil.get();
+                if (!searchPathUtil.isSearchingInProgress()) {
+                    currentSteps = searchPathUtil.search(txLibrary.OBJECTS_LAYER, hero.getCoo(), targetCoo);
+                    Gdx.app.log("Search path finish - ", String.valueOf(System.currentTimeMillis() - start));
+                    WorldObjectUtil.drawSteps(currentSteps, hero.getMaxStepCount(), txLibrary);
+                }
+                Gdx.app.log("Search path skipped - ", String.valueOf(System.currentTimeMillis() - start));
             }
         }
         return true;

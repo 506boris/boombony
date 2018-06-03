@@ -59,9 +59,9 @@ public final class WorldObjectUtil {
             Coo currentCoo = currentSteps.get(i);
             // если шаги выходят за максимальное колличество, которое имеет герой, то помечаем как out
             if (currentSteps.size() - (i + 1) <= maxStepCount) {
-                objectLayer.setCell(currentCoo.x, currentCoo.y, new Step(txLibrary.stepTexture, currentCoo));
+                objectLayer.setCell(currentCoo.x, currentCoo.y, new Step(txLibrary.txRegion("maps/step.png"), currentCoo));
             } else {
-                objectLayer.setCell(currentCoo.x, currentCoo.y, new Step(txLibrary.stepOutTexture, currentCoo));
+                objectLayer.setCell(currentCoo.x, currentCoo.y, new Step(txLibrary.txRegion("maps/step-out.png"), currentCoo));
             }
         }
     }
