@@ -1,5 +1,7 @@
 package by.vit.boombony.gameworld.path;
 
+import java.util.Objects;
+
 import by.vit.boombony.helpers.Coo;
 
 public class TreeCell implements Comparable<TreeCell> {
@@ -39,6 +41,20 @@ public class TreeCell implements Comparable<TreeCell> {
 
     public TreeCell getParent() {
         return parent;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TreeCell treeCell = (TreeCell) o;
+        return Objects.equals(coo, treeCell.coo);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(coo);
     }
 
     @Override

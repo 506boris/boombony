@@ -1,7 +1,9 @@
 package by.vit.boombony.gameworld.path;
 
+import by.vit.boombony.Logger;
 import by.vit.boombony.gameworld.WorldObjectType;
 import by.vit.boombony.helpers.Coo;
+
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 
 import java.util.*;
@@ -13,12 +15,12 @@ public final class SearchPathUtil {
     private int w = 0;
     private int h = 0;
     private TiledMapTileLayer layer;
-    private PriorityQueue<TreeCell> openSet;
-    private PriorityQueue<TreeCell> closeSet;
+    private PriorityQueue<TreeCell> openSet;// те обьекты которые еще нужно проверить
+    private PriorityQueue<TreeCell> closeSet;// те обьекты которые уже проверялись
     private MyComparator myComparator = new MyComparator();
     private boolean searchingInProgress;
 
-    private static class MyComparator implements Comparator<TreeCell>{
+    private static class MyComparator implements Comparator<TreeCell> {
         @Override
         public int compare(TreeCell o1, TreeCell o2) {
             if (o1.getF() == o2.getF()) {
@@ -45,8 +47,8 @@ public final class SearchPathUtil {
         this.w = layer.getWidth();
         this.h = layer.getHeight();
         this.layer = layer;
-        this.openSet = new PriorityQueue(10, myComparator);
-        this.closeSet = new PriorityQueue(10, myComparator);
+        this.openSet = new PriorityQueue(20, myComparator);
+        this.closeSet = new PriorityQueue(20, myComparator);
 
         // Начинаем со стартовой точки A и добавляем ее в "открытый список" клеток, которые нужно обработать.
         // Открытый список это что-то наподобие списка покупок. В данный момент есть только один элемент в списке, но позже мы добавим еще.
@@ -60,26 +62,30 @@ public final class SearchPathUtil {
 
         TreeCell finishCell;
 
-        while(true) {
+        Logger.logWithMark("First Cycle");
+        while (true) {
             TreeCell treeCell = openSet.peek(); // ожидаем, что здесь Минимальный F
 
-            if(treeCell.getCoo().equals(targetCoo)) {
+            if (treeCell.getCoo().equals(targetCoo)) {
                 finishCell = treeCell;
                 break;
             }
 
             process(treeCell);
         }
+        Logger.logWithMark("First Cycle");
 
         List<Coo> coos = new ArrayList();
         TreeCell currentTreeCell = finishCell;
-        while(true) {
+        Logger.logWithMark("Second Cycle");
+        while (true) {
             coos.add(currentTreeCell.getCoo());
             currentTreeCell = currentTreeCell.getParent();
-            if(currentTreeCell == null) {
+            if (currentTreeCell == null) {
                 break;
             }
         }
+        Logger.logWithMark("Second Cycle");
 
 //        Gdx.app.log("SearchPathUtil", coos.toString());
         this.searchingInProgress = false;
@@ -112,25 +118,25 @@ public final class SearchPathUtil {
 
         if (cooTop != null && WorldObjectType.isTransit(layer.getCell(cooTop.x, cooTop.y))) {
             TreeCell top = new TreeCell(cooTop, targetCell.getCoo(), parent);
-            if (!closeSet.contains(top)) {
+            if (!closeSet.contains(top) && !openSet.contains(top)) {
                 openSet.add(top);
             }
         }
         if (cooRight != null && WorldObjectType.isTransit(layer.getCell(cooRight.x, cooRight.y))) {
             TreeCell right = new TreeCell(cooRight, targetCell.getCoo(), parent);
-            if (!closeSet.contains(right)) {
+            if (!closeSet.contains(right) && !openSet.contains(right)) {
                 openSet.add(right);
             }
         }
         if (cooBottom != null && WorldObjectType.isTransit(layer.getCell(cooBottom.x, cooBottom.y))) {
             TreeCell bottom = new TreeCell(cooBottom, targetCell.getCoo(), parent);
-            if (!closeSet.contains(bottom)) {
+            if (!closeSet.contains(bottom) && !openSet.contains(bottom)) {
                 openSet.add(bottom);
             }
         }
         if (cooLeft != null && WorldObjectType.isTransit(layer.getCell(cooLeft.x, cooLeft.y))) {
             TreeCell left = new TreeCell(cooLeft, targetCell.getCoo(), parent);
-            if (!closeSet.contains(left)) {
+            if (!closeSet.contains(left) && !openSet.contains(left)) {
                 openSet.add(left);
             }
         }

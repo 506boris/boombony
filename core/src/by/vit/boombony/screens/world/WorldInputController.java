@@ -1,5 +1,6 @@
 package by.vit.boombony.screens.world;
 
+import by.vit.boombony.Logger;
 import by.vit.boombony.gameobjects.Hero;
 import by.vit.boombony.gameobjects.StepCursor;
 import by.vit.boombony.gameworld.WorldLayerType;
@@ -54,15 +55,15 @@ public class WorldInputController implements InputProcessor {
                 currentSteps.clear();
                 MoveHelper.move(cursor, targetCoo, txLibrary.CURSOR_LAYER);
 
-                long start = System.currentTimeMillis();
-                Gdx.app.log("Search path start - ", String.valueOf(start));
+                Logger.logWithMark("Search path");
                 SearchPathUtil searchPathUtil = SearchPathUtil.get();
                 if (!searchPathUtil.isSearchingInProgress()) {
                     currentSteps = searchPathUtil.search(txLibrary.OBJECTS_LAYER, hero.getCoo(), targetCoo);
-                    Gdx.app.log("Search path finish - ", String.valueOf(System.currentTimeMillis() - start));
+                    Logger.logWithMark("Search path");
                     WorldObjectUtil.drawSteps(currentSteps, hero.getMaxStepCount(), txLibrary);
+                } else {
+                    Logger.log("Search path was skipped");
                 }
-                Gdx.app.log("Search path skipped - ", String.valueOf(System.currentTimeMillis() - start));
             }
         }
         return true;
