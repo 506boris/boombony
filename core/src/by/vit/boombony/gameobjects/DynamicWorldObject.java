@@ -3,6 +3,7 @@ package by.vit.boombony.gameobjects;
 import by.vit.boombony.gameworld.WorldObjectType;
 import by.vit.boombony.helpers.Coo;
 import by.vit.boombony.helpers.MoveHelper;
+import by.vit.boombony.screens.world.WorldTxLibrary;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -16,6 +17,7 @@ public abstract class DynamicWorldObject extends WorldObject {
     private float currentStepTime = 0;
     private Deque<Coo> walkingSteps = new ConcurrentLinkedDeque<>();
     private boolean canMove = false;
+    private TiledMapTileLayer defaultMapLayer = WorldTxLibrary.OBJECTS_LAYER;
 
     public DynamicWorldObject(TextureRegion texture, WorldObjectType type) {
         super(texture, type);
@@ -26,13 +28,15 @@ public abstract class DynamicWorldObject extends WorldObject {
         this.walkingSteps.addAll(coos);
     }
 
-    public void render(float delta, final TiledMapTileLayer objectLayer) {
+    @Override
+    public void act(float delta) {
+        super.act(delta);
         if (isCanMove()) {
             if (currentStepTime > SPEED_TIME) {
                 currentStepTime = 0;
                 Coo coo = walkingSteps.pollLast();
                 if (coo != null) {
-                    MoveHelper.move(this.getCell(), coo, objectLayer);
+                    MoveHelper.move(this.getCell(), coo, defaultMapLayer);
                 }
             } else {
                 currentStepTime = currentStepTime + delta;

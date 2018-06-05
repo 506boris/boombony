@@ -1,16 +1,16 @@
 package by.vit.boombony.screens.world;
 
-import by.vit.boombony.gameobjects.*;
 import by.vit.boombony.gameworld.Scenario;
 import by.vit.boombony.screens.AbstractScreen;
 import by.vit.boombony.screens.ScreenManager;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 
 public class WorldScreen extends AbstractScreen<WorldTxLibrary> {
     private ScreenManager screenManager;
-    private WorldRenderer worldRenderer;
+    private OrthographicCamera camera;
     private HUDStage hudStage;
     private InputMultiplexer inputMultiplexer;
     private WorldStage worldStage;
@@ -19,9 +19,8 @@ public class WorldScreen extends AbstractScreen<WorldTxLibrary> {
         super(new WorldTxLibrary(scenario));
         this.screenManager = screenManager;
         this.hudStage = new HUDStage();
-        this.worldRenderer = new WorldRenderer(this, screenManager, hudStage);
         this.inputMultiplexer = new InputMultiplexer();
-        this.worldStage = new WorldStage(worldRenderer.getCamera(), txLibrary);
+        this.worldStage = new WorldStage(this, txLibrary);
     }
 
     @Override
@@ -32,10 +31,16 @@ public class WorldScreen extends AbstractScreen<WorldTxLibrary> {
 
     @Override
     public void show() {
+        this.initCamera();
         this.hudStage.init();
-        this.worldRenderer.init();
         this.worldStage.init();
         initInputProcessor();
+    }
+
+    private void initCamera() {
+        this.camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        this.camera.position.set(0, 0, 0);
+        this.camera.setToOrtho(false);
     }
 
     private void initInputProcessor() {
@@ -48,9 +53,10 @@ public class WorldScreen extends AbstractScreen<WorldTxLibrary> {
     @Override
     public void render(float delta) {
         super.render(delta);
-        worldRenderer.render(delta);
         worldStage.render(delta);
         worldStage.draw();
+        hudStage.render(delta);
+        hudStage.draw();
     }
 
     @Override
@@ -59,8 +65,11 @@ public class WorldScreen extends AbstractScreen<WorldTxLibrary> {
         txLibrary.dispose();
     }
 
-    @Deprecated
-    public Hero getHero() {
-        return worldStage.getHero();
+    public ScreenManager getScreenManager() {
+        return screenManager;
+    }
+
+    public OrthographicCamera getCamera() {
+        return camera;
     }
 }

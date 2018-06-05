@@ -1,6 +1,7 @@
 package by.vit.boombony.screens.world;
 
 import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,25 +13,31 @@ import by.vit.boombony.gameobjects.Person;
 import by.vit.boombony.gameobjects.StepCursor;
 import by.vit.boombony.gameworld.WorldObjectType;
 import by.vit.boombony.gameworld.path.SearchPathUtil;
+import by.vit.boombony.helpers.Const;
 import by.vit.boombony.helpers.Coo;
 import by.vit.boombony.helpers.CoordinateUtil;
 import by.vit.boombony.helpers.MoveHelper;
 import by.vit.boombony.screens.AbstractStage;
 
 public class WorldStage extends AbstractStage<WorldTxLibrary> {
+    private WorldScreen worldScreen;
     private Camera camera;
     private StepCursor cursor;
     private List<Coo> currentSteps = Collections.synchronizedList(new ArrayList<>());
     private Hero hero;
     private Person oldDukePerson;
+    private OrthogonalTiledMapRenderer tiledMapRenderer;
+    private int mapWidth = 0;
+    private int mapHeight = 0;
 
-    public WorldStage(Camera camera, WorldTxLibrary txLibrary) {
+    public WorldStage(WorldScreen worldScreen, WorldTxLibrary txLibrary) {
         super(txLibrary);
-        this.camera = camera;
+        this.worldScreen = worldScreen;
     }
 
     @Override
     public void init() {
+        this.camera = worldScreen.getCamera();
         this.cursor = new StepCursor(txLibrary.txRegion("maps/activecell.png"));
 
         this.hero = new Hero(txLibrary.txRegion("maps/hero.png"));
@@ -40,6 +47,10 @@ public class WorldStage extends AbstractStage<WorldTxLibrary> {
         oldDukePerson = new Person(txLibrary.txRegion("maps/old_duke.png"), WorldObjectType.NEUTRAL);
         addActor(this.oldDukePerson);
         MoveHelper.moveObject(oldDukePerson.getCell(), 3, 0);
+
+        this.tiledMapRenderer = new OrthogonalTiledMapRenderer(txLibrary.getTiledMap(), worldScreen.getScreenManager().getGame().getBatch());
+        this.mapWidth = WorldTxLibrary.GROUND_LAYER.getWidth() * Const.TILE_SIZE;
+        this.mapHeight = WorldTxLibrary.GROUND_LAYER.getHeight() * Const.TILE_SIZE;
     }
 
     public boolean heroInitMove(Coo targetCoo) {
@@ -79,6 +90,20 @@ public class WorldStage extends AbstractStage<WorldTxLibrary> {
         return true;
     }
 
+    @Override
+    public void render(float delta) {
+        super.render(delta);
+
+        CameraHelper.followCamera(camera, hero, this.mapWidth, this.mapHeight);
+
+        if (tiledMapRenderer != null) {
+            // these view responsible for render full size of map with width and height.
+            // potentially it could be optimizated in future
+            tiledMapRenderer.setView(camera.combined, 0, 0, this.mapWidth, this.mapHeight);
+            tiledMapRenderer.render();
+        }
+    }
+
     private boolean wantMove(Coo targetCoo) {
         return cursor != null && cursor.getCoo() != null && cursor.getCoo().equals(targetCoo);
     }
@@ -89,10 +114,5 @@ public class WorldStage extends AbstractStage<WorldTxLibrary> {
         int layerY = Float.valueOf(camera.position.y - camera.viewportHeight / 2).intValue() + Float.valueOf(camera.viewportHeight - screenY).intValue();
         Coo coo = CoordinateUtil.getCellCenter(layerX, layerY);
         return heroInitMove(coo);
-    }
-
-    @Deprecated
-    public Hero getHero() {
-        return hero;
     }
 }
