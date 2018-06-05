@@ -1,60 +1,36 @@
 package by.vit.boombony.gameobjects;
 
-import by.vit.boombony.gameworld.WorldObjectType;
-import by.vit.boombony.helpers.Coo;
-import by.vit.boombony.helpers.MoveHelper;
-
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 
-import java.util.Deque;
-import java.util.List;
-import java.util.concurrent.ConcurrentLinkedDeque;
+import by.vit.boombony.gameworld.WorldObjectType;
+import by.vit.boombony.helpers.CellBehavior;
 
-public abstract class WorldObject extends Cell {
-    private final TextureRegion texturePerson;
-    private static final float SPEED_TIME = .3f;
-    private float currentStepTime = 0;
-    private Deque<Coo> walkingSteps = new ConcurrentLinkedDeque<>();
-    private boolean canMove = false;
+public class WorldObject extends Actor implements CellBehavior {
+    private final TextureRegion texture;
+    private Cell cell = new Cell();
 
-    public WorldObject(TextureRegion texturePerson, WorldObjectType type) {
-        this.texturePerson = texturePerson;
+    public WorldObject(TextureRegion texture, WorldObjectType type) {
+        this.texture = texture;
         init();
-        getTile().getProperties().put(WorldObjectType.TYPE, type);
+        setObjectType(type);
+    }
+
+    public void setObjectType(WorldObjectType type) {
+        cell.getTile().getProperties().put(WorldObjectType.TYPE, type);
+    }
+
+    public WorldObjectType getObjectType() {
+        return (WorldObjectType) cell.getTile().getProperties().get(WorldObjectType.TYPE);
     }
 
     private void init() {
-        this.setTile(new StaticTiledMapTile(texturePerson));
+        this.cell.setTile(new StaticTiledMapTile(texture));
     }
 
-    public void addWalkingSteps(List<Coo> coos) {
-        this.walkingSteps.addAll(coos);
-    }
-
-    public void render(float delta, final TiledMapTileLayer objectLayer) {
-        if (isCanMove()) {
-            if (currentStepTime > SPEED_TIME) {
-                currentStepTime = 0;
-                Coo coo = walkingSteps.pollLast();
-                if (coo != null) {
-                    MoveHelper.move(this, coo, objectLayer);
-                }
-            } else {
-                currentStepTime = currentStepTime + delta;
-            }
-        }
-    }
-
-    public void setCanMove(boolean canMove) {
-        if (this.canMove && !canMove) {
-            walkingSteps.clear();
-        }
-        this.canMove = canMove;
-    }
-
-    public boolean isCanMove() {
-        return !walkingSteps.isEmpty() && canMove;
+    @Override
+    public Cell getCell() {
+        return cell;
     }
 }

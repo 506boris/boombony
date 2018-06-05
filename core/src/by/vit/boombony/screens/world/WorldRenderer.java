@@ -57,9 +57,9 @@ public class WorldRenderer implements Disposable, Initializable {
     }
 
     public void render(float delta) {
-        worldScreen.hero.render(delta, objectLayer);
+//        worldScreen.getHero().render(delta, objectLayer);
 
-        CameraHelper.followCamera(camera, worldScreen.hero, this.mapWidth, this.mapHeight);
+        CameraHelper.followCamera(camera, worldScreen.getHero(), this.mapWidth, this.mapHeight);
 
         if (renderer != null) {
             // these view responsible for render full size of map with width and height.
@@ -72,7 +72,7 @@ public class WorldRenderer implements Disposable, Initializable {
     }
 
     private void renderHUD(float delta) {
-        hudStage.update(delta);
+        hudStage.render(delta);
         hudStage.draw();
     }
 

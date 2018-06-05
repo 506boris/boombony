@@ -2,6 +2,7 @@ package by.vit.boombony.screens.loading;
 
 import by.vit.boombony.screens.AbstractScreen;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -19,6 +20,7 @@ public class LoadingScreen extends AbstractScreen<LoadingTxLibrary> {
 
         bgSprite = new Sprite(txLibrary.bg);
         bgSprite.setPosition(0, 0);
+        bgSprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     }
 
 

@@ -1,6 +1,6 @@
 package by.vit.boombony.screens.world;
 
-import by.vit.boombony.gameobjects.WorldObject;
+import by.vit.boombony.gameobjects.DynamicWorldObject;
 import by.vit.boombony.helpers.Const;
 
 import com.badlogic.gdx.graphics.Camera;
@@ -8,9 +8,9 @@ import com.badlogic.gdx.math.Vector3;
 
 public final class CameraHelper {
 
-    public static void followCamera(Camera camera, WorldObject worldObject, int mapWidth, int mapHeight) {
-        float cameraX = worldObject.getCoo().x * Const.TILE_SIZE;
-        float cameraY = worldObject.getCoo().y * Const.TILE_SIZE;
+    public static void followCamera(Camera camera, DynamicWorldObject dynamicWorldObject, int mapWidth, int mapHeight) {
+        float cameraX = dynamicWorldObject.getCell().getCoo().x * Const.TILE_SIZE;
+        float cameraY = dynamicWorldObject.getCell().getCoo().y * Const.TILE_SIZE;
 
         if (cameraX <= camera.viewportWidth / 2) {
             cameraX = camera.viewportWidth / 2;

@@ -33,7 +33,7 @@ public class MenuScreen extends AbstractScreen<MenuTxLibrary> implements MenuScr
 
         bgSprite = new Sprite(txLibrary.bg);
         bgSprite.setPosition(0, 0);
-
+        bgSprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         Gdx.input.setInputProcessor(menuStage);
     }
@@ -56,7 +56,7 @@ public class MenuScreen extends AbstractScreen<MenuTxLibrary> implements MenuScr
         bgSprite.draw(batch);
         batch.end();
 
-        menuStage.update(delta);
+        menuStage.render(delta);
         menuStage.draw();
     }
 

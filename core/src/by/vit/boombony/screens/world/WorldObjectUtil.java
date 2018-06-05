@@ -7,6 +7,7 @@ import by.vit.boombony.gameworld.WorldObjectType;
 import by.vit.boombony.helpers.Coo;
 import by.vit.boombony.screens.HasTileMap;
 
+import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 
 import java.util.List;
@@ -35,12 +36,23 @@ public final class WorldObjectUtil {
         }
         for (Coo coo : coos) {
             TiledMapTileLayer.Cell tileCell = mapLayer.getCell(coo.x, coo.y);
-            if (tileCell instanceof Step) {
-                Step step = (Step) tileCell;
+            if (WorldObjectType.STEP == getCellType(tileCell)) {
+                Cell cell = (Cell) tileCell;
                 mapLayer.setCell(coo.x, coo.y, null);
-                step.setCoo(null);
+                cell.setCoo(null);
             }
         }
+    }
+
+    public static WorldObjectType getCellType(TiledMapTileLayer.Cell cell) {
+        if (cell != null && cell.getTile() != null) {
+            Object object = cell.getTile().getProperties().get(WorldObjectType.TYPE);
+            if (object != null) {
+                return (WorldObjectType) object;
+            }
+        }
+
+        return WorldObjectType.NONE;
     }
 
     /**
@@ -59,9 +71,9 @@ public final class WorldObjectUtil {
             Coo currentCoo = currentSteps.get(i);
             // если шаги выходят за максимальное колличество, которое имеет герой, то помечаем как out
             if (currentSteps.size() - (i + 1) <= maxStepCount) {
-                objectLayer.setCell(currentCoo.x, currentCoo.y, new Step(txLibrary.txRegion("maps/step.png"), currentCoo));
+                objectLayer.setCell(currentCoo.x, currentCoo.y, new Step(txLibrary.txRegion("maps/step.png"), currentCoo).getCell());
             } else {
-                objectLayer.setCell(currentCoo.x, currentCoo.y, new Step(txLibrary.txRegion("maps/step-out.png"), currentCoo));
+                objectLayer.setCell(currentCoo.x, currentCoo.y, new Step(txLibrary.txRegion("maps/step-out.png"), currentCoo).getCell());
             }
         }
     }

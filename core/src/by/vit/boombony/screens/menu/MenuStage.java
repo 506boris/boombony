@@ -4,6 +4,7 @@ import by.vit.boombony.events.ClickListener;
 import by.vit.boombony.gameobjects.TextureButton;
 import by.vit.boombony.screens.AbstractStage;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 
 public class MenuStage extends AbstractStage<MenuTxLibrary> {
@@ -17,7 +18,7 @@ public class MenuStage extends AbstractStage<MenuTxLibrary> {
 
     @Override
     public void init() {
-        startGameButton = new TextureButton(txLibrary.buttonGo, 260, 150);
+        startGameButton = new TextureButton(txLibrary.buttonGo, Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
 
         startGameButton.addListener(new ClickListener() {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {

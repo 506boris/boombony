@@ -7,6 +7,7 @@ import by.vit.boombony.screens.world.WorldTxLibrary;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.math.Vector3;
 
 public class MoveHelper {
     /**
@@ -55,7 +56,21 @@ public class MoveHelper {
 
         target.setCoo(newCoo);
 
-//        Gdx.app.log("WorldObject ", "(" + String.valueOf(newCoo.x) + " : " + String.valueOf(newCoo.y) + ")");
+//        Gdx.app.log("DynamicWorldObject ", "(" + String.valueOf(newCoo.x) + " : " + String.valueOf(newCoo.y) + ")");
         mapLayer.setCell(newCoo.x, newCoo.y, target);
     }
+//
+//    public static void moveSmooth(Cell target, Coo newCoo, TiledMapTileLayer mapLayer) {
+//        if (target.getCoo() != null) {
+//            TiledMapTileLayer.Cell cell = mapLayer.getCell(target.getCoo().x, target.getCoo().y);
+//            if (cell != null) {
+//                mapLayer.setCell(target.getCoo().x, target.getCoo().y, null);
+//            }
+//        }
+//
+//        target.setCoo(newCoo);
+//
+////        Gdx.app.log("DynamicWorldObject ", "(" + String.valueOf(newCoo.x) + " : " + String.valueOf(newCoo.y) + ")");
+//        mapLayer.setCell(newCoo.x, newCoo.y, target);
+//    }
 }

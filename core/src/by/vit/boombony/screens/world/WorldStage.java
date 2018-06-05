@@ -1,35 +1,45 @@
 package by.vit.boombony.screens.world;
 
-import by.vit.boombony.Logger;
-import by.vit.boombony.gameobjects.Hero;
-import by.vit.boombony.gameobjects.StepCursor;
-import by.vit.boombony.gameworld.WorldLayerType;
-import by.vit.boombony.gameworld.path.SearchPathUtil;
-import by.vit.boombony.helpers.Coo;
-import by.vit.boombony.helpers.CoordinateUtil;
-import by.vit.boombony.helpers.MoveHelper;
-
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Camera;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import by.vit.boombony.Logger;
+import by.vit.boombony.gameobjects.Hero;
+import by.vit.boombony.gameobjects.Person;
+import by.vit.boombony.gameobjects.StepCursor;
+import by.vit.boombony.gameworld.WorldObjectType;
+import by.vit.boombony.gameworld.path.SearchPathUtil;
+import by.vit.boombony.helpers.Coo;
+import by.vit.boombony.helpers.CoordinateUtil;
+import by.vit.boombony.helpers.MoveHelper;
+import by.vit.boombony.screens.AbstractStage;
 
-public class WorldInputController implements InputProcessor {
+public class WorldStage extends AbstractStage<WorldTxLibrary> {
     private Camera camera;
     private StepCursor cursor;
     private List<Coo> currentSteps = Collections.synchronizedList(new ArrayList<>());
     private Hero hero;
-    private WorldTxLibrary txLibrary;
+    private Person oldDukePerson;
 
-    public WorldInputController(Camera camera, StepCursor cursor, Hero hero, WorldTxLibrary txLibrary) {
+    public WorldStage(Camera camera, WorldTxLibrary txLibrary) {
+        super(txLibrary);
         this.camera = camera;
-        this.cursor = cursor;
-        this.hero = hero;
-        this.txLibrary = txLibrary;
+    }
+
+    @Override
+    public void init() {
+        this.cursor = new StepCursor(txLibrary.txRegion("maps/activecell.png"));
+
+        this.hero = new Hero(txLibrary.txRegion("maps/hero.png"));
+        addActor(this.hero);
+        MoveHelper.moveObject(hero.getCell(), 0, 0);
+
+        oldDukePerson = new Person(txLibrary.txRegion("maps/old_duke.png"), WorldObjectType.NEUTRAL);
+        addActor(this.oldDukePerson);
+        MoveHelper.moveObject(oldDukePerson.getCell(), 3, 0);
     }
 
     public boolean heroInitMove(Coo targetCoo) {
@@ -44,21 +54,21 @@ public class WorldInputController implements InputProcessor {
 //                currentSteps.clear();
 
                 // clear target cell
-                WorldObjectUtil.clearCell(txLibrary.CURSOR_LAYER, cursor);
+                WorldObjectUtil.clearCell(WorldTxLibrary.CURSOR_LAYER, cursor);
 
                 // now hero can move to target cell
                 hero.setCanMove(true);
 
                 // other way we should build path to target cursor
             } else {
-                WorldObjectUtil.clearCells(txLibrary.OBJECTS_LAYER, currentSteps);
+                WorldObjectUtil.clearCells(WorldTxLibrary.OBJECTS_LAYER, currentSteps);
                 currentSteps.clear();
-                MoveHelper.move(cursor, targetCoo, txLibrary.CURSOR_LAYER);
+                MoveHelper.move(cursor, targetCoo, WorldTxLibrary.CURSOR_LAYER);
 
                 Logger.logWithMark("Search path");
                 SearchPathUtil searchPathUtil = SearchPathUtil.get();
                 if (!searchPathUtil.isSearchingInProgress()) {
-                    currentSteps = searchPathUtil.search(txLibrary.OBJECTS_LAYER, hero.getCoo(), targetCoo);
+                    currentSteps = searchPathUtil.search(WorldTxLibrary.OBJECTS_LAYER, hero.getCell().getCoo(), targetCoo);
                     Logger.logWithMark("Search path");
                     WorldObjectUtil.drawSteps(currentSteps, hero.getMaxStepCount(), txLibrary);
                 } else {
@@ -74,26 +84,6 @@ public class WorldInputController implements InputProcessor {
     }
 
     @Override
-    public boolean keyDown(int keycode) {
-        return false;
-    }
-
-    @Override
-    public boolean keyUp(int keycode) {
-        return false;
-    }
-
-    @Override
-    public boolean keyTyped(char character) {
-        return false;
-    }
-
-    @Override
-    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        return false;
-    }
-
-    @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         int layerX = screenX + Float.valueOf(camera.position.x - camera.viewportWidth / 2).intValue();
         int layerY = Float.valueOf(camera.position.y - camera.viewportHeight / 2).intValue() + Float.valueOf(camera.viewportHeight - screenY).intValue();
@@ -101,18 +91,8 @@ public class WorldInputController implements InputProcessor {
         return heroInitMove(coo);
     }
 
-    @Override
-    public boolean touchDragged(int screenX, int screenY, int pointer) {
-        return false;
-    }
-
-    @Override
-    public boolean mouseMoved(int screenX, int screenY) {
-        return false;
-    }
-
-    @Override
-    public boolean scrolled(int amount) {
-        return false;
+    @Deprecated
+    public Hero getHero() {
+        return hero;
     }
 }

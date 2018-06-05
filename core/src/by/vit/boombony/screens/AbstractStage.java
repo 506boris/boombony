@@ -16,7 +16,7 @@ public abstract class AbstractStage<T extends TxLibrary> extends Stage implement
         this.txLibrary.load();
     }
 
-    public void update(float delta) {
+    public void render(float delta) {
         super.act(delta);
     }
 

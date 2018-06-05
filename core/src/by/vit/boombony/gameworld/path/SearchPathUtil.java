@@ -75,21 +75,18 @@ public final class SearchPathUtil {
         }
         Logger.logWithMark("First Cycle");
 
-        List<Coo> coos = new ArrayList();
+        List<Coo> results = new ArrayList();
         TreeCell currentTreeCell = finishCell;
-        Logger.logWithMark("Second Cycle");
         while (true) {
-            coos.add(currentTreeCell.getCoo());
+            results.add(currentTreeCell.getCoo());
             currentTreeCell = currentTreeCell.getParent();
             if (currentTreeCell == null) {
                 break;
             }
         }
-        Logger.logWithMark("Second Cycle");
 
-//        Gdx.app.log("SearchPathUtil", coos.toString());
         this.searchingInProgress = false;
-        return coos;
+        return results;
     }
 
     private void process(final TreeCell cell) {

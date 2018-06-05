@@ -8,6 +8,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class Step extends StaticWorldObject {
     public Step(TextureRegion texturePerson, Coo coo) {
         super(texturePerson, WorldObjectType.STEP);
-        this.setCoo(coo);
+        this.getCell().setCoo(coo);
     }
 }

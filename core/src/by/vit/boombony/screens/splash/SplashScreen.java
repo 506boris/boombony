@@ -4,7 +4,6 @@ import by.vit.boombony.screens.ScreenManager;
 import by.vit.boombony.screens.AbstractScreen;
 import by.vit.boombony.screens.menu.MenuScreen;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Timer;
@@ -15,7 +14,7 @@ import com.badlogic.gdx.utils.Timer;
  */
 public class SplashScreen extends AbstractScreen<SplashTxLibrary> {
     private final ScreenManager screenManager;
-    private Sprite sprite;
+    private Sprite splashLabel;
     private SpriteBatch batch;
     private boolean timerInProgress = false;
     private static final int SPLASH_SCREEN_DELAY = 1;//todo
@@ -30,28 +29,16 @@ public class SplashScreen extends AbstractScreen<SplashTxLibrary> {
     @Override
     public void show() {
         // как только показали скрин Splash сразу начинаем загрузку след. скрин.
-        sprite = new Sprite(txLibrary.splashLabel);
-        sprite.setPosition(calculateWidth(), calculateHeight());
+        splashLabel = new Sprite(txLibrary.splashLabelTextureRegion);
+        splashLabel.setPosition(centerWidth(splashLabel), centerHeight(splashLabel));
         this.screenManager.init();
-    }
-
-    private float calculateWidth() {
-        float width = Gdx.graphics.getWidth();
-        float spriteWidth = sprite.getWidth();
-        return width / 2 - spriteWidth / 2;
-    }
-
-    private float calculateHeight() {
-        float height = Gdx.graphics.getHeight();
-        float spriteHeight = sprite.getHeight();
-        return height / 2 - spriteHeight / 2;
     }
 
     @Override
     public void render(float delta) {
         super.render(delta);
         batch.begin();
-        sprite.draw(batch);
+        splashLabel.draw(batch);
         batch.end();
 
         if (!timerInProgress) {
