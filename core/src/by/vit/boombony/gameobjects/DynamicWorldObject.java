@@ -36,7 +36,7 @@ public abstract class DynamicWorldObject extends WorldObject {
                 currentStepTime = 0;
                 Coo coo = walkingSteps.pollLast();
                 if (coo != null) {
-                    MoveHelper.move(this.getCell(), coo, defaultMapLayer);
+                    MoveHelper.move(this, coo, defaultMapLayer);
                 }
             } else {
                 currentStepTime = currentStepTime + delta;

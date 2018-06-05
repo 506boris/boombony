@@ -78,6 +78,25 @@ public final class WorldObjectUtil {
         }
     }
 
+    /**
+     * Прорисовываем степы
+     *
+     * @param currentSteps список координат, где мы должны прорисовать степы
+     */
+    public static void drawSteps(List<Coo> currentSteps, WorldTxLibrary txLibrary) {
+        // currentSteps первый и последний элемент не должны прорисосываться в виде степов так как это герой и курсор.
+        TiledMapTileLayer objectLayer = txLibrary.getLayer(WorldLayerType.OBJECTS);
+        // currentSteps - степы в списке расположены с target к hero
+        for (int i = currentSteps.size() - 1; i >= 0; i--) {
+            if (i == 0 || i == currentSteps.size() - 1) {
+                continue;
+            }
+            Coo currentCoo = currentSteps.get(i);
+            // если шаги выходят за максимальное колличество, которое имеет герой, то помечаем как out
+            objectLayer.setCell(currentCoo.x, currentCoo.y, new Step(txLibrary.txRegion("maps/step.png"), currentCoo).getCell());
+        }
+    }
+
     // check Can we move cursor to coo position
     public static boolean canMove(Coo targetCoo, HasTileMap layers) {
         TiledMapTileLayer groundLayer = layers.getLayer(WorldLayerType.GROUND);

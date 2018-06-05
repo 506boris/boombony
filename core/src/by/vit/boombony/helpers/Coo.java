@@ -1,7 +1,8 @@
 package by.vit.boombony.helpers;
 
 /**
- * Object contain x and y coordinate. Simple object.
+ * Object contain x and y cell coordinate. Simple object. It is just number of cells.
+ * For example first cell with x=0 and y=0 coordinates. Next x=1 y=1 -> it means real coordinate is x=1*CELL_W y=1*CELL_H
  */
 public class Coo {
     public int x;

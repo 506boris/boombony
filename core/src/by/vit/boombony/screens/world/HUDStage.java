@@ -20,7 +20,7 @@ public class HUDStage extends AbstractStage<HUDTxLibrary> {
         nextStep = new TextureButton(txLibrary.nextStep, 30, 30);
         nextStep.addListener(new ClickListener() {
             @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+            public void onClick() {
                 ActType actType = WorldState.get().nextAct();
 //                nextStep.setVisible(actType != ActType.ENEMY);
 //                System.out.println(actType);

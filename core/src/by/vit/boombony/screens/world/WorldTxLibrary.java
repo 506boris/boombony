@@ -38,7 +38,6 @@ public class WorldTxLibrary extends BaseTxLibrary implements HasTileMap {
         CURSOR_LAYER = getLayer(WorldLayerType.CURSOR);
 
         createTextureRegion("maps/activecell.png");
-        createTextureRegion("maps/hero.png");
         createTextureRegion("maps/step.png");
         createTextureRegion("maps/step-out.png");
         createTextureRegion("maps/bomb.png");
@@ -46,6 +45,9 @@ public class WorldTxLibrary extends BaseTxLibrary implements HasTileMap {
         createTextureRegion("maps/old_duke.png", 0, 0, 106, 147);
         createTextureRegion("maps/face_zloboglaz.png", 0, 0, 106, 147);
         createTextureRegion("maps/face_Severus.png", 0, 0, 106, 147);
+        createTextureRegion("maps/face_Jim.png", 0, 0, 106, 147);
+        createTextureRegion("maps/ButtonRage_normal.png", 0, 0, 77, 74);
+        createTextureRegion("maps/Face_witch_Helga.png", 0, 0, 106, 147);
 
         // todo оптимизировать - - влияент на производительность.!!
     }

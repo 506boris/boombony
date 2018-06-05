@@ -3,7 +3,7 @@ package by.vit.boombony.events;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 
-public class ClickListener extends InputListener {
+public abstract class ClickListener extends InputListener {
     private boolean wasClick = false;
 
     @Override
@@ -15,7 +15,9 @@ public class ClickListener extends InputListener {
     @Override
     public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
         if (wasClick) {
-            super.touchUp(event, x, y, pointer, button);
+            onClick();
         }
     }
+
+    public abstract void onClick();
 }

@@ -20,16 +20,6 @@ public abstract class AbstractStage<T extends TxLibrary> extends Stage implement
         super.act(delta);
     }
 
-    @Override
-    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        return super.touchDown(screenX, screenY, pointer, button);
-    }
-
-    @Override
-    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        return super.touchUp(screenX, screenY, pointer, button);
-    }
-
 //    public Actor findActor(int x, int y, boolean touchable) {
 //        for (Actor actor : getActors()) {
 //            if (actor.hit(x, y, touchable) != null) {
