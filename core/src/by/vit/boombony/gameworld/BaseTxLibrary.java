@@ -1,6 +1,7 @@
 package by.vit.boombony.gameworld;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
@@ -16,6 +17,37 @@ public abstract class BaseTxLibrary extends AbstractTxLibrary {
     protected void createTextureRegion(String textureName, int x, int y, int width, int height) {
         TextureRegion tr = new TextureRegion(createTexture(textureName), x, y, width, height);
         textureRegions.put(textureName, tr);
+    }
+
+    protected void createTextureRegionToCell(String textureName, int x, int y, int width, int height) {
+
+        if (width > Const.TILE_SIZE || height > Const.TILE_SIZE) {
+            TextureRegion tr;
+            if (width > height) {
+                int newHeight = Double.valueOf(height / (((double) width / Const.TILE_SIZE))).intValue();
+                tr = new TextureRegion(createTexture(textureName, Const.TILE_SIZE, newHeight));
+            } else {
+                int newWidth = Double.valueOf(width / (((double) height / Const.TILE_SIZE))).intValue();
+                tr = new TextureRegion(createTexture(textureName, newWidth, Const.TILE_SIZE));
+            }
+            textureRegions.put(textureName, tr);
+        } else {
+            createTextureRegion(textureName, x, y, width, height);
+        }
+    }
+
+    private Texture createTexture(String textureName, int width, int height) {
+
+        int newX = width < height ? (height - width) / 2 : 0;
+        int newY = height < width ? (width - height) / 2 : 0;
+
+        Pixmap pixmapOld = new Pixmap(Gdx.files.internal(Const.ASSERT_PATH + textureName));
+        Pixmap pixmapNew = new Pixmap(Const.TILE_SIZE, Const.TILE_SIZE, pixmapOld.getFormat());
+        pixmapNew.drawPixmap(pixmapOld,
+                0, 0, pixmapOld.getWidth(), pixmapOld.getHeight(),
+                newX, newY, width, height
+        );
+        return new Texture(pixmapNew);
     }
 
     protected void createTextureRegion(String textureName) {

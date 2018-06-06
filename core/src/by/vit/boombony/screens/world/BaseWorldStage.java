@@ -66,7 +66,7 @@ public abstract class BaseWorldStage extends AbstractStage<WorldTxLibrary> {
 
                 // other way we should build path to target cursor
             } else {
-                WorldObjectUtil.clearCells(WorldTxLibrary.OBJECTS_LAYER, currentSteps);
+                WorldObjectUtil.clearCells(WorldTxLibrary.CURSOR_LAYER, currentSteps);
                 currentSteps.clear();
                 MoveHelper.move(cursor, targetCoo, WorldTxLibrary.CURSOR_LAYER);
 

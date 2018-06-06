@@ -9,7 +9,6 @@ import by.vit.boombony.tmx.ExtendedTmxMapLoader;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
 public class WorldTxLibrary extends BaseTxLibrary implements HasTileMap {
     public Scenario scenario;
