@@ -4,15 +4,14 @@ import by.vit.boombony.gameworld.BaseTxLibrary;
 import by.vit.boombony.gameworld.Scenario;
 import by.vit.boombony.gameworld.WorldLayerType;
 import by.vit.boombony.screens.HasTileMap;
-import by.vit.boombony.tmx.ExtendedTiledMap;
-import by.vit.boombony.tmx.ExtendedTmxMapLoader;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
 public class WorldTxLibrary extends BaseTxLibrary implements HasTileMap {
     public Scenario scenario;
-    public ExtendedTiledMap tiledMap;
+    public TiledMap tiledMap;
     public static TiledMapTileLayer OBJECTS_LAYER;
     public static TiledMapTileLayer GROUND_LAYER;
     public static TiledMapTileLayer CURSOR_LAYER;
@@ -33,7 +32,7 @@ public class WorldTxLibrary extends BaseTxLibrary implements HasTileMap {
 
     @Override
     public void load() {
-        this.tiledMap = new ExtendedTmxMapLoader().load(scenario.getTmxMapPath());
+        this.tiledMap = new TmxMapLoader().load(scenario.getTmxMapPath());
         OBJECTS_LAYER = getLayer(WorldLayerType.OBJECTS);
         GROUND_LAYER = getLayer(WorldLayerType.GROUND);
         CURSOR_LAYER = getLayer(WorldLayerType.CURSOR);
@@ -41,7 +40,6 @@ public class WorldTxLibrary extends BaseTxLibrary implements HasTileMap {
         createTextureRegion("maps/activecell.png");
         createTextureRegion("maps/step.png");
         createTextureRegion("maps/step-out.png");
-        createTextureRegion("maps/bomb.png");
         createTextureRegion("button/next_step.png");
         createTextureRegion("maps/old_duke.png", 0, 0, 106, 147);
         createTextureRegion("maps/face_zloboglaz.png", 0, 0, 106, 147);
