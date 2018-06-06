@@ -2,6 +2,8 @@ package by.vit.boombony.gameworld;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 
+import by.vit.boombony.helpers.Coo;
+
 public enum WorldObjectType {
     HERO(false, true),
     NEUTRAL(false, true),
@@ -50,6 +52,26 @@ public enum WorldObjectType {
         return type.isTransit();
     }
 
+    public static boolean isTransit(TiledMapTileLayer layer, Coo coo) {
+        return isTransit(layer.getCell(coo.x, coo.y));
+    }
+
+    public static boolean isStep(TiledMapTileLayer.Cell cell) {
+        if (cell == null || cell.getTile() == null) {
+            return false;
+        }
+        WorldObjectType type = getWorldObjectType(cell);
+        return WorldObjectType.STEP == type;
+    }
+
+    public static boolean isCursor(TiledMapTileLayer.Cell cell) {
+        if (cell == null || cell.getTile() == null) {
+            return false;
+        }
+        WorldObjectType type = getWorldObjectType(cell);
+        return WorldObjectType.CURSOR == type;
+    }
+
     public static boolean canCommunicate(TiledMapTileLayer.Cell cell) {
         if (cell == null || cell.getTile() == null) {
             return false;
@@ -59,6 +81,10 @@ public enum WorldObjectType {
     }
 
     private static WorldObjectType getWorldObjectType(TiledMapTileLayer.Cell cell) {
-        return WorldObjectType.valueOf(String.valueOf(cell.getTile().getProperties().get(TYPE)));
+        Object o = cell.getTile().getProperties().get(TYPE);
+        if (o == null) {
+            return WorldObjectType.NONE;
+        }
+        return WorldObjectType.valueOf(String.valueOf(o));
     }
 }

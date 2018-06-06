@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import by.vit.boombony.Logger;
 import by.vit.boombony.gameobjects.DynamicWorldObject;
 import by.vit.boombony.gameobjects.StepCursor;
 import by.vit.boombony.gameworld.path.SearchPathUtil;
@@ -61,10 +60,6 @@ public abstract class BaseWorldStage extends AbstractStage<WorldTxLibrary> {
             if (goMove(targetCoo)) {
                 // повторное нажатие на курсор - то есть передвигаем туда героя + чистим степы и сам курсор
                 targetObject.addWalkingSteps(currentSteps);
-//                currentSteps.clear();
-
-                // clear target cell
-                WorldObjectUtil.clearCell(WorldTxLibrary.CURSOR_LAYER, cursor);
 
                 // now targetObject can move to target cell
                 targetObject.setCanMove(true);

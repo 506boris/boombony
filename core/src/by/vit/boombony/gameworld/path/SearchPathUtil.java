@@ -3,8 +3,10 @@ package by.vit.boombony.gameworld.path;
 import by.vit.boombony.Logger;
 import by.vit.boombony.gameworld.WorldObjectType;
 import by.vit.boombony.helpers.Coo;
+import by.vit.boombony.helpers.LayerUtil;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.google.common.collect.Lists;
 
 import java.util.*;
 
@@ -81,27 +83,21 @@ public final class SearchPathUtil {
         Logger.logWithMark("First Cycle");
 
         List<Coo> results = new ArrayList();
-        TreeCell currentTreeCell = finishCell;
-        while (true) {
-            results.add(currentTreeCell.getCoo());
-            currentTreeCell = currentTreeCell.getParent();
-            if (currentTreeCell == null) {
-                break;
+        // if we can not find path to target cell
+        if (finishCell != null) {
+            TreeCell currentTreeCell = finishCell;
+            while (true) {
+                results.add(currentTreeCell.getCoo());
+                currentTreeCell = currentTreeCell.getParent();
+                if (currentTreeCell == null) {
+                    break;
+                }
             }
         }
 
         this.searchingInProgress = false;
-//        handleResultIfLastNPC(results);
         return results;
     }
-//
-//    private void handleResultIfLastNPC(List<Coo> results) {
-//        Coo lastCoo = results.get(results.size() - 1);
-//        TiledMapTileLayer.Cell cell = layer.getCell(lastCoo.x, lastCoo.y);
-//        if (WorldObjectType.canCommunicate(cell)) {
-//            results.remove(lastCoo);
-//        }
-//    }
 
     private void process(final TreeCell cell) {
         // Ищем доступные или проходимые клетки, граничащие со стартовой точкой, игнорируя клетки со стенами, водой
@@ -126,32 +122,35 @@ public final class SearchPathUtil {
         Coo cooRight = new Coo(coo.x + 1, coo.y).withCheck(w, h);
         Coo cooBottom = new Coo(coo.x, coo.y - 1).withCheck(w, h);
         Coo cooLeft = new Coo(coo.x - 1, coo.y).withCheck(w, h);
-//
-//        if (eqCoo(cooTop, targetCell.getCoo()) || eqCoo(cooRight, targetCell.getCoo()) || eqCoo(cooBottom, targetCell.getCoo()) || eqCoo(cooLeft, targetCell.getCoo())) {
-//            if (WorldObjectType.canCommunicate(layer.getCell(targetCell.getCoo().x, targetCell.getCoo().y))) {
-//                openSet.add(targetCell);
-//            }
-//        }
 
-        if (cooTop != null && WorldObjectType.isTransit(layer.getCell(cooTop.x, cooTop.y))) {
+        if (containsCoo(targetCell.getCoo(), Lists.newArrayList(cooTop, cooRight, cooBottom, cooLeft))) {
+            if (WorldObjectType.canCommunicate(LayerUtil.getCell(layer, targetCell.getCoo()))) {
+                TreeCell target = new TreeCell(targetCell.getCoo(), targetCell.getCoo(), parent);
+                if (!openSet.contains(target)) {
+                    openSet.add(target);
+                }
+            }
+        }
+
+        if (cooTop != null && WorldObjectType.isTransit(layer, cooTop)) {
             TreeCell top = new TreeCell(cooTop, targetCell.getCoo(), parent);
             if (!closeSet.contains(top) && !openSet.contains(top)) {
                 openSet.add(top);
             }
         }
-        if (cooRight != null && WorldObjectType.isTransit(layer.getCell(cooRight.x, cooRight.y))) {
+        if (cooRight != null && WorldObjectType.isTransit(layer, cooRight)) {
             TreeCell right = new TreeCell(cooRight, targetCell.getCoo(), parent);
             if (!closeSet.contains(right) && !openSet.contains(right)) {
                 openSet.add(right);
             }
         }
-        if (cooBottom != null && WorldObjectType.isTransit(layer.getCell(cooBottom.x, cooBottom.y))) {
+        if (cooBottom != null && WorldObjectType.isTransit(layer, cooBottom)) {
             TreeCell bottom = new TreeCell(cooBottom, targetCell.getCoo(), parent);
             if (!closeSet.contains(bottom) && !openSet.contains(bottom)) {
                 openSet.add(bottom);
             }
         }
-        if (cooLeft != null && WorldObjectType.isTransit(layer.getCell(cooLeft.x, cooLeft.y))) {
+        if (cooLeft != null && WorldObjectType.isTransit(layer, cooLeft)) {
             TreeCell left = new TreeCell(cooLeft, targetCell.getCoo(), parent);
             if (!closeSet.contains(left) && !openSet.contains(left)) {
                 openSet.add(left);
@@ -159,8 +158,8 @@ public final class SearchPathUtil {
         }
     }
 
-    private boolean eqCoo(Coo first, Coo second) {
-        return first != null && first.equals(second);
+    private boolean containsCoo(Coo target, List<Coo> array) {
+        return target != null && array.contains(target);
     }
 
     public boolean isSearchingInProgress() {

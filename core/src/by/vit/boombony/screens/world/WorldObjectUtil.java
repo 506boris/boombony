@@ -2,12 +2,12 @@ package by.vit.boombony.screens.world;
 
 import by.vit.boombony.gameobjects.Cell;
 import by.vit.boombony.gameobjects.Step;
+import by.vit.boombony.gameobjects.StepCursor;
 import by.vit.boombony.gameworld.WorldLayerType;
 import by.vit.boombony.gameworld.WorldObjectType;
 import by.vit.boombony.helpers.Coo;
 import by.vit.boombony.screens.HasTileMap;
 
-import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 
 import java.util.List;
@@ -22,6 +22,36 @@ public final class WorldObjectUtil {
     public static void clearCell(final TiledMapTileLayer mapLayer, final Cell worldObject) {
         mapLayer.setCell(worldObject.getCoo().x, worldObject.getCoo().y, null);
         worldObject.setCoo(null);
+    }
+
+    /**
+     * Очищаем клетку на слое
+     *
+     * @param coo cursor for clear
+     */
+    public static void clearCursor(Coo coo) {
+        TiledMapTileLayer.Cell cell = WorldTxLibrary.CURSOR_LAYER.getCell(coo.x, coo.y);
+        if (cell != null && cell instanceof StepCursor) {
+            StepCursor cursor = (StepCursor) cell;
+            WorldTxLibrary.CURSOR_LAYER.setCell(coo.x, coo.y, null);
+            cursor.setCoo(null);
+        }
+    }
+
+    /**
+     * Очищаем клетку на слое
+     *
+     * @param coo step for clear
+     */
+    public static void clearCursorLayer(Coo coo) {
+        TiledMapTileLayer.Cell cell = WorldTxLibrary.CURSOR_LAYER.getCell(coo.x, coo.y);
+        if (cell != null) {
+            if (cell instanceof Cell) {
+                Cell myCell = (Cell) cell;
+                myCell.setCoo(null);
+            }
+            WorldTxLibrary.CURSOR_LAYER.setCell(coo.x, coo.y, null);
+        }
     }
 
     /**
@@ -85,7 +115,7 @@ public final class WorldObjectUtil {
      */
     public static void drawSteps(List<Coo> currentSteps, WorldTxLibrary txLibrary) {
         // currentSteps первый и последний элемент не должны прорисосываться в виде степов так как это герой и курсор.
-        TiledMapTileLayer objectLayer = txLibrary.getLayer(WorldLayerType.OBJECTS);
+        TiledMapTileLayer objectLayer = txLibrary.getLayer(WorldLayerType.CURSOR);
         // currentSteps - степы в списке расположены с target к hero
         for (int i = currentSteps.size() - 1; i >= 0; i--) {
             if (i == 0 || i == currentSteps.size() - 1) {
@@ -109,7 +139,7 @@ public final class WorldObjectUtil {
         }
 
         // we can not move on walls
-        if (objectLayer.isVisible() && !WorldObjectType.isTransit(object)/* && !WorldObjectType.canCommunicate(object)*/) {
+        if (objectLayer.isVisible() && !WorldObjectType.isTransit(object) && !WorldObjectType.canCommunicate(object)) {
             return false;
         }
         return true;
