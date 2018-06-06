@@ -60,11 +60,16 @@ public final class SearchPathUtil {
 
         //Дальше мы выберем одну из соседних клеток в открытом списке и практически повторим вышеописанный процесс . Но какую клетку мы выберем? Ту, у которой меньше стоимость F.
 
-        TreeCell finishCell;
+        TreeCell finishCell = null;
 
         Logger.logWithMark("First Cycle");
         while (true) {
             TreeCell treeCell = openSet.peek(); // ожидаем, что здесь Минимальный F
+
+            // если Null значит возможно target и есть NPC
+            if (treeCell == null) {
+                break;
+            }
 
             if (treeCell.getCoo().equals(targetCoo)) {
                 finishCell = treeCell;
@@ -86,8 +91,17 @@ public final class SearchPathUtil {
         }
 
         this.searchingInProgress = false;
+//        handleResultIfLastNPC(results);
         return results;
     }
+//
+//    private void handleResultIfLastNPC(List<Coo> results) {
+//        Coo lastCoo = results.get(results.size() - 1);
+//        TiledMapTileLayer.Cell cell = layer.getCell(lastCoo.x, lastCoo.y);
+//        if (WorldObjectType.canCommunicate(cell)) {
+//            results.remove(lastCoo);
+//        }
+//    }
 
     private void process(final TreeCell cell) {
         // Ищем доступные или проходимые клетки, граничащие со стартовой точкой, игнорируя клетки со стенами, водой
@@ -112,6 +126,12 @@ public final class SearchPathUtil {
         Coo cooRight = new Coo(coo.x + 1, coo.y).withCheck(w, h);
         Coo cooBottom = new Coo(coo.x, coo.y - 1).withCheck(w, h);
         Coo cooLeft = new Coo(coo.x - 1, coo.y).withCheck(w, h);
+//
+//        if (eqCoo(cooTop, targetCell.getCoo()) || eqCoo(cooRight, targetCell.getCoo()) || eqCoo(cooBottom, targetCell.getCoo()) || eqCoo(cooLeft, targetCell.getCoo())) {
+//            if (WorldObjectType.canCommunicate(layer.getCell(targetCell.getCoo().x, targetCell.getCoo().y))) {
+//                openSet.add(targetCell);
+//            }
+//        }
 
         if (cooTop != null && WorldObjectType.isTransit(layer.getCell(cooTop.x, cooTop.y))) {
             TreeCell top = new TreeCell(cooTop, targetCell.getCoo(), parent);
@@ -137,6 +157,10 @@ public final class SearchPathUtil {
                 openSet.add(left);
             }
         }
+    }
+
+    private boolean eqCoo(Coo first, Coo second) {
+        return first != null && first.equals(second);
     }
 
     public boolean isSearchingInProgress() {

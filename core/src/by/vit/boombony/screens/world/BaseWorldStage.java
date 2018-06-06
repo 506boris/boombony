@@ -58,7 +58,7 @@ public abstract class BaseWorldStage extends AbstractStage<WorldTxLibrary> {
             targetObject.setCanMove(false);
 
             // if targetObject can move to target cursor
-            if (wantMove(targetCoo)) {
+            if (goMove(targetCoo)) {
                 // повторное нажатие на курсор - то есть передвигаем туда героя + чистим степы и сам курсор
                 targetObject.addWalkingSteps(currentSteps);
 //                currentSteps.clear();
@@ -75,14 +75,10 @@ public abstract class BaseWorldStage extends AbstractStage<WorldTxLibrary> {
                 currentSteps.clear();
                 MoveHelper.move(cursor, targetCoo, WorldTxLibrary.CURSOR_LAYER);
 
-                Logger.logWithMark("Search path");
                 SearchPathUtil searchPathUtil = SearchPathUtil.get();
                 if (!searchPathUtil.isSearchingInProgress()) {
                     currentSteps = searchPathUtil.search(WorldTxLibrary.OBJECTS_LAYER, targetObject.getCell().getCoo(), targetCoo);
-                    Logger.logWithMark("Search path");
                     WorldObjectUtil.drawSteps(currentSteps, txLibrary);
-                } else {
-                    Logger.log("Search path was skipped");
                 }
             }
             return true;
@@ -104,7 +100,7 @@ public abstract class BaseWorldStage extends AbstractStage<WorldTxLibrary> {
         }
     }
 
-    private boolean wantMove(Coo targetCoo) {
+    private boolean goMove(Coo targetCoo) {
         return cursor != null && cursor.getCoo() != null && cursor.getCoo().equals(targetCoo);
     }
 

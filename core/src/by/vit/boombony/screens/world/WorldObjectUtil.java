@@ -109,7 +109,7 @@ public final class WorldObjectUtil {
         }
 
         // we can not move on walls
-        if (objectLayer.isVisible() && !WorldObjectType.isTransit(object)) {
+        if (objectLayer.isVisible() && !WorldObjectType.isTransit(object)/* && !WorldObjectType.canCommunicate(object)*/) {
             return false;
         }
         return true;

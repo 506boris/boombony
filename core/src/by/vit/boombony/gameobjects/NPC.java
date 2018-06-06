@@ -4,8 +4,11 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import by.vit.boombony.gameworld.WorldObjectType;
 
-public class Person extends StaticWorldObject {
-    public Person(TextureRegion texturePerson, WorldObjectType type) {
+/**
+ * Non-Player Character
+ */
+public class NPC extends StaticWorldObject {
+    public NPC(TextureRegion texturePerson, WorldObjectType type) {
         super(texturePerson, type);
     }
 }

@@ -4,15 +4,15 @@ import by.vit.boombony.Logger;
 import by.vit.boombony.events.ClickListener;
 import by.vit.boombony.gameobjects.DynamicWorldObject;
 import by.vit.boombony.gameobjects.Hero;
-import by.vit.boombony.gameobjects.Person;
-import by.vit.boombony.gameworld.WorldObjectType;
+import by.vit.boombony.gameobjects.NPC;
 import by.vit.boombony.helpers.MoveHelper;
+import by.vit.boombony.helpers.NPCHelper;
 
 public class WorldStage extends BaseWorldStage {
     private Hero hero;
-    private Person oldDukePerson;
-    private Person shadowPerson;
-    private Person helgaPerson;
+    private NPC oldDukeNpc;
+    private NPC shadowNpc;
+    private NPC helgaNpc;
 
     public WorldStage(WorldScreen worldScreen, WorldTxLibrary txLibrary) {
         super(worldScreen, txLibrary);
@@ -38,40 +38,8 @@ public class WorldStage extends BaseWorldStage {
         addActor(hero);
         MoveHelper.moveObject(hero, 0, 0);
 
-        oldDukePerson = new Person(txLibrary.txRegion("maps/old_duke.png"), WorldObjectType.NEUTRAL);
-        oldDukePerson.addListener(new ClickListener() {
-            @Override
-            public void onClick() {
-
-                Logger.log("Click on old Duke");
-
-            }
-        });
-        addActor(oldDukePerson);
-        MoveHelper.moveObject(oldDukePerson, 3, 0);
-
-        shadowPerson = new Person(txLibrary.txRegion("maps/ButtonRage_normal.png"), WorldObjectType.NEUTRAL);
-        shadowPerson.addListener(new ClickListener() {
-            @Override
-            public void onClick() {
-
-                Logger.log("Click on old shadowPerson");
-
-            }
-        });
-        addActor(shadowPerson);
-        MoveHelper.moveObject(shadowPerson, 6, 0);
-
-        helgaPerson = new Person(txLibrary.txRegion("maps/Face_witch_Helga.png"), WorldObjectType.NEUTRAL);
-        helgaPerson.addListener(new ClickListener() {
-            @Override
-            public void onClick() {
-
-                Logger.log("Click on old shadowPerson");
-
-            }
-        });
-        addActor(helgaPerson);
-        MoveHelper.moveObject(helgaPerson, 9, 7);
+        oldDukeNpc = NPCHelper.createNPC(txLibrary, "maps/old_duke.png", this, 3, 0);
+        shadowNpc = NPCHelper.createNPC(txLibrary, "maps/ButtonRage_normal.png", this, 6, 0);
+        helgaNpc = NPCHelper.createNPC(txLibrary, "maps/Face_witch_Helga.png", this, 9, 7);
     }
 }
