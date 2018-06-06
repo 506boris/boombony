@@ -80,6 +80,10 @@ public enum WorldObjectType {
         return type.isCanCommunicate();
     }
 
+    public static boolean canCommunicate(TiledMapTileLayer layer, Coo coo) {
+        return canCommunicate(layer.getCell(coo.x, coo.y));
+    }
+
     private static WorldObjectType getWorldObjectType(TiledMapTileLayer.Cell cell) {
         Object o = cell.getTile().getProperties().get(TYPE);
         if (o == null) {

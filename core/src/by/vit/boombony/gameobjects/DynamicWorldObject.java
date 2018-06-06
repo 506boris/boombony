@@ -18,7 +18,7 @@ public abstract class DynamicWorldObject extends WorldObject {
     private float currentStepTime = 0;
     private Deque<Coo> walkingSteps = new ConcurrentLinkedDeque<>();
     private boolean canMove = false;
-    private TiledMapTileLayer defaultMapLayer = WorldTxLibrary.OBJECTS_LAYER;
+    private TiledMapTileLayer objectsMapLayer = WorldTxLibrary.OBJECTS_LAYER;
     private TiledMapTileLayer cursorMapLayer = WorldTxLibrary.CURSOR_LAYER;
 
     public DynamicWorldObject(TextureRegion texture, WorldObjectType type) {
@@ -42,16 +42,23 @@ public abstract class DynamicWorldObject extends WorldObject {
 
                 // we should move only by built steps
                 if (WorldObjectType.isStep(cell)) {
-                    MoveHelper.move(this, coo, defaultMapLayer);
+                    MoveHelper.move(this, coo, objectsMapLayer);
                     WorldObjectUtil.clearCursorLayer(coo);
                 }
 
                 // if the last cell is cursor and this cell is transit on OBJECT layer we can do last step
                 if (WorldObjectType.isCursor(cell)) {
                     WorldObjectUtil.clearCursorLayer(coo);
-                    if (WorldObjectType.isTransit(defaultMapLayer, coo)) {
-                        MoveHelper.move(this, coo, defaultMapLayer);
+
+                    TiledMapTileLayer.Cell objectCell = objectsMapLayer.getCell(coo.x, coo.y);
+
+                    if (WorldObjectType.isTransit(objectCell)) {
+                        MoveHelper.move(this, coo, objectsMapLayer);
                     }
+
+//                    if (WorldObjectType.canCommunicate(objectCell)) {
+//                        DynamicWorldObject object = objectsMapLayer.getCell();
+//                    }
                 }
             } else {
                 currentStepTime = currentStepTime + delta;
