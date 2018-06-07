@@ -1,7 +1,6 @@
 package by.vit.boombony.screens.world;
 
 import by.vit.boombony.gameworld.AbstractTxLibrary;
-import by.vit.boombony.gameworld.Scenario;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class HUDTxLibrary extends AbstractTxLibrary {

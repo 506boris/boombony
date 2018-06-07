@@ -1,7 +1,7 @@
 package by.vit.boombony.screens.world;
 
 import by.vit.boombony.gameworld.BaseTxLibrary;
-import by.vit.boombony.gameworld.Scenario;
+import by.vit.boombony.scenario.LevelScenario;
 import by.vit.boombony.gameworld.WorldLayerType;
 import by.vit.boombony.screens.HasTileMap;
 
@@ -10,14 +10,14 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
 public class WorldTxLibrary extends BaseTxLibrary implements HasTileMap {
-    public Scenario scenario;
+    public LevelScenario levelScenario;
     public TiledMap tiledMap;
     public static TiledMapTileLayer OBJECTS_LAYER;
     public static TiledMapTileLayer GROUND_LAYER;
     public static TiledMapTileLayer CURSOR_LAYER;
 
-    public WorldTxLibrary(Scenario scenario) {
-        this.scenario = scenario;
+    public WorldTxLibrary(LevelScenario levelScenario) {
+        this.levelScenario = levelScenario;
     }
 
     @Override
@@ -32,7 +32,7 @@ public class WorldTxLibrary extends BaseTxLibrary implements HasTileMap {
 
     @Override
     public void load() {
-        this.tiledMap = new TmxMapLoader().load(scenario.getTmxMapPath());
+        this.tiledMap = new TmxMapLoader().load(levelScenario.getTmxMapPath());
         OBJECTS_LAYER = getLayer(WorldLayerType.OBJECTS);
         GROUND_LAYER = getLayer(WorldLayerType.GROUND);
         CURSOR_LAYER = getLayer(WorldLayerType.CURSOR);
