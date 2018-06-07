@@ -2,7 +2,7 @@ package by.vit.boombony.scenario;
 
 import by.vit.boombony.helpers.Coo;
 
-public abstract class BaseNpsDto {
+public abstract class BaseNpcDto {
     private String name;
     private String description;
     private Coo startPosition;

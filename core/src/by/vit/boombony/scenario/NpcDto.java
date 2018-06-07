@@ -1,4 +1,4 @@
 package by.vit.boombony.scenario;
 
-public class NpcDto extends BaseNpsDto {
+public class NpcDto extends BaseNpcDto {
 }
