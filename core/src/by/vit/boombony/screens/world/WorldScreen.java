@@ -1,6 +1,6 @@
 package by.vit.boombony.screens.world;
 
-import by.vit.boombony.gameworld.Scenario;
+import by.vit.boombony.scenario.LevelScenario;
 import by.vit.boombony.screens.AbstractScreen;
 import by.vit.boombony.screens.ScreenManager;
 
@@ -15,8 +15,8 @@ public class WorldScreen extends AbstractScreen<WorldTxLibrary> {
     private InputMultiplexer inputMultiplexer;
     private WorldStage worldStage;
 
-    public WorldScreen(ScreenManager screenManager, Scenario scenario) {
-        super(new WorldTxLibrary(scenario));
+    public WorldScreen(ScreenManager screenManager, LevelScenario levelScenario) {
+        super(new WorldTxLibrary(levelScenario));
         this.screenManager = screenManager;
         this.hudStage = new HUDStage();
         this.inputMultiplexer = new InputMultiplexer();

@@ -1,11 +1,11 @@
-package by.vit.boombony.gameworld;
+package by.vit.boombony.scenario;
 
-public class SimpleScenario implements Scenario {
+public class SimpleLevelScenario implements LevelScenario {
     private String levelName = "";
     private String levelNumber = "";
     private String tmxMapPath = "";
 
-    public SimpleScenario(String levelName, String levelNumber, String tmxMapPath) {
+    public SimpleLevelScenario(String levelName, String levelNumber, String tmxMapPath) {
         this.levelName = levelName;
         this.levelNumber = levelNumber;
         this.tmxMapPath = tmxMapPath;
@@ -21,5 +21,10 @@ public class SimpleScenario implements Scenario {
 
     public String getTmxMapPath() {
         return tmxMapPath;
+    }
+
+    @Override
+    public LevelInfo getLevelInfo() {
+        return null;
     }
 }

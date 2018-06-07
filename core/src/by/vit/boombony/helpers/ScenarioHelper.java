@@ -1,11 +1,11 @@
 package by.vit.boombony.helpers;
 
-import by.vit.boombony.gameworld.Scenario;
-import by.vit.boombony.gameworld.SimpleScenario;
+import by.vit.boombony.scenario.LevelScenario;
+import by.vit.boombony.scenario.SimpleLevelScenario;
 
 public class ScenarioHelper {
-    public static Scenario getScenario0() {
-        Scenario scenario = new SimpleScenario("Default level", "0", "maps/level1.tmx");
-        return scenario;
+    public static LevelScenario getScenario0() {
+        LevelScenario levelScenario = new SimpleLevelScenario("Default level", "0", "maps/level1.tmx");
+        return levelScenario;
     }
 }
