@@ -2,10 +2,16 @@ package by.vit.boombony.scenario;
 
 import by.vit.boombony.helpers.Coo;
 
-public interface LevelInfo {
+public class LevelInfo {
+    private String levelName;
+    private int levelNumber;
+    private String levelDescription;
+    private Coo startPoint;
+    private NpcInfo NpcInfo
+
     String getLevelName();
 
-    String getLevelNumber();
+    int getLevelNumber();
 
     String getLevelDescription();
 

@@ -13,7 +13,7 @@
       </configuration>
     </facet>
   </component>
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_6">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
     <output url="file://$MODULE_DIR$/build/classes/java/main" />
     <output-test url="file://$MODULE_DIR$/build/classes/java/test" />
     <exclude-output />
@@ -28,13 +28,12 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="gdx-1.9.8" level="project" />
-    <orderEntry type="library" exported="" name="core.core-1.0" level="project" />
-    <orderEntry type="library" exported="" name="core.core-1.0" level="project" />
-    <orderEntry type="library" exported="" name="core.core-1.0" level="project" />
-    <orderEntry type="library" exported="" name="core.core-1.0" level="project" />
-    <orderEntry type="library" exported="" name="core.core-1.0" level="project" />
-    <orderEntry type="library" exported="" name="core.core-1.0" level="project" />
-    <orderEntry type="library" exported="" name="core.core-1.0" level="project" />
-    <orderEntry type="library" exported="" name="core.core-1.0" level="project" />
+    <orderEntry type="library" exported="" name="gson-2.8.4" level="project" />
+    <orderEntry type="library" exported="" name="guava-25.1-android" level="project" />
+    <orderEntry type="library" exported="" name="jsr305-3.0.2" level="project" />
+    <orderEntry type="library" exported="" name="checker-compat-qual-2.0.0" level="project" />
+    <orderEntry type="library" exported="" name="error_prone_annotations-2.1.3" level="project" />
+    <orderEntry type="library" exported="" name="j2objc-annotations-1.1" level="project" />
+    <orderEntry type="library" exported="" name="animal-sniffer-annotations-1.14" level="project" />
   </component>
 </module>
