@@ -11,4 +11,6 @@ public abstract class StaticWorldObject extends WorldObject {
     public StaticWorldObject(TextureRegion texturePerson, WorldObjectType type) {
         super(texturePerson, type);
     }
+
+
 }
