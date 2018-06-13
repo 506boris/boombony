@@ -11,7 +11,8 @@ public class ScenarioHelper {
 
         FileHandle fileHandle = Gdx.files.internal(SCENARIO_SUFFIX + number);
         LevelScenario levelScenario = new LevelScenario();
-        Gson gson = new Gson();
-        gson.toJson(levelScenario, fileHandle.file());
+//        Gson gson = new Gson();
+//        gson.toJson(levelScenario, fileHandle.file());
+        return null;
     }
 }

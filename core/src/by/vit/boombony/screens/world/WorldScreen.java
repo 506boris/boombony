@@ -18,7 +18,7 @@ public class WorldScreen extends AbstractScreen<WorldTxLibrary> {
     public WorldScreen(ScreenManager screenManager, LevelScenario levelScenario) {
         super(new WorldTxLibrary(levelScenario));
         this.screenManager = screenManager;
-        this.hudStage = new HUDStage(screenManager);
+        this.hudStage = new HUDStage();
         this.inputMultiplexer = new InputMultiplexer();
         this.worldStage = new WorldStage(this, txLibrary);
     }

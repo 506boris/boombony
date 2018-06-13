@@ -7,20 +7,45 @@ public class LevelInfo {
     private int levelNumber;
     private String levelDescription;
     private Coo startPoint;
-    private NpcInfo NpcInfo
+    private NpcInfo NpcInfo;
 
-    String getLevelName();
+    public String getLevelName() {
+        return levelName;
+    }
 
-    int getLevelNumber();
+    public void setLevelName(String levelName) {
+        this.levelName = levelName;
+    }
 
-    String getLevelDescription();
+    public int getLevelNumber() {
+        return levelNumber;
+    }
 
-    /**
-     * Start point on map for hero
-     *
-     * @return coo
-     */
-    Coo getStartPoint();
+    public void setLevelNumber(int levelNumber) {
+        this.levelNumber = levelNumber;
+    }
 
-    NpcInfo getNpcInfo();
+    public String getLevelDescription() {
+        return levelDescription;
+    }
+
+    public void setLevelDescription(String levelDescription) {
+        this.levelDescription = levelDescription;
+    }
+
+    public Coo getStartPoint() {
+        return startPoint;
+    }
+
+    public void setStartPoint(Coo startPoint) {
+        this.startPoint = startPoint;
+    }
+
+    public by.vit.boombony.scenario.NpcInfo getNpcInfo() {
+        return NpcInfo;
+    }
+
+    public void setNpcInfo(by.vit.boombony.scenario.NpcInfo npcInfo) {
+        NpcInfo = npcInfo;
+    }
 }
