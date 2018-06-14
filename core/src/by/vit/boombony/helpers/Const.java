@@ -1,7 +1,7 @@
 package by.vit.boombony.helpers;
 
 public final class Const {
-    public static final boolean DEBUG = true;
+    public static final boolean DEBUG = false;
 
     public static final String ASSERT_PATH = "";
     //    public static final String ASSERT_PATH = "g:/gdxlib/boombony/project/android/assets/";

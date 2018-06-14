@@ -1,11 +1,6 @@
 package by.vit.boombony.screens.world;
 
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-
 import by.vit.boombony.Logger;
-import by.vit.boombony.common.widgets.CommonDialog;
-import by.vit.boombony.common.widgets.DialogParams;
 import by.vit.boombony.events.ClickListener;
 import by.vit.boombony.gameobjects.DynamicWorldObject;
 import by.vit.boombony.gameobjects.Hero;
@@ -19,7 +14,6 @@ public class WorldStage extends BaseWorldStage implements WorldObjectBehavior {
     private NPC oldDukeNpc;
     private NPC shadowNpc;
     private NPC helgaNpc;
-    private CommonDialog commonDialog;
 
     public WorldStage(WorldScreen worldScreen, WorldTxLibrary txLibrary) {
         super(worldScreen, txLibrary);
@@ -32,23 +26,25 @@ public class WorldStage extends BaseWorldStage implements WorldObjectBehavior {
 
     @Override
     public void collision(WorldObject initiator, WorldObject target) {
-        commonDialog.setVisible(true);
+
+        CollisionActionType collisionActionType = target.getCollisionActionType();
+        switch (collisionActionType) {
+            case DIALOG:
+                getWorldScreen().getHudStage().getCommonDialog().setVisible(true);
+                break;
+            case BATTLE:
+                // show battle screen
+                break;
+            case ENTER:
+            case PICK_UP:
+            case NONE:
+                // temporarily do nothing
+        }
     }
 
     @Override
     public void init() {
         super.init();
-
-        DialogParams params = new DialogParams();
-        params.setBackgroundRegion(txLibrary.dialogBackground);
-        params.setEnabledOkButtonRegion(txLibrary.dialogOkEnabled);
-        params.setPressedOkButtonRegion(txLibrary.dialogOkPressed);
-        params.setBitmapFont(new BitmapFont());
-        params.setTitleFontColor(Color.BLACK);
-
-        commonDialog = new CommonDialog(params);
-        commonDialog.init();
-        addActor(commonDialog);
 
         hero = new Hero(txLibrary.txRegion("maps/face_Jim.png"));
         hero.addListener(new ClickListener() {
@@ -63,7 +59,10 @@ public class WorldStage extends BaseWorldStage implements WorldObjectBehavior {
         MoveMapHelper.moveObject(hero, 0, 0);
 
         oldDukeNpc = NPCHelper.createNPC(txLibrary, "maps/old_duke.png", this, 3, 0);
+        oldDukeNpc.setCollisionActionType(CollisionActionType.DIALOG);
         shadowNpc = NPCHelper.createNPC(txLibrary, "maps/ButtonRage_normal.png", this, 6, 0);
+        shadowNpc.setCollisionActionType(CollisionActionType.BATTLE);
         helgaNpc = NPCHelper.createNPC(txLibrary, "maps/Face_witch_Helga.png", this, 9, 7);
+        helgaNpc.setCollisionActionType(CollisionActionType.DIALOG);
     }
 }

@@ -11,9 +11,6 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 public class WorldTxLibrary extends BaseTxLibrary implements HasTileMap {
     public LevelScenario levelScenario;
     public WorldTiledMap tiledMap;
-    public TextureRegion dialogBackground;
-    public TextureRegion dialogOkEnabled;
-    public TextureRegion dialogOkPressed;
 
     public WorldTxLibrary(LevelScenario levelScenario) {
         this.levelScenario = levelScenario;
@@ -38,9 +35,6 @@ public class WorldTxLibrary extends BaseTxLibrary implements HasTileMap {
         createTextureRegion("maps/face_Jim.png", 0, 0, 106, 147);
         createTextureRegion("maps/ButtonRage_normal.png", 0, 0, 77, 74);
         createTextureRegion("maps/Face_witch_Helga.png", 0, 0, 106, 147);
-        dialogBackground = new TextureRegion(createTexture("dialog_bg_top.png"), 954, 620);
-        dialogOkEnabled = new TextureRegion(createTexture("button/button_ok_enabled_2.png"), 130, 38);
-        dialogOkPressed = new TextureRegion(createTexture("button/button_ok_pressed_2.png"), 130, 38);
 
         // todo оптимизировать - - влияент на производительность.!!
     }

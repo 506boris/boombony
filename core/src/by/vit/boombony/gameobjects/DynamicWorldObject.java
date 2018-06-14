@@ -1,7 +1,6 @@
 package by.vit.boombony.gameobjects;
 
 import by.vit.boombony.common.map.MoveMapHelper;
-import by.vit.boombony.common.map.WorldTiledMap;
 import by.vit.boombony.gameworld.WorldObjectType;
 import by.vit.boombony.helpers.Coo;
 

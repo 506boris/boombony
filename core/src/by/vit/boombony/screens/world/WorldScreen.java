@@ -65,6 +65,10 @@ public class WorldScreen extends AbstractScreen<WorldTxLibrary> {
         txLibrary.dispose();
     }
 
+    public HUDStage getHudStage() {
+        return hudStage;
+    }
+
     public ScreenManager getScreenManager() {
         return screenManager;
     }

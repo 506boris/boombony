@@ -109,4 +109,8 @@ public abstract class BaseWorldStage extends AbstractStage<WorldTxLibrary> {
         Coo coo = CoordinateUtil.getCellCenter(layerX, layerY);
         return heroInitMove(getHero(), coo);
     }
+
+    public WorldScreen getWorldScreen() {
+        return worldScreen;
+    }
 }
