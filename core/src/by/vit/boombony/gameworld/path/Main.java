@@ -1,6 +1,6 @@
 package by.vit.boombony.gameworld.path;
 
-import by.vit.boombony.gameworld.WorldLayerType;
+import by.vit.boombony.common.map.WorldLayerType;
 import by.vit.boombony.helpers.Coo;
 import by.vit.boombony.helpers.ScenarioHelper;
 import com.badlogic.gdx.maps.tiled.TiledMap;

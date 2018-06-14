@@ -1,12 +1,14 @@
-package by.vit.boombony.helpers;
+package by.vit.boombony.common.map;
 
 import by.vit.boombony.gameobjects.Cell;
 import by.vit.boombony.gameobjects.WorldObject;
+import by.vit.boombony.helpers.Coo;
+import by.vit.boombony.helpers.CoordinateUtil;
 import by.vit.boombony.screens.world.WorldTxLibrary;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 
-public class MoveHelper {
+public class MoveMapHelper {
 
     public static void moveCursor(WorldObject target, Coo newCoo) {
         move(target, newCoo, WorldTxLibrary.CURSOR_LAYER);
@@ -36,18 +38,6 @@ public class MoveHelper {
         targetCell.setCoo(newCoo);
         int[] coordinates = CoordinateUtil.getCoordinates(newCoo);
         target.setPosition(coordinates[0], coordinates[1]);
-        mapLayer.setCell(newCoo.x, newCoo.y, targetCell);
-    }
-
-    public static void move(Cell targetCell, Coo newCoo, TiledMapTileLayer mapLayer) {
-        if (targetCell.getCoo() != null) {
-            TiledMapTileLayer.Cell cell = mapLayer.getCell(targetCell.getCoo().x, targetCell.getCoo().y);
-            if (cell != null) {
-                mapLayer.setCell(targetCell.getCoo().x, targetCell.getCoo().y, null);
-            }
-        }
-
-        targetCell.setCoo(newCoo);
         mapLayer.setCell(newCoo.x, newCoo.y, targetCell);
     }
 }

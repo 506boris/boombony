@@ -2,7 +2,7 @@ package by.vit.boombony.gameobjects;
 
 import by.vit.boombony.gameworld.WorldObjectType;
 import by.vit.boombony.helpers.Coo;
-import by.vit.boombony.helpers.MoveHelper;
+import by.vit.boombony.common.map.MoveMapHelper;
 import by.vit.boombony.screens.world.WorldObjectUtil;
 import by.vit.boombony.screens.world.WorldTxLibrary;
 
@@ -42,7 +42,7 @@ public abstract class DynamicWorldObject extends WorldObject {
 
                 // we should move only by built steps
                 if (WorldObjectType.isStep(cell)) {
-                    MoveHelper.move(this, coo, objectsMapLayer);
+                    MoveMapHelper.move(this, coo, objectsMapLayer);
                     WorldObjectUtil.clearCursorLayer(coo);
                 }
 
@@ -53,7 +53,7 @@ public abstract class DynamicWorldObject extends WorldObject {
                     TiledMapTileLayer.Cell objectCell = objectsMapLayer.getCell(coo.x, coo.y);
 
                     if (WorldObjectType.isTransit(objectCell)) {
-                        MoveHelper.move(this, coo, objectsMapLayer);
+                        MoveMapHelper.move(this, coo, objectsMapLayer);
                     }
 
 //                    if (WorldObjectType.canCommunicate(objectCell)) {

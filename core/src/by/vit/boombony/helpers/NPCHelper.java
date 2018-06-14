@@ -3,6 +3,7 @@ package by.vit.boombony.helpers;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 import by.vit.boombony.Logger;
+import by.vit.boombony.common.map.MoveMapHelper;
 import by.vit.boombony.events.ClickListener;
 import by.vit.boombony.gameobjects.NPC;
 import by.vit.boombony.gameworld.BaseTxLibrary;
@@ -21,7 +22,7 @@ public class NPCHelper {
             }
         });
         stage.addActor(npc);
-        MoveHelper.moveObject(npc, x, y);
+        MoveMapHelper.moveObject(npc, x, y);
         return npc;
     }
 }

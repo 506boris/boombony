@@ -1,17 +1,17 @@
 package by.vit.boombony.screens.world;
 
+import by.vit.boombony.common.map.WorldTiledMap;
 import by.vit.boombony.gameworld.BaseTxLibrary;
 import by.vit.boombony.scenario.LevelScenario;
-import by.vit.boombony.gameworld.WorldLayerType;
+import by.vit.boombony.common.map.WorldLayerType;
 import by.vit.boombony.screens.HasTileMap;
 
-import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
 public class WorldTxLibrary extends BaseTxLibrary implements HasTileMap {
     public LevelScenario levelScenario;
-    public TiledMap tiledMap;
+    public WorldTiledMap tiledMap;
     public static TiledMapTileLayer OBJECTS_LAYER;
     public static TiledMapTileLayer GROUND_LAYER;
     public static TiledMapTileLayer CURSOR_LAYER;
@@ -26,13 +26,13 @@ public class WorldTxLibrary extends BaseTxLibrary implements HasTileMap {
     }
 
     @Override
-    public TiledMap getTiledMap() {
+    public WorldTiledMap getTiledMap() {
         return tiledMap;
     }
 
     @Override
     public void load() {
-        this.tiledMap = new TmxMapLoader().load(levelScenario.getTmxMapPath());
+        this.tiledMap = new WorldTiledMap(new TmxMapLoader().load(levelScenario.getTmxMapPath()));
         OBJECTS_LAYER = getLayer(WorldLayerType.OBJECTS);
         GROUND_LAYER = getLayer(WorldLayerType.GROUND);
         CURSOR_LAYER = getLayer(WorldLayerType.CURSOR);

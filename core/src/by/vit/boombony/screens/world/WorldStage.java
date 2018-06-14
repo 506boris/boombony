@@ -5,7 +5,7 @@ import by.vit.boombony.events.ClickListener;
 import by.vit.boombony.gameobjects.DynamicWorldObject;
 import by.vit.boombony.gameobjects.Hero;
 import by.vit.boombony.gameobjects.NPC;
-import by.vit.boombony.helpers.MoveHelper;
+import by.vit.boombony.common.map.MoveMapHelper;
 import by.vit.boombony.helpers.NPCHelper;
 
 public class WorldStage extends BaseWorldStage {
@@ -36,7 +36,7 @@ public class WorldStage extends BaseWorldStage {
             }
         });
         addActor(hero);
-        MoveHelper.moveObject(hero, 0, 0);
+        MoveMapHelper.moveObject(hero, 0, 0);
 
         oldDukeNpc = NPCHelper.createNPC(txLibrary, "maps/old_duke.png", this, 3, 0);
         shadowNpc = NPCHelper.createNPC(txLibrary, "maps/ButtonRage_normal.png", this, 6, 0);

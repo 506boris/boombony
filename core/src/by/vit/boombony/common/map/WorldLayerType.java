@@ -1,4 +1,4 @@
-package by.vit.boombony.gameworld;
+package by.vit.boombony.common.map;
 
 public enum WorldLayerType {
     GROUND("ground"),
