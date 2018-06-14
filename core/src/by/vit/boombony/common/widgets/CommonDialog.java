@@ -10,12 +10,14 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 
 import by.vit.boombony.gameworld.Initializable;
+import by.vit.boombony.helpers.Const;
 import by.vit.boombony.helpers.CoordinateUtil;
 
 public class CommonDialog extends Window implements Initializable {
+    private static final float DEFAULT_BUTTON_PAD = 40;
 
     public CommonDialog(DialogParams params) {
-        super("Hello title here", new WindowStyle(params.getBitmapFont(), params.getTitleFontColor(), new TextureRegionDrawable(params.getBackgroundRegion())));
+        super("", new WindowStyle(params.getBitmapFont(), params.getTitleFontColor(), new TextureRegionDrawable(params.getBackgroundRegion())));
 
         ImageButton.ImageButtonStyle okButtonStyle = new ImageButton.ImageButtonStyle();
         TextureRegion okButtonRegion = params.getEnabledOkButtonRegion();
@@ -33,24 +35,25 @@ public class CommonDialog extends Window implements Initializable {
         closeButton.setSize(okButtonRegion.getRegionWidth(), okButtonRegion.getRegionHeight());
 
         align(Align.bottom);
-        add(closeButton).padBottom(40).padLeft(40).padRight(40);
+        add(closeButton).padBottom(DEFAULT_BUTTON_PAD).padLeft(DEFAULT_BUTTON_PAD).padRight(DEFAULT_BUTTON_PAD);
 
-//        this.debug();
+        if (Const.DEBUG) this.debug();
 
-
+        setSize(getStyle().background.getMinWidth(), getStyle().background.getMinHeight());
         setClip(false);
         setTransform(true);
+    }
+
+    public void addText() {
+        add("Hello");
     }
 
     @Override
     public void init() {
 
-        this.setSize(getStyle().background.getMinWidth(), getStyle().background.getMinHeight());
-        this.setModal(true);
-        this.setVisible(false);
-        this.setMovable(false);
-        this.setPosition(CoordinateUtil.centerWidth(this), CoordinateUtil.centerHeight(this));
-
-//        this.right().bottom();
+        setModal(true);
+        setVisible(false);
+        setMovable(false);
+        setPosition(CoordinateUtil.centerWidth(this), CoordinateUtil.centerHeight(this));
     }
 }

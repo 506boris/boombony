@@ -1,6 +1,8 @@
 package by.vit.boombony.helpers;
 
 public final class Const {
+    public static final boolean DEBUG = true;
+
     public static final String ASSERT_PATH = "";
     //    public static final String ASSERT_PATH = "g:/gdxlib/boombony/project/android/assets/";
 //    public static final int CAMERA_WIDTH = 800;
