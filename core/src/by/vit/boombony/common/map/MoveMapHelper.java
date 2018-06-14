@@ -6,8 +6,8 @@ import by.vit.boombony.gameobjects.WorldObject;
 import by.vit.boombony.gameworld.WorldObjectType;
 import by.vit.boombony.helpers.Coo;
 import by.vit.boombony.helpers.CoordinateUtil;
+import by.vit.boombony.screens.world.CollisionActionType;
 import by.vit.boombony.screens.world.WorldObjectUtil;
-import by.vit.boombony.screens.world.WorldTxLibrary;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 
@@ -111,6 +111,14 @@ public class MoveMapHelper {
 
         stepCursor.setCoo(targetCoo);
         WorldTiledMap.cursorLayer.setCell(targetCoo.x, targetCoo.y, stepCursor);
+
+        WorldObject worldObject = WorldObjectUtil.tryCast(WorldTiledMap.objectLayer.getCell(targetCoo.x, targetCoo.y));
+        if (worldObject != null) {
+            CollisionActionType type = worldObject.getCollisionActionType();
+            if (type == CollisionActionType.BATTLE) {
+                stepCursor.showBattleCursor();
+            }
+        }
     }
 
     public static void move(Cell targetCell, Coo newCoo, TiledMapTileLayer mapLayer) {

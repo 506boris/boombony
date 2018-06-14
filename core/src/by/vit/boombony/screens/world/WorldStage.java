@@ -11,9 +11,27 @@ import by.vit.boombony.helpers.NPCHelper;
 
 public class WorldStage extends BaseWorldStage implements WorldObjectBehavior {
     private Hero hero;
-    private NPC oldDukeNpc;
+    private NPC severusNpc;
     private NPC shadowNpc;
     private NPC helgaNpc;
+    private NPC vikingHouse;
+    private NPC vikingLighthouse;
+    private NPC vikingMakinghidesMachine;
+    private NPC vikingMill;
+    private NPC volkanNpc;
+    private NPC werewolfNpc;
+    private NPC whiteBeerNpc;
+    private NPC witchEtteilaNpc;
+    private NPC witchHestraNpc;
+    private NPC witchKimoraNpc;
+    private NPC witchMagnetNpc;
+    private NPC witchMartaoldNpc;
+    private NPC witchWilmaNpc;
+    private NPC yanikUpNpc;
+    private NPC yodurNpc;
+    private NPC yotunNpc;
+    private NPC zelgadisNpc;
+    private NPC zloboglazNpc;
 
     public WorldStage(WorldScreen worldScreen, WorldTxLibrary txLibrary) {
         super(worldScreen, txLibrary);
@@ -46,7 +64,7 @@ public class WorldStage extends BaseWorldStage implements WorldObjectBehavior {
     public void init() {
         super.init();
 
-        hero = new Hero(txLibrary.txRegion("maps/face_Jim.png"));
+        hero = new Hero(txLibrary.txRegion("face_Jim.png"));
         hero.addListener(new ClickListener() {
             @Override
             public void onClick() {
@@ -58,11 +76,55 @@ public class WorldStage extends BaseWorldStage implements WorldObjectBehavior {
         addActor(hero);
         MoveMapHelper.moveObject(hero, 0, 0);
 
-        oldDukeNpc = NPCHelper.createNPC(txLibrary, "maps/old_duke.png", this, 3, 0);
-        oldDukeNpc.setCollisionActionType(CollisionActionType.DIALOG);
-        shadowNpc = NPCHelper.createNPC(txLibrary, "maps/ButtonRage_normal.png", this, 6, 0);
+        severusNpc = NPCHelper.createNPC(txLibrary, "face_Severus.png", this, 3, 0);
+        severusNpc.setCollisionActionType(CollisionActionType.DIALOG);
+        shadowNpc = NPCHelper.createNPC(txLibrary, "ButtonRage_normal.png", this, 6, 0);
         shadowNpc.setCollisionActionType(CollisionActionType.BATTLE);
-        helgaNpc = NPCHelper.createNPC(txLibrary, "maps/Face_witch_Helga.png", this, 9, 7);
+        helgaNpc = NPCHelper.createNPC(txLibrary, "Face_witch_Helga.png", this, 9, 7);
         helgaNpc.setCollisionActionType(CollisionActionType.DIALOG);
+
+        // houses
+        vikingHouse = NPCHelper.createNPC(txLibrary, "face_viking_house_small_3_autumn.png", this, 2, 4);
+        vikingHouse.setCollisionActionType(CollisionActionType.ENTER);
+        vikingLighthouse = NPCHelper.createNPC(txLibrary, "face_viking_lighthouse.png", this, 13, 6);
+        vikingLighthouse.setCollisionActionType(CollisionActionType.ENTER);
+        vikingMakinghidesMachine = NPCHelper.createNPC(txLibrary, "face_viking_makinghides_machine.png", this, 17, 14);
+        vikingMakinghidesMachine.setCollisionActionType(CollisionActionType.ENTER);
+        vikingMill = NPCHelper.createNPC(txLibrary, "face_viking_mill.png", this, 21, 20);
+        vikingMill.setCollisionActionType(CollisionActionType.ENTER);
+
+        // dialog
+        volkanNpc = NPCHelper.createNPC(txLibrary, "face_Volkan.png", this, 10, 20);
+        volkanNpc.setCollisionActionType(CollisionActionType.DIALOG);
+        werewolfNpc = NPCHelper.createNPC(txLibrary, "face_werewolf.png", this, 12, 15);
+        werewolfNpc.setCollisionActionType(CollisionActionType.DIALOG);
+        witchHestraNpc = NPCHelper.createNPC(txLibrary, "face_witch_Hestra.png", this, 14, 15);
+        witchHestraNpc.setCollisionActionType(CollisionActionType.DIALOG);
+        yodurNpc = NPCHelper.createNPC(txLibrary, "face_Yodur.png", this, 15, 14);
+        yodurNpc.setCollisionActionType(CollisionActionType.DIALOG);
+
+        // battle
+        whiteBeerNpc = NPCHelper.createNPC(txLibrary, "face_white_beer.png", this, 20, 20);
+        whiteBeerNpc.setCollisionActionType(CollisionActionType.BATTLE);
+        witchEtteilaNpc = NPCHelper.createNPC(txLibrary, "face_witch_Etteila.png", this, 4, 21);
+        witchEtteilaNpc.setCollisionActionType(CollisionActionType.BATTLE);
+        witchKimoraNpc = NPCHelper.createNPC(txLibrary, "face_Witch_Kimora.png", this, 8, 24);
+        witchKimoraNpc.setCollisionActionType(CollisionActionType.BATTLE);
+        witchMagnetNpc = NPCHelper.createNPC(txLibrary, "Face_witch_magnet.png", this, 16, 27);
+        witchMagnetNpc.setCollisionActionType(CollisionActionType.BATTLE);
+        witchMartaoldNpc = NPCHelper.createNPC(txLibrary, "face_witch_martaold.png", this, 23, 29);
+        witchMartaoldNpc.setCollisionActionType(CollisionActionType.BATTLE);
+        witchWilmaNpc = NPCHelper.createNPC(txLibrary, "face_witch_Wilma.png", this, 15, 1);
+        witchWilmaNpc.setCollisionActionType(CollisionActionType.BATTLE);
+        yanikUpNpc = NPCHelper.createNPC(txLibrary, "face_Yanik_up.png", this, 16, 5);
+        yanikUpNpc.setCollisionActionType(CollisionActionType.BATTLE);
+        yotunNpc = NPCHelper.createNPC(txLibrary, "face_yotun.png", this, 21, 3);
+        yotunNpc.setCollisionActionType(CollisionActionType.BATTLE);
+        zelgadisNpc = NPCHelper.createNPC(txLibrary, "face_zelgadis.png", this, 26, 5);
+        zelgadisNpc.setCollisionActionType(CollisionActionType.BATTLE);
+        zloboglazNpc = NPCHelper.createNPC(txLibrary, "face_zloboglaz.png", this, 24, 1);
+        zloboglazNpc.setCollisionActionType(CollisionActionType.BATTLE);
+
+
     }
 }

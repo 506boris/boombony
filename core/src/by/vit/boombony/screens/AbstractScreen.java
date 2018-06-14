@@ -5,7 +5,6 @@ import by.vit.boombony.gameworld.TxLibrary;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public abstract class AbstractScreen<T extends TxLibrary> implements Screen {
     protected T txLibrary;
@@ -56,17 +55,5 @@ public abstract class AbstractScreen<T extends TxLibrary> implements Screen {
     @SuppressWarnings("unchecked")
     public <T extends TxLibrary> T getTxLibrary() {
         return (T) txLibrary;
-    }
-
-    protected float centerWidth(Sprite sprite) {
-        float width = Gdx.graphics.getWidth();
-        float spriteWidth = sprite.getWidth();
-        return width / 2 - spriteWidth / 2;
-    }
-
-    protected float centerHeight(Sprite sprite) {
-        float height = Gdx.graphics.getHeight();
-        float spriteHeight = sprite.getHeight();
-        return height / 2 - spriteHeight / 2;
     }
 }

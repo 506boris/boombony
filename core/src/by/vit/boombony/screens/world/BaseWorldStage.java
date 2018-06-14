@@ -36,7 +36,7 @@ public abstract class BaseWorldStage extends AbstractStage<WorldTxLibrary> {
     @Override
     public void init() {
         this.camera = worldScreen.getCamera();
-        this.cursor = new StepCursor(txLibrary.txRegion("maps/activecell.png"));
+        this.cursor = new StepCursor(txLibrary.txRegion("activecell.png"), txLibrary.txRegion("activecell_attack.png"));
         initTiledMapRenderer();
     }
 
@@ -69,6 +69,7 @@ public abstract class BaseWorldStage extends AbstractStage<WorldTxLibrary> {
             } else {
                 WorldTiledMap.clearSteps(currentSteps);
                 currentSteps.clear();
+                cursor.showCommonCursor();
 
                 MoveMapHelper.moveCursor(cursor, targetCoo);
 

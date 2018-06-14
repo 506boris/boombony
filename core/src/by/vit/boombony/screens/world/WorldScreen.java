@@ -1,5 +1,7 @@
 package by.vit.boombony.screens.world;
 
+import by.vit.boombony.common.map.WorldTiledMap;
+import by.vit.boombony.helpers.Const;
 import by.vit.boombony.scenario.LevelScenario;
 import by.vit.boombony.screens.AbstractScreen;
 import by.vit.boombony.screens.ScreenManager;
@@ -7,6 +9,7 @@ import by.vit.boombony.screens.ScreenManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 public class WorldScreen extends AbstractScreen<WorldTxLibrary> {
     private ScreenManager screenManager;
@@ -57,6 +60,10 @@ public class WorldScreen extends AbstractScreen<WorldTxLibrary> {
         worldStage.draw();
         hudStage.render(delta);
         hudStage.draw();
+
+        if (Const.DEBUG) {
+            debugTraceCellNumber();
+        }
     }
 
     @Override
@@ -75,5 +82,19 @@ public class WorldScreen extends AbstractScreen<WorldTxLibrary> {
 
     public OrthographicCamera getCamera() {
         return camera;
+    }
+
+    private void debugTraceCellNumber() {
+        BitmapFont font = new BitmapFont();
+        screenManager.getGame().getBatch().begin();
+        int w = WorldTiledMap.debugLayer.getWidth();
+        int h = WorldTiledMap.debugLayer.getHeight();
+
+        for (int i = 0; i < w; i++) {
+            for (int j = 0; j < h; j++) {
+                font.draw(screenManager.getGame().getBatch(), i + ":" + j, Const.TILE_SIZE * i + Const.TILE_SIZE / 3, Const.TILE_SIZE * j + Const.TILE_SIZE / 2);
+            }
+        }
+        screenManager.getGame().getBatch().end();
     }
 }

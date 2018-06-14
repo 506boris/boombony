@@ -1,5 +1,6 @@
 package by.vit.boombony.screens.splash;
 
+import by.vit.boombony.helpers.CoordinateUtil;
 import by.vit.boombony.screens.ScreenManager;
 import by.vit.boombony.screens.AbstractScreen;
 import by.vit.boombony.screens.menu.MenuScreen;
@@ -30,7 +31,7 @@ public class SplashScreen extends AbstractScreen<SplashTxLibrary> {
     public void show() {
         // как только показали скрин Splash сразу начинаем загрузку след. скрин.
         splashLabel = new Sprite(txLibrary.splashLabelTextureRegion);
-        splashLabel.setPosition(centerWidth(splashLabel), centerHeight(splashLabel));
+        splashLabel.setPosition(CoordinateUtil.centerWidth(splashLabel), CoordinateUtil.centerHeight(splashLabel));
         this.screenManager.init();
     }
 

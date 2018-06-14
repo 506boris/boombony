@@ -21,21 +21,21 @@ public class HUDStage extends AbstractStage<HUDTxLibrary> {
 
     @Override
     public void init() {
-        nextStep = new TextureButton(txLibrary.nextStep, 30, 30);
-        nextStep.addListener(new ClickListener() {
-            @Override
-            public void onClick() {
-                ActType actType = WorldState.get().nextAct();
-
-                if (actType == ActType.ENEMY) {
-                    nextStep.setTextureRegion(txLibrary.nextStepDisabled);
-                } else {
-                    nextStep.setTextureRegion(txLibrary.nextStep);
-                }
-            }
-        });
-
-        addActor(nextStep);
+//        nextStep = new TextureButton(txLibrary.nextStep, 30, 30);
+//        nextStep.addListener(new ClickListener() {
+//            @Override
+//            public void onClick() {
+//                ActType actType = WorldState.get().nextAct();
+//
+//                if (actType == ActType.ENEMY) {
+//                    nextStep.setTextureRegion(txLibrary.nextStepDisabled);
+//                } else {
+//                    nextStep.setTextureRegion(txLibrary.nextStep);
+//                }
+//            }
+//        });
+//
+//        addActor(nextStep);
 
         DialogParams params = new DialogParams();
         params.setBackgroundRegion(txLibrary.dialogBackground);

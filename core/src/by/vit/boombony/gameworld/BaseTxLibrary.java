@@ -19,6 +19,16 @@ public abstract class BaseTxLibrary extends AbstractTxLibrary {
         textureRegions.put(textureName, tr);
     }
 
+    protected void createTextureRegion(String prefix, String textureName, int x, int y, int width, int height) {
+        TextureRegion tr = new TextureRegion(createTexture(prefix, textureName), x, y, width, height);
+        textureRegions.put(textureName, tr);
+    }
+
+    protected void createTextureRegion(String prefix, String textureName, int width, int height) {
+        TextureRegion tr = new TextureRegion(createTexture(prefix, textureName), 0, 0, width, height);
+        textureRegions.put(textureName, tr);
+    }
+
     protected void createTextureRegionToCell(String textureName, int x, int y, int width, int height) {
 
         if (width > Const.TILE_SIZE || height > Const.TILE_SIZE) {
@@ -54,8 +64,16 @@ public abstract class BaseTxLibrary extends AbstractTxLibrary {
         createTextureRegion(textureName, 0, 0, Const.TILE_SIZE, Const.TILE_SIZE);
     }
 
+    protected void createTextureRegion(String prefix, String textureName) {
+        createTextureRegion(prefix, textureName, 0, 0, Const.TILE_SIZE, Const.TILE_SIZE);
+    }
+
     protected Texture createTexture(String file) {
         return new Texture(Gdx.files.internal(Const.ASSERT_PATH + file));
+    }
+
+    protected Texture createTexture(String prefix, String file) {
+        return new Texture(Gdx.files.internal(Const.ASSERT_PATH + prefix + file));
     }
 
     public TextureRegion txRegion(String textureName) {

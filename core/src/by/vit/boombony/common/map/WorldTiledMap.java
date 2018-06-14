@@ -1,9 +1,17 @@
 package by.vit.boombony.common.map;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
+import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 
 import java.util.List;
 
@@ -11,6 +19,7 @@ import by.vit.boombony.gameobjects.Cell;
 import by.vit.boombony.gameobjects.StepCursor;
 import by.vit.boombony.gameobjects.WorldObject;
 import by.vit.boombony.gameworld.WorldObjectType;
+import by.vit.boombony.helpers.Const;
 import by.vit.boombony.helpers.Coo;
 
 public class WorldTiledMap extends TiledMap {
@@ -18,6 +27,7 @@ public class WorldTiledMap extends TiledMap {
     public static TiledMapTileLayer groundLayer;
     public static TiledMapTileLayer objectLayer;
     public static TiledMapTileLayer cursorLayer;
+    public static TiledMapTileLayer debugLayer;
 
     public WorldTiledMap(TiledMap tiledMap) {
         for (TiledMapTileSet tileSet : tiledMap.getTileSets()) {
@@ -32,7 +42,16 @@ public class WorldTiledMap extends TiledMap {
         objectLayer = (TiledMapTileLayer) getLayers().get(WorldLayerType.OBJECTS.getName());
         cursorLayer = (TiledMapTileLayer) getLayers().get(WorldLayerType.CURSOR.getName());
 
+        if (Const.DEBUG) {
+            initDebugLayer();
+        }
+
         this.getProperties().putAll(tiledMap.getProperties());
+    }
+
+    private void initDebugLayer() {
+        debugLayer = new TiledMapTileLayer(cursorLayer.getWidth(), cursorLayer.getHeight(), (int) cursorLayer.getTileWidth(), (int) cursorLayer.getTileHeight());
+        getLayers().add(debugLayer);
     }
 
     /**
