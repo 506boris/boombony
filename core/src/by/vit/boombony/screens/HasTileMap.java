@@ -6,6 +6,5 @@ import by.vit.boombony.common.map.WorldLayerType;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 
 public interface HasTileMap {
-    TiledMapTileLayer getLayer(WorldLayerType worldLayerType);
     WorldTiledMap getTiledMap();
 }

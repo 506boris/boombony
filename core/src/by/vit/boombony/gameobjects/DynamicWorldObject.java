@@ -1,13 +1,11 @@
 package by.vit.boombony.gameobjects;
 
+import by.vit.boombony.common.map.MoveMapHelper;
+import by.vit.boombony.common.map.WorldTiledMap;
 import by.vit.boombony.gameworld.WorldObjectType;
 import by.vit.boombony.helpers.Coo;
-import by.vit.boombony.common.map.MoveMapHelper;
-import by.vit.boombony.screens.world.WorldObjectUtil;
-import by.vit.boombony.screens.world.WorldTxLibrary;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 
 import java.util.Deque;
 import java.util.List;
@@ -18,8 +16,6 @@ public abstract class DynamicWorldObject extends WorldObject {
     private float currentStepTime = 0;
     private Deque<Coo> walkingSteps = new ConcurrentLinkedDeque<>();
     private boolean canMove = false;
-    private TiledMapTileLayer objectsMapLayer = WorldTxLibrary.OBJECTS_LAYER;
-    private TiledMapTileLayer cursorMapLayer = WorldTxLibrary.CURSOR_LAYER;
 
     public DynamicWorldObject(TextureRegion texture, WorldObjectType type) {
         super(texture, type);
@@ -35,31 +31,7 @@ public abstract class DynamicWorldObject extends WorldObject {
         if (isCanMove()) {
             if (currentStepTime > SPEED_TIME) {
                 currentStepTime = 0;
-                Coo coo = walkingSteps.pollLast();
-
-                // if cell contains any object we can not remove it silently, current decision - stop moving
-                TiledMapTileLayer.Cell cell = cursorMapLayer.getCell(coo.x, coo.y);
-
-                // we should move only by built steps
-                if (WorldObjectType.isStep(cell)) {
-                    MoveMapHelper.move(this, coo, objectsMapLayer);
-                    WorldObjectUtil.clearCursorLayer(coo);
-                }
-
-                // if the last cell is cursor and this cell is transit on OBJECT layer we can do last step
-                if (WorldObjectType.isCursor(cell)) {
-                    WorldObjectUtil.clearCursorLayer(coo);
-
-                    TiledMapTileLayer.Cell objectCell = objectsMapLayer.getCell(coo.x, coo.y);
-
-                    if (WorldObjectType.isTransit(objectCell)) {
-                        MoveMapHelper.move(this, coo, objectsMapLayer);
-                    }
-
-//                    if (WorldObjectType.canCommunicate(objectCell)) {
-//                        DynamicWorldObject object = objectsMapLayer.getCell();
-//                    }
-                }
+                MoveMapHelper.moveActor(this, walkingSteps.pollLast());
             } else {
                 currentStepTime = currentStepTime + delta;
             }

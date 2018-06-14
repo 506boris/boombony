@@ -5,14 +5,19 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 
+import java.util.List;
+
 import by.vit.boombony.gameobjects.Cell;
+import by.vit.boombony.gameobjects.StepCursor;
+import by.vit.boombony.gameobjects.WorldObject;
+import by.vit.boombony.gameworld.WorldObjectType;
 import by.vit.boombony.helpers.Coo;
 
 public class WorldTiledMap extends TiledMap {
 
-    public WorldTiledMap() {
-        super();
-    }
+    public static TiledMapTileLayer groundLayer;
+    public static TiledMapTileLayer objectLayer;
+    public static TiledMapTileLayer cursorLayer;
 
     public WorldTiledMap(TiledMap tiledMap) {
         for (TiledMapTileSet tileSet : tiledMap.getTileSets()) {
@@ -23,33 +28,62 @@ public class WorldTiledMap extends TiledMap {
             getLayers().add(layer);
         }
 
+        groundLayer = (TiledMapTileLayer) getLayers().get(WorldLayerType.GROUND.getName());
+        objectLayer = (TiledMapTileLayer) getLayers().get(WorldLayerType.OBJECTS.getName());
+        cursorLayer = (TiledMapTileLayer) getLayers().get(WorldLayerType.CURSOR.getName());
+
         this.getProperties().putAll(tiledMap.getProperties());
     }
 
-    public void moveCursor(Coo cursorCoo, Coo targetCoo) {
-        TiledMapTileLayer cursorLayer = cursorLayer();
-        Cell targetCell = (Cell) cursorLayer.getCell(cursorCoo.x, cursorCoo.y);
+    /**
+     * Очищаем клетку на слое
+     *
+     * @param coo step for clear
+     */
+    public static void clearOnCursorLayer(Coo coo) {
+        TiledMapTileLayer.Cell cell = cursorLayer.getCell(coo.x, coo.y);
+        if (cell != null) {
+            if (cell instanceof Cell) {
+                Cell myCell = (Cell) cell;
+                myCell.setCoo(null);
+            }
+            cursorLayer.setCell(coo.x, coo.y, null);
+        }
+    }
 
-        if (targetCell.getCoo() != null) {
-            TiledMapTileLayer.Cell cell = cursorLayer.getCell(targetCell.getCoo().x, targetCell.getCoo().y);
-            if (cell != null) {
-                cursorLayer.setCell(targetCell.getCoo().x, targetCell.getCoo().y, null);
+    /**
+     * Очищаем клетки на слое cursor
+     *
+     * @param coos список координат
+     */
+    public static void clearSteps(List<Coo> coos) {
+        if (coos == null) {
+            return;
+        }
+        for (Coo coo : coos) {
+            TiledMapTileLayer.Cell tileCell = cursorLayer.getCell(coo.x, coo.y);
+            if (WorldObjectType.STEP == getCellType(tileCell)) {
+                Cell cell = (Cell) tileCell;
+                cursorLayer.setCell(coo.x, coo.y, null);
+                cell.setCoo(null);
+            }
+        }
+    }
+
+    /**
+     * Get cell type
+     *
+     * @param cell cell
+     * @return type
+     */
+    public static WorldObjectType getCellType(TiledMapTileLayer.Cell cell) {
+        if (cell != null && cell.getTile() != null) {
+            Object object = cell.getTile().getProperties().get(WorldObjectType.TYPE);
+            if (object != null) {
+                return (WorldObjectType) object;
             }
         }
 
-        targetCell.setCoo(targetCoo);
-        cursorLayer.setCell(targetCoo.x, targetCoo.y, targetCell);
-    }
-
-    public TiledMapTileLayer objectLayer() {
-        return (TiledMapTileLayer) getLayers().get(WorldLayerType.OBJECTS.getName());
-    }
-
-    public TiledMapTileLayer groundLayer() {
-        return (TiledMapTileLayer) getLayers().get(WorldLayerType.GROUND.getName());
-    }
-
-    public TiledMapTileLayer cursorLayer() {
-        return (TiledMapTileLayer) getLayers().get(WorldLayerType.CURSOR.getName());
+        return WorldObjectType.NONE;
     }
 }

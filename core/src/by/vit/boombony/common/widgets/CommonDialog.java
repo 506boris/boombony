@@ -43,11 +43,7 @@ public class CommonDialog extends Window implements Initializable {
         setClip(false);
         setTransform(true);
     }
-
-    public void addText() {
-        add("Hello");
-    }
-
+    
     @Override
     public void init() {
 

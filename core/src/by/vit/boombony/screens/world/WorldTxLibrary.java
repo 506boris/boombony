@@ -3,26 +3,20 @@ package by.vit.boombony.screens.world;
 import by.vit.boombony.common.map.WorldTiledMap;
 import by.vit.boombony.gameworld.BaseTxLibrary;
 import by.vit.boombony.scenario.LevelScenario;
-import by.vit.boombony.common.map.WorldLayerType;
 import by.vit.boombony.screens.HasTileMap;
 
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
 public class WorldTxLibrary extends BaseTxLibrary implements HasTileMap {
     public LevelScenario levelScenario;
     public WorldTiledMap tiledMap;
-    public static TiledMapTileLayer OBJECTS_LAYER;
-    public static TiledMapTileLayer GROUND_LAYER;
-    public static TiledMapTileLayer CURSOR_LAYER;
+    public TextureRegion dialogBackground;
+    public TextureRegion dialogOkEnabled;
+    public TextureRegion dialogOkPressed;
 
     public WorldTxLibrary(LevelScenario levelScenario) {
         this.levelScenario = levelScenario;
-    }
-
-    @Override
-    public TiledMapTileLayer getLayer(WorldLayerType worldLayerType) {
-        return ((TiledMapTileLayer) tiledMap.getLayers().get(worldLayerType.getName()));
     }
 
     @Override
@@ -33,9 +27,6 @@ public class WorldTxLibrary extends BaseTxLibrary implements HasTileMap {
     @Override
     public void load() {
         this.tiledMap = new WorldTiledMap(new TmxMapLoader().load(levelScenario.getTmxMapPath()));
-        OBJECTS_LAYER = getLayer(WorldLayerType.OBJECTS);
-        GROUND_LAYER = getLayer(WorldLayerType.GROUND);
-        CURSOR_LAYER = getLayer(WorldLayerType.CURSOR);
 
         createTextureRegion("maps/activecell.png");
         createTextureRegion("maps/step.png");
@@ -47,6 +38,9 @@ public class WorldTxLibrary extends BaseTxLibrary implements HasTileMap {
         createTextureRegion("maps/face_Jim.png", 0, 0, 106, 147);
         createTextureRegion("maps/ButtonRage_normal.png", 0, 0, 77, 74);
         createTextureRegion("maps/Face_witch_Helga.png", 0, 0, 106, 147);
+        dialogBackground = new TextureRegion(createTexture("dialog_bg_top.png"), 954, 620);
+        dialogOkEnabled = new TextureRegion(createTexture("button/button_ok_enabled_2.png"), 130, 38);
+        dialogOkPressed = new TextureRegion(createTexture("button/button_ok_pressed_2.png"), 130, 38);
 
         // todo оптимизировать - - влияент на производительность.!!
     }

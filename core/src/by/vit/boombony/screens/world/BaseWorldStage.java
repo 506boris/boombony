@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import by.vit.boombony.common.map.MoveMapHelper;
 import by.vit.boombony.common.map.WorldTiledMap;
 import by.vit.boombony.gameobjects.DynamicWorldObject;
 import by.vit.boombony.gameobjects.StepCursor;
@@ -14,7 +15,6 @@ import by.vit.boombony.gameworld.path.SearchPathUtil;
 import by.vit.boombony.helpers.Const;
 import by.vit.boombony.helpers.Coo;
 import by.vit.boombony.helpers.CoordinateUtil;
-import by.vit.boombony.common.map.MoveMapHelper;
 import by.vit.boombony.screens.AbstractStage;
 
 public abstract class BaseWorldStage extends AbstractStage<WorldTxLibrary> {
@@ -25,7 +25,6 @@ public abstract class BaseWorldStage extends AbstractStage<WorldTxLibrary> {
     private OrthogonalTiledMapRenderer tiledMapRenderer;
     private int mapWidth = 0;
     private int mapHeight = 0;
-    private WorldTiledMap worldTiledMap;
 
     public BaseWorldStage(WorldScreen worldScreen, WorldTxLibrary txLibrary) {
         super(txLibrary);
@@ -36,7 +35,6 @@ public abstract class BaseWorldStage extends AbstractStage<WorldTxLibrary> {
 
     @Override
     public void init() {
-        this.worldTiledMap = txLibrary.getTiledMap();
         this.camera = worldScreen.getCamera();
         this.cursor = new StepCursor(txLibrary.txRegion("maps/activecell.png"));
         initTiledMapRenderer();
@@ -44,8 +42,8 @@ public abstract class BaseWorldStage extends AbstractStage<WorldTxLibrary> {
 
     private void initTiledMapRenderer() {
         this.tiledMapRenderer = new OrthogonalTiledMapRenderer(txLibrary.getTiledMap(), worldScreen.getScreenManager().getGame().getBatch());
-        this.mapWidth = WorldTxLibrary.GROUND_LAYER.getWidth() * Const.TILE_SIZE;
-        this.mapHeight = WorldTxLibrary.GROUND_LAYER.getHeight() * Const.TILE_SIZE;
+        this.mapWidth = WorldTiledMap.groundLayer.getWidth() * Const.TILE_SIZE;
+        this.mapHeight = WorldTiledMap.groundLayer.getHeight() * Const.TILE_SIZE;
     }
 
     /**
@@ -55,7 +53,7 @@ public abstract class BaseWorldStage extends AbstractStage<WorldTxLibrary> {
      * @return true if we handle event
      */
     private boolean heroInitMove(DynamicWorldObject targetObject, Coo targetCoo) {
-        if (WorldObjectUtil.canMove(targetCoo, txLibrary)) {
+        if (MoveMapHelper.canMove(targetCoo)) {
             // if was init move and there are no any barriers at first we should stop targetObject
             targetObject.setCanMove(false);
 
@@ -69,14 +67,14 @@ public abstract class BaseWorldStage extends AbstractStage<WorldTxLibrary> {
 
                 // other way we should build path to target cursor
             } else {
-                WorldObjectUtil.clearCells(WorldTxLibrary.CURSOR_LAYER, currentSteps);
+                WorldTiledMap.clearSteps(currentSteps);
                 currentSteps.clear();
 
-                worldTiledMap.moveCursor(cursor.getCoo(), targetCoo);
+                MoveMapHelper.moveCursor(cursor, targetCoo);
 
                 SearchPathUtil searchPathUtil = SearchPathUtil.get();
                 if (!searchPathUtil.isSearchingInProgress()) {
-                    currentSteps = searchPathUtil.search(worldTiledMap.objectLayer(), targetObject.getCell().getCoo(), targetCoo);
+                    currentSteps = searchPathUtil.search(WorldTiledMap.objectLayer, targetObject.getCell().getCoo(), targetCoo);
                     WorldObjectUtil.drawSteps(currentSteps, txLibrary);
                 }
             }

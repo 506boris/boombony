@@ -6,6 +6,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 
 public class Cell extends TiledMapTileLayer.Cell {
     private Coo coo;
+    private WorldObject parent;
 
     public Coo getCoo() {
         return coo;
@@ -13,5 +14,13 @@ public class Cell extends TiledMapTileLayer.Cell {
 
     public void setCoo(Coo coo) {
         this.coo = coo;
+    }
+
+    public WorldObject getParent() {
+        return parent;
+    }
+
+    public void setParent(WorldObject parent) {
+        this.parent = parent;
     }
 }
