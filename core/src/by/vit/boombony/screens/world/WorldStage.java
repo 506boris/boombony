@@ -8,6 +8,8 @@ import by.vit.boombony.gameobjects.NPC;
 import by.vit.boombony.common.map.MoveMapHelper;
 import by.vit.boombony.gameobjects.WorldObject;
 import by.vit.boombony.helpers.NPCHelper;
+import by.vit.boombony.screens.ScreenManager;
+import by.vit.boombony.screens.battle.BattleScreen;
 
 public class WorldStage extends BaseWorldStage implements WorldObjectBehavior {
     private Hero hero;
@@ -52,6 +54,8 @@ public class WorldStage extends BaseWorldStage implements WorldObjectBehavior {
                 break;
             case BATTLE:
                 // show battle screen
+                ScreenManager screenManager = getWorldScreen().getScreenManager();
+                screenManager.show(new BattleScreen(screenManager, initiator, target));
                 break;
             case ENTER:
             case PICK_UP:

@@ -1,12 +1,12 @@
 package by.vit.boombony.screens.menu;
 
+import by.vit.boombony.common.sprites.BaseBackground;
 import by.vit.boombony.helpers.ScenarioHelper;
 import by.vit.boombony.screens.AbstractScreen;
 import by.vit.boombony.screens.ScreenManager;
 import by.vit.boombony.screens.world.WorldScreen;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
@@ -15,7 +15,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class MenuScreen extends AbstractScreen<MenuTxLibrary> implements MenuScreenView {
     private SpriteBatch batch;
     private MenuStage menuStage;
-    private Sprite bgSprite;
+    private BaseBackground bgSprite;
     private ScreenManager screenManager;
 
     public MenuScreen(ScreenManager screenManager) {
@@ -31,9 +31,7 @@ public class MenuScreen extends AbstractScreen<MenuTxLibrary> implements MenuScr
         menuStage.init();
         menuStage.setScreenView(this);
 
-        bgSprite = new Sprite(txLibrary.bg);
-        bgSprite.setPosition(0, 0);
-        bgSprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        bgSprite = new BaseBackground(txLibrary.bg);
 
         Gdx.input.setInputProcessor(menuStage);
     }
