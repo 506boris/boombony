@@ -3,12 +3,10 @@ package by.vit.boombony.screens.world;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
+import by.vit.boombony.common.widgets.ButtonParams;
 import by.vit.boombony.common.widgets.CommonDialog;
 import by.vit.boombony.common.widgets.DialogParams;
-import by.vit.boombony.events.ClickListener;
 import by.vit.boombony.gameobjects.TextureButton;
-import by.vit.boombony.gameworld.ActType;
-import by.vit.boombony.gameworld.WorldState;
 import by.vit.boombony.screens.AbstractStage;
 
 public class HUDStage extends AbstractStage<HUDTxLibrary> {
@@ -39,14 +37,15 @@ public class HUDStage extends AbstractStage<HUDTxLibrary> {
 
         DialogParams params = new DialogParams();
         params.setBackgroundRegion(txLibrary.dialogBackground);
-        params.setEnabledOkButtonRegion(txLibrary.dialogOkEnabled);
-        params.setPressedOkButtonRegion(txLibrary.dialogOkPressed);
         params.setBitmapFont(new BitmapFont());
         params.setTitleFontColor(Color.BLACK);
 
+        ButtonParams buttonParams = new ButtonParams();
+        buttonParams.setEnabledButtonRegion(txLibrary.dialogOkEnabled);
+        buttonParams.setPressedButtonRegion(txLibrary.dialogOkPressed);
+
         commonDialog = new CommonDialog(params);
-        commonDialog.init();
-        commonDialog.clearActions();
+        commonDialog.addButtonListener(buttonParams);
         addActor(commonDialog);
     }
 

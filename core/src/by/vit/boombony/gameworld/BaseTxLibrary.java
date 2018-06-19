@@ -19,6 +19,11 @@ public abstract class BaseTxLibrary extends AbstractTxLibrary {
         textureRegions.put(textureName, tr);
     }
 
+    protected void createTextureRegion(String textureName, int width, int height) {
+        TextureRegion tr = new TextureRegion(createTexture(textureName), 0, 0, width, height);
+        textureRegions.put(textureName, tr);
+    }
+
     protected void createTextureRegion(String prefix, String textureName, int x, int y, int width, int height) {
         TextureRegion tr = new TextureRegion(createTexture(prefix, textureName), x, y, width, height);
         textureRegions.put(textureName, tr);

@@ -25,6 +25,10 @@ public class WorldTxLibrary extends BaseTxLibrary implements HasTileMap {
     public void load() {
         this.tiledMap = new WorldTiledMap(new TmxMapLoader().load(levelScenario.getTmxMapPath()));
 
+        createTextureRegion("dialog_bg_top.png", 954, 620);
+        createTextureRegion("button/", "button_ok_enabled_2.png", 130, 38);
+        createTextureRegion("button/", "button_ok_pressed_2.png", 130, 38);
+
         createTextureRegion("maps/", "activecell.png");
         createTextureRegion("maps/", "activecell_attack.png");
         createTextureRegion("maps/", "step.png");

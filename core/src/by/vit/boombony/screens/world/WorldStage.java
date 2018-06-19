@@ -1,7 +1,12 @@
 package by.vit.boombony.screens.world;
 
-import by.vit.boombony.Logger;
-import by.vit.boombony.events.ClickListener;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+
+import by.vit.boombony.common.widgets.ButtonParams;
+import by.vit.boombony.common.widgets.DialogParams;
 import by.vit.boombony.gameobjects.DynamicWorldObject;
 import by.vit.boombony.gameobjects.Hero;
 import by.vit.boombony.gameobjects.NPC;
@@ -10,6 +15,7 @@ import by.vit.boombony.gameobjects.WorldObject;
 import by.vit.boombony.helpers.NPCHelper;
 import by.vit.boombony.screens.ScreenManager;
 import by.vit.boombony.screens.battle.BattleScreen;
+import by.vit.boombony.screens.world.dialogs.StartBattleDialog;
 
 public class WorldStage extends BaseWorldStage implements WorldObjectBehavior {
     private Hero hero;
@@ -34,6 +40,7 @@ public class WorldStage extends BaseWorldStage implements WorldObjectBehavior {
     private NPC yotunNpc;
     private NPC zelgadisNpc;
     private NPC zloboglazNpc;
+    private StartBattleDialog startBattleDialog;
 
     public WorldStage(WorldScreen worldScreen, WorldTxLibrary txLibrary) {
         super(worldScreen, txLibrary);
@@ -54,8 +61,8 @@ public class WorldStage extends BaseWorldStage implements WorldObjectBehavior {
                 break;
             case BATTLE:
                 // show battle screen
-                ScreenManager screenManager = getWorldScreen().getScreenManager();
-                screenManager.show(new BattleScreen(screenManager, initiator, target));
+                startBattleDialog.setWorldObjects(initiator, target);
+                startBattleDialog.setVisible(true);
                 break;
             case ENTER:
             case PICK_UP:
@@ -68,15 +75,27 @@ public class WorldStage extends BaseWorldStage implements WorldObjectBehavior {
     public void init() {
         super.init();
 
-        hero = new Hero(txLibrary.txRegion("face_Jim.png"));
-        hero.addListener(new ClickListener() {
+        DialogParams params = new DialogParams();
+        params.setBackgroundRegion(txLibrary.txRegion("dialog_bg_top.png"));
+        params.setBitmapFont(new BitmapFont());
+        params.setTitleFontColor(Color.BLACK);
+
+        ButtonParams buttonParams = new ButtonParams();
+        buttonParams.setEnabledButtonRegion(txLibrary.txRegion("button_ok_enabled_2.png"));
+        buttonParams.setPressedButtonRegion(txLibrary.txRegion("button_ok_pressed_2.png"));
+
+        startBattleDialog = new StartBattleDialog(params);
+        startBattleDialog.addButtonListener(buttonParams);
+        startBattleDialog.addButtonListener(buttonParams, new ClickListener() {
             @Override
-            public void onClick() {
-
-                Logger.log("Click on hero");
-
+            public void clicked(InputEvent event, float x, float y) {
+                ScreenManager screenManager = getWorldScreen().getScreenManager();
+                screenManager.show(new BattleScreen(screenManager, startBattleDialog.getInitiator(), startBattleDialog.getTarget()));
             }
         });
+        addActor(startBattleDialog);
+
+        hero = new Hero(txLibrary.txRegion("face_Jim.png"));
         addActor(hero);
         MoveMapHelper.moveObject(hero, 0, 0);
 
