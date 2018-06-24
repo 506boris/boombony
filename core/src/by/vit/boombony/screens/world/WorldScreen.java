@@ -2,7 +2,7 @@ package by.vit.boombony.screens.world;
 
 import by.vit.boombony.common.map.WorldTiledMap;
 import by.vit.boombony.helpers.Const;
-import by.vit.boombony.scenario.LevelScenario;
+import by.vit.boombony.scenario.models.LevelScenario;
 import by.vit.boombony.screens.AbstractScreen;
 import by.vit.boombony.screens.ScreenManager;
 

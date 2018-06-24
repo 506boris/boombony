@@ -1,4 +1,4 @@
-package by.vit.boombony.scenario;
+package by.vit.boombony.scenario.models;
 
 import by.vit.boombony.helpers.Coo;
 
@@ -7,7 +7,7 @@ public class LevelInfo {
     private int levelNumber;
     private String levelDescription;
     private Coo startPoint;
-    private NpcInfo NpcInfo;
+    private NpcArray NpcArray;
 
     public String getLevelName() {
         return levelName;
@@ -41,11 +41,11 @@ public class LevelInfo {
         this.startPoint = startPoint;
     }
 
-    public by.vit.boombony.scenario.NpcInfo getNpcInfo() {
-        return NpcInfo;
+    public NpcArray getNpcArray() {
+        return NpcArray;
     }
 
-    public void setNpcInfo(by.vit.boombony.scenario.NpcInfo npcInfo) {
-        NpcInfo = npcInfo;
+    public void setNpcArray(NpcArray npcArray) {
+        NpcArray = npcArray;
     }
 }

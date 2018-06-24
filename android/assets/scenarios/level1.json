@@ -1,0 +1,352 @@
+{
+"levelInfo": {
+	"levelName": "Start journey",
+	"levelNumber": 1,
+	"levelDescription": "Start description",
+	"startPoint": {},
+	"NpcArray": {
+		"monsters": [
+			{
+				"name": "Face_witch_Helga",
+				"description": "Face_witch_Helga",
+				"size": {
+					"x": 106,
+					"y": 147
+				},
+				"startPosition": {
+					"x": 9,
+					"y": 7
+				},
+				"mapTextureName": "Face_witch_Helga.png",
+				"bigTextureName": "Face_witch_Helga.png",
+				"replicaDto": {},
+				"level": 1
+			},
+			{
+				"name": "face_werewolf",
+				"description": "face_werewolf",
+				"size": {
+					"x": 106,
+					"y": 147
+				},
+				"startPosition": {
+					"x": 12,
+					"y": 15
+				},
+				"mapTextureName": "face_werewolf.png",
+				"bigTextureName": "face_werewolf.png",
+				"replicaDto": {},
+				"level": 1
+			},
+			{
+				"name": "face_white_beer",
+				"description": "face_white_beer",
+				"size": {
+					"x": 106,
+					"y": 147
+				},
+				"startPosition": {
+					"x": 20,
+					"y": 20
+				},
+				"mapTextureName": "face_white_beer.png",
+				"bigTextureName": "face_white_beer.png",
+				"replicaDto": {},
+				"level": 1
+			},
+			{
+				"name": "face_witch_Hestra",
+				"description": "face_witch_Hestra",
+				"size": {
+					"x": 106,
+					"y": 147
+				},
+				"startPosition": {
+					"x": 14,
+					"y": 15
+				},
+				"mapTextureName": "face_witch_Hestra.png",
+				"bigTextureName": "face_witch_Hestra.png",
+				"replicaDto": {},
+				"level": 1
+			},
+			{
+				"name": "face_witch_Etteila",
+				"description": "face_witch_Etteila",
+				"size": {
+					"x": 106,
+					"y": 147
+				},
+				"startPosition": {
+					"x": 4,
+					"y": 21
+				},
+				"mapTextureName": "face_witch_Etteila.png",
+				"bigTextureName": "face_witch_Etteila.png",
+				"replicaDto": {},
+				"level": 1
+			},
+			{
+				"name": "face_Witch_Kimora",
+				"description": "face_Witch_Kimora",
+				"size": {
+					"x": 106,
+					"y": 147
+				},
+				"startPosition": {
+					"x": 8,
+					"y": 24
+				},
+				"mapTextureName": "face_Witch_Kimora.png",
+				"bigTextureName": "face_Witch_Kimora.png",
+				"replicaDto": {},
+				"level": 1
+			},
+			{
+				"name": "Face_witch_magnet",
+				"description": "Face_witch_magnet",
+				"size": {
+					"x": 106,
+					"y": 147
+				},
+				"startPosition": {
+					"x": 16,
+					"y": 27
+				},
+				"mapTextureName": "Face_witch_magnet.png",
+				"bigTextureName": "Face_witch_magnet.png",
+				"replicaDto": {},
+				"level": 1
+			},
+			{
+				"name": "face_witch_martaold",
+				"description": "face_witch_martaold",
+				"size": {
+					"x": 106,
+					"y": 147
+				},
+				"startPosition": {
+					"x": 23,
+					"y": 29
+				},
+				"mapTextureName": "face_witch_martaold.png",
+				"bigTextureName": "face_witch_martaold.png",
+				"replicaDto": {},
+				"level": 1
+			},
+			{
+				"name": "face_witch_Wilma",
+				"description": "face_witch_Wilma",
+				"size": {
+					"x": 106,
+					"y": 147
+				},
+				"startPosition": {
+					"x": 15,
+					"y": 1
+				},
+				"mapTextureName": "face_witch_Wilma.png",
+				"bigTextureName": "face_witch_Wilma.png",
+				"replicaDto": {},
+				"level": 1
+			}
+		],
+		"npc": [
+			{
+				"name": "face_Severus",
+				"description": "face_Severus",
+				"size": {
+					"x": 106,
+					"y": 147
+				},
+				"startPosition": {
+					"x": 3
+				},
+				"mapTextureName": "face_Severus.png",
+				"bigTextureName": "face_Severus.png",
+				"replicaDto": {}
+			},
+			{
+				"name": "face_Jim",
+				"description": "face_Jim",
+				"size": {
+					"x": 106,
+					"y": 147
+				},
+				"startPosition": {
+					"x": 24,
+					"y": 1
+				},
+				"mapTextureName": "face_Jim.png",
+				"bigTextureName": "face_Jim.png",
+				"replicaDto": {}
+			},
+			{
+				"name": "ButtonRage_normal",
+				"description": "ButtonRage_normal",
+				"size": {
+					"x": 77,
+					"y": 74
+				},
+				"startPosition": {
+					"x": 6
+				},
+				"mapTextureName": "ButtonRage_normal.png",
+				"bigTextureName": "ButtonRage_normal.png",
+				"replicaDto": {}
+			},
+			{
+				"name": "face_viking_house_small_3_autumn",
+				"description": "face_viking_house_small_3_autumn",
+				"size": {
+					"x": 106,
+					"y": 147
+				},
+				"startPosition": {
+					"x": 2,
+					"y": 4
+				},
+				"mapTextureName": "face_viking_house_small_3_autumn.png",
+				"bigTextureName": "face_viking_house_small_3_autumn.png",
+				"replicaDto": {}
+			},
+			{
+				"name": "face_viking_lighthouse",
+				"description": "face_viking_lighthouse",
+				"size": {
+					"x": 106,
+					"y": 147
+				},
+				"startPosition": {
+					"x": 13,
+					"y": 6
+				},
+				"mapTextureName": "face_viking_lighthouse.png",
+				"bigTextureName": "face_viking_lighthouse.png",
+				"replicaDto": {}
+			},
+			{
+				"name": "face_viking_makinghides_machine",
+				"description": "face_viking_makinghides_machine",
+				"size": {
+					"x": 106,
+					"y": 147
+				},
+				"startPosition": {
+					"x": 17,
+					"y": 14
+				},
+				"mapTextureName": "face_viking_makinghides_machine.png",
+				"bigTextureName": "face_viking_makinghides_machine.png",
+				"replicaDto": {}
+			},
+			{
+				"name": "face_viking_mill",
+				"description": "face_viking_mill",
+				"size": {
+					"x": 106,
+					"y": 147
+				},
+				"startPosition": {
+					"x": 21,
+					"y": 20
+				},
+				"mapTextureName": "face_viking_mill.png",
+				"bigTextureName": "face_viking_mill.png",
+				"replicaDto": {}
+			},
+			{
+				"name": "face_Volkan",
+				"description": "face_Volkan",
+				"size": {
+					"x": 106,
+					"y": 147
+				},
+				"startPosition": {
+					"x": 10,
+					"y": 20
+				},
+				"mapTextureName": "face_Volkan.png",
+				"bigTextureName": "face_Volkan.png",
+				"replicaDto": {}
+			},
+			{
+				"name": "face_Yanik_up",
+				"description": "face_Yanik_up",
+				"size": {
+					"x": 106,
+					"y": 147
+				},
+				"startPosition": {
+					"x": 16,
+					"y": 5
+				},
+				"mapTextureName": "face_Yanik_up.png",
+				"bigTextureName": "face_Yanik_up.png",
+				"replicaDto": {}
+			},
+			{
+				"name": "face_Yodur",
+				"description": "face_Yodur",
+				"size": {
+					"x": 106,
+					"y": 147
+				},
+				"startPosition": {
+					"x": 15,
+					"y": 14
+				},
+				"mapTextureName": "face_Yodur.png",
+				"bigTextureName": "face_Yodur.png",
+				"replicaDto": {}
+			},
+			{
+				"name": "face_yotun",
+				"description": "face_yotun",
+				"size": {
+					"x": 106,
+					"y": 147
+				},
+				"startPosition": {
+					"x": 21,
+					"y": 3
+				},
+				"mapTextureName": "face_yotun.png",
+				"bigTextureName": "face_yotun.png",
+				"replicaDto": {}
+			},
+			{
+				"name": "face_zelgadis",
+				"description": "face_zelgadis",
+				"size": {
+					"x": 106,
+					"y": 147
+				},
+				"startPosition": {
+					"x": 26,
+					"y": 5
+				},
+				"mapTextureName": "face_zelgadis.png",
+				"bigTextureName": "face_zelgadis.png",
+				"replicaDto": {}
+			},
+			{
+				"name": "face_zloboglaz",
+				"description": "face_zloboglaz",
+				"size": {
+					"x": 106,
+					"y": 147
+				},
+				"startPosition": {
+					"x": 24,
+					"y": 1
+				},
+				"mapTextureName": "face_zloboglaz.png",
+				"bigTextureName": "face_zloboglaz.png",
+				"replicaDto": {}
+			}
+		]
+	}
+},
+"tmxMapPath": "maps/level1.tmx"
+}

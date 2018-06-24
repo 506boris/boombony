@@ -1,4 +1,4 @@
-package by.vit.boombony.maps;
+package by.vit.boombony.scenario.maker;
 
 public enum CellType {
     EMPTY,

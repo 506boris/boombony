@@ -1,4 +1,4 @@
-package by.vit.boombony.scenario;
+package by.vit.boombony.scenario.models;
 
 /**
  * It can be weapon or armor, artifact, quest item,

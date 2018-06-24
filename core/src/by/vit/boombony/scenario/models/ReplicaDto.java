@@ -1,4 +1,4 @@
-package by.vit.boombony.scenario;
+package by.vit.boombony.scenario.models;
 
 import java.util.Map;
 

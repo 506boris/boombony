@@ -1,10 +1,14 @@
-package by.vit.boombony.maps;
+package by.vit.boombony.scenario.maker;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class FileLoader {
 
-    private static final String PATH = "c://";
+    private static final String PATH = "";
 
     public static void write(String fileName, String file) {
         FileOutputStream outputStream;
@@ -20,6 +24,7 @@ public class FileLoader {
     public static String read(String fileName) {
         StringBuilder sb = new StringBuilder();
         try {
+
             FileInputStream fis = new FileInputStream(PATH + fileName);
 
             InputStreamReader isr = new InputStreamReader(fis);

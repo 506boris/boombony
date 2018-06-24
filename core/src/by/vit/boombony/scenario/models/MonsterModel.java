@@ -1,6 +1,6 @@
-package by.vit.boombony.scenario;
+package by.vit.boombony.scenario.models;
 
-public class MonsterDto extends BaseNpcDto {
+public class MonsterModel extends BaseNpcModel {
     private int level;
 
     public int getLevel() {

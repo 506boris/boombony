@@ -1,4 +1,4 @@
-package by.vit.boombony.maps;
+package by.vit.boombony.scenario.maker;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -21,7 +21,7 @@ public class MapLoader {
 
     public GameMap load(String level) {
 
-        String jsonMap = FileLoader.read(level + MAP_EXT);
+        String jsonMap = GdxFileLoader.read(level + MAP_EXT);
         GameMap gameMap = gson.fromJson(jsonMap, GameMap.class);
 
         return gameMap;

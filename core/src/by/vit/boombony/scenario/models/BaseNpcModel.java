@@ -1,10 +1,11 @@
-package by.vit.boombony.scenario;
+package by.vit.boombony.scenario.models;
 
 import by.vit.boombony.helpers.Coo;
 
-public abstract class BaseNpcDto {
+public abstract class BaseNpcModel {
     private String name;
     private String description;
+    private Coo size;
     private Coo startPosition;
     private String mapTextureName;
     private String bigTextureName;
@@ -56,5 +57,13 @@ public abstract class BaseNpcDto {
 
     public void setReplicaDto(ReplicaDto replicaDto) {
         this.replicaDto = replicaDto;
+    }
+
+    public Coo getSize() {
+        return size;
+    }
+
+    public void setSize(Coo size) {
+        this.size = size;
     }
 }
