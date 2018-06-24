@@ -17,6 +17,7 @@ public class WorldScreen extends AbstractScreen<WorldTxLibrary> {
     private HUDStage hudStage;
     private InputMultiplexer inputMultiplexer;
     private WorldStage worldStage;
+    private GlobalTxLibrary globalTxLibrary;
 
     public WorldScreen(ScreenManager screenManager, LevelScenario levelScenario) {
         super(new WorldTxLibrary(levelScenario));
@@ -24,12 +25,14 @@ public class WorldScreen extends AbstractScreen<WorldTxLibrary> {
         this.hudStage = new HUDStage();
         this.inputMultiplexer = new InputMultiplexer();
         this.worldStage = new WorldStage(this, txLibrary);
+        this.globalTxLibrary = new GlobalTxLibrary();
     }
 
     @Override
     public void loadTx() {
         super.loadTx();
         hudStage.loadTx();
+        globalTxLibrary.load();
     }
 
     @Override

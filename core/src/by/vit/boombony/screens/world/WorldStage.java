@@ -85,7 +85,7 @@ public class WorldStage extends BaseWorldStage implements WorldObjectBehavior {
         buttonParams.setPressedButtonRegion(txLibrary.txRegion("button_ok_pressed_2.png"));
 
         startBattleDialog = new StartBattleDialog(params);
-        startBattleDialog.addButtonListener(buttonParams);
+        startBattleDialog.activateCloseButton();
         startBattleDialog.addButtonListener(buttonParams, new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {

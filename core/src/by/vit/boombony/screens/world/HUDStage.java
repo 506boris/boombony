@@ -3,7 +3,6 @@ package by.vit.boombony.screens.world;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
-import by.vit.boombony.common.widgets.ButtonParams;
 import by.vit.boombony.common.widgets.CommonDialog;
 import by.vit.boombony.common.widgets.DialogParams;
 import by.vit.boombony.gameobjects.TextureButton;
@@ -40,12 +39,8 @@ public class HUDStage extends AbstractStage<HUDTxLibrary> {
         params.setBitmapFont(new BitmapFont());
         params.setTitleFontColor(Color.BLACK);
 
-        ButtonParams buttonParams = new ButtonParams();
-        buttonParams.setEnabledButtonRegion(txLibrary.dialogOkEnabled);
-        buttonParams.setPressedButtonRegion(txLibrary.dialogOkPressed);
-
         commonDialog = new CommonDialog(params);
-        commonDialog.addButtonListener(buttonParams);
+        commonDialog.activateCloseButton();
         addActor(commonDialog);
     }
 

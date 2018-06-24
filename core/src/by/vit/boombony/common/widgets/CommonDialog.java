@@ -12,9 +12,12 @@ import com.badlogic.gdx.utils.Align;
 import by.vit.boombony.gameworld.Initializable;
 import by.vit.boombony.helpers.Const;
 import by.vit.boombony.helpers.CoordinateUtil;
+import by.vit.boombony.screens.world.GlobalTxLibrary;
 
 public class CommonDialog extends Window implements Initializable {
     private static final float DEFAULT_BUTTON_PAD = 40;
+    private static final float CLOSE_RIGHT_POSITION = 30;
+    private static final float CLOSE_TOP_POSITION = 100;
 
     public CommonDialog(DialogParams params) {
         super("", new WindowStyle(params.getBitmapFont(), params.getTitleFontColor(), new TextureRegionDrawable(params.getBackgroundRegion())));
@@ -31,13 +34,21 @@ public class CommonDialog extends Window implements Initializable {
         setPosition(CoordinateUtil.centerWidth(this), CoordinateUtil.centerHeight(this));
     }
 
-    public void addButtonListener(ButtonParams buttonParams) {
-        addButtonListener(buttonParams, new ClickListener() {
+    public void activateCloseButton() {
+        TextureRegion closeActive = GlobalTxLibrary.close_active;
+        TextureRegion closePressed = GlobalTxLibrary.close_pressed;
+        ImageButton.ImageButtonStyle closeStyle = new ImageButton.ImageButtonStyle();
+        closeStyle.imageUp = new TextureRegionDrawable(closeActive);
+        closeStyle.imageDown = new TextureRegionDrawable(closePressed);
+
+        Button closeButton = new ImageButton(closeStyle);
+        closeButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 setVisible(false);
             }
         });
+        getTitleTable().add(closeButton).padRight(CLOSE_RIGHT_POSITION).padTop(CLOSE_TOP_POSITION);
     }
 
     public void addButtonListener(ButtonParams params, ClickListener clickListener) {

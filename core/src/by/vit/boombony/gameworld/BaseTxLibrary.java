@@ -14,24 +14,28 @@ public abstract class BaseTxLibrary extends AbstractTxLibrary {
 
     private Map<String, TextureRegion> textureRegions = new HashMap<>();
 
-    protected void createTextureRegion(String textureName, int x, int y, int width, int height) {
+    protected TextureRegion createTextureRegion(String textureName, int x, int y, int width, int height) {
         TextureRegion tr = new TextureRegion(createTexture(textureName), x, y, width, height);
         textureRegions.put(textureName, tr);
+        return tr;
     }
 
-    protected void createTextureRegion(String textureName, int width, int height) {
+    protected TextureRegion createTextureRegion(String textureName, int width, int height) {
         TextureRegion tr = new TextureRegion(createTexture(textureName), 0, 0, width, height);
         textureRegions.put(textureName, tr);
+        return tr;
     }
 
-    protected void createTextureRegion(String prefix, String textureName, int x, int y, int width, int height) {
+    protected TextureRegion createTextureRegion(String prefix, String textureName, int x, int y, int width, int height) {
         TextureRegion tr = new TextureRegion(createTexture(prefix, textureName), x, y, width, height);
         textureRegions.put(textureName, tr);
+        return tr;
     }
 
-    protected void createTextureRegion(String prefix, String textureName, int width, int height) {
+    protected TextureRegion createTextureRegion(String prefix, String textureName, int width, int height) {
         TextureRegion tr = new TextureRegion(createTexture(prefix, textureName), 0, 0, width, height);
         textureRegions.put(textureName, tr);
+        return tr;
     }
 
     protected void createTextureRegionToCell(String textureName, int x, int y, int width, int height) {
@@ -65,12 +69,12 @@ public abstract class BaseTxLibrary extends AbstractTxLibrary {
         return new Texture(pixmapNew);
     }
 
-    protected void createTextureRegion(String textureName) {
-        createTextureRegion(textureName, 0, 0, Const.TILE_SIZE, Const.TILE_SIZE);
+    protected TextureRegion createTextureRegion(String textureName) {
+        return createTextureRegion(textureName, 0, 0, Const.TILE_SIZE, Const.TILE_SIZE);
     }
 
-    protected void createTextureRegion(String prefix, String textureName) {
-        createTextureRegion(prefix, textureName, 0, 0, Const.TILE_SIZE, Const.TILE_SIZE);
+    protected TextureRegion createTextureRegion(String prefix, String textureName) {
+        return createTextureRegion(prefix, textureName, 0, 0, Const.TILE_SIZE, Const.TILE_SIZE);
     }
 
     protected Texture createTexture(String file) {
