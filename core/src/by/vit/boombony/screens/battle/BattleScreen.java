@@ -7,6 +7,7 @@ import by.vit.boombony.common.sprites.BaseBackground;
 import by.vit.boombony.gameobjects.WorldObject;
 import by.vit.boombony.screens.AbstractScreen;
 import by.vit.boombony.screens.ScreenManager;
+import by.vit.boombony.texture.BattleTxLibrary;
 
 public class BattleScreen extends AbstractScreen<BattleTxLibrary> {
     private SpriteBatch batch;

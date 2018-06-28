@@ -1,6 +1,6 @@
 package by.vit.boombony.screens.map;
 
-import by.vit.boombony.gameworld.TxLibrary;
+import by.vit.boombony.texture.TxLibrary;
 import by.vit.boombony.screens.AbstractScreen;
 
 public class MapScreen extends AbstractScreen {

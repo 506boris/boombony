@@ -1,6 +1,4 @@
-package by.vit.boombony.screens.award;
-
-import by.vit.boombony.gameworld.BaseTxLibrary;
+package by.vit.boombony.texture;
 
 public class AwardTxLibrary extends BaseTxLibrary {
     @Override

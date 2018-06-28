@@ -5,6 +5,8 @@ import by.vit.boombony.helpers.Const;
 import by.vit.boombony.scenario.models.LevelScenario;
 import by.vit.boombony.screens.AbstractScreen;
 import by.vit.boombony.screens.ScreenManager;
+import by.vit.boombony.texture.GlobalTxLibrary;
+import by.vit.boombony.texture.WorldTxLibrary;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;

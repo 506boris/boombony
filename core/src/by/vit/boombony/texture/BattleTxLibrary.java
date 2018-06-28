@@ -1,6 +1,4 @@
-package by.vit.boombony.screens.battle;
-
-import by.vit.boombony.gameworld.BaseTxLibrary;
+package by.vit.boombony.texture;
 
 public class BattleTxLibrary extends BaseTxLibrary {
     @Override

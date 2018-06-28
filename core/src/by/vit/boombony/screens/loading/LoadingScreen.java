@@ -1,6 +1,7 @@
 package by.vit.boombony.screens.loading;
 
 import by.vit.boombony.screens.AbstractScreen;
+import by.vit.boombony.texture.LoadingTxLibrary;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;

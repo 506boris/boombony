@@ -7,6 +7,7 @@ import by.vit.boombony.common.widgets.CommonDialog;
 import by.vit.boombony.common.widgets.DialogParams;
 import by.vit.boombony.gameobjects.TextureButton;
 import by.vit.boombony.screens.AbstractStage;
+import by.vit.boombony.texture.HUDTxLibrary;
 
 public class HUDStage extends AbstractStage<HUDTxLibrary> {
     private TextureButton nextStep;

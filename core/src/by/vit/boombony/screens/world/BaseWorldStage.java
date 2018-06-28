@@ -16,6 +16,7 @@ import by.vit.boombony.helpers.Const;
 import by.vit.boombony.helpers.Coo;
 import by.vit.boombony.helpers.CoordinateUtil;
 import by.vit.boombony.screens.AbstractStage;
+import by.vit.boombony.texture.WorldTxLibrary;
 
 public abstract class BaseWorldStage extends AbstractStage<WorldTxLibrary> {
     private WorldScreen worldScreen;

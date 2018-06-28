@@ -1,11 +1,9 @@
 package by.vit.boombony.screens;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 import by.vit.boombony.gameworld.Initializable;
-import by.vit.boombony.gameworld.TxLibrary;
+import by.vit.boombony.texture.TxLibrary;
 
 public abstract class AbstractStage<T extends TxLibrary> extends Stage implements Initializable {
     protected T txLibrary;

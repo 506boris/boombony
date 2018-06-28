@@ -5,6 +5,7 @@ import by.vit.boombony.helpers.ScenarioManager;
 import by.vit.boombony.screens.AbstractScreen;
 import by.vit.boombony.screens.ScreenManager;
 import by.vit.boombony.screens.world.WorldScreen;
+import by.vit.boombony.texture.MenuTxLibrary;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

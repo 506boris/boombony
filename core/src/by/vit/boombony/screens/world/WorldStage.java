@@ -16,6 +16,7 @@ import by.vit.boombony.helpers.NPCHelper;
 import by.vit.boombony.screens.ScreenManager;
 import by.vit.boombony.screens.battle.BattleScreen;
 import by.vit.boombony.screens.world.dialogs.StartBattleDialog;
+import by.vit.boombony.texture.WorldTxLibrary;
 
 public class WorldStage extends BaseWorldStage implements WorldObjectBehavior {
     private Hero hero;

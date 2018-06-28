@@ -1,4 +1,4 @@
-package by.vit.boombony.gameworld;
+package by.vit.boombony.texture;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import by.vit.boombony.helpers.Const;
+import by.vit.boombony.texture.AbstractTxLibrary;
 
 public abstract class BaseTxLibrary extends AbstractTxLibrary {
 

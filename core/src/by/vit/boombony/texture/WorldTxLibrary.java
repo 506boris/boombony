@@ -1,7 +1,6 @@
-package by.vit.boombony.screens.world;
+package by.vit.boombony.texture;
 
 import by.vit.boombony.common.map.WorldTiledMap;
-import by.vit.boombony.gameworld.BaseTxLibrary;
 import by.vit.boombony.scenario.models.LevelInfo;
 import by.vit.boombony.scenario.models.LevelScenario;
 import by.vit.boombony.scenario.models.MonsterModel;

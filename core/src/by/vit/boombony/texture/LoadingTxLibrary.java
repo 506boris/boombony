@@ -1,6 +1,4 @@
-package by.vit.boombony.screens.loading;
-
-import by.vit.boombony.gameworld.AbstractTxLibrary;
+package by.vit.boombony.texture;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 

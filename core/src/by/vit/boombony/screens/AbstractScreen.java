@@ -1,6 +1,6 @@
 package by.vit.boombony.screens;
 
-import by.vit.boombony.gameworld.TxLibrary;
+import by.vit.boombony.texture.TxLibrary;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;

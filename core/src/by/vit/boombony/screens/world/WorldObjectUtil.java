@@ -3,9 +3,9 @@ package by.vit.boombony.screens.world;
 import by.vit.boombony.common.map.WorldTiledMap;
 import by.vit.boombony.gameobjects.Cell;
 import by.vit.boombony.gameobjects.Step;
-import by.vit.boombony.common.map.WorldLayerType;
 import by.vit.boombony.gameobjects.WorldObject;
 import by.vit.boombony.helpers.Coo;
+import by.vit.boombony.texture.WorldTxLibrary;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 

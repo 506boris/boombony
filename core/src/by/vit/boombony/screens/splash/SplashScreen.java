@@ -4,6 +4,7 @@ import by.vit.boombony.helpers.CoordinateUtil;
 import by.vit.boombony.screens.ScreenManager;
 import by.vit.boombony.screens.AbstractScreen;
 import by.vit.boombony.screens.menu.MenuScreen;
+import by.vit.boombony.texture.SplashTxLibrary;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

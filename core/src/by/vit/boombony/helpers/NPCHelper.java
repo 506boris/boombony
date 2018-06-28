@@ -4,7 +4,7 @@ import by.vit.boombony.Logger;
 import by.vit.boombony.common.map.MoveMapHelper;
 import by.vit.boombony.events.ClickListener;
 import by.vit.boombony.gameobjects.NPC;
-import by.vit.boombony.gameworld.BaseTxLibrary;
+import by.vit.boombony.texture.BaseTxLibrary;
 import by.vit.boombony.gameworld.WorldObjectType;
 import by.vit.boombony.screens.world.WorldStage;
 

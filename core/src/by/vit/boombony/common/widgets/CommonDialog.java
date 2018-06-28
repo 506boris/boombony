@@ -12,7 +12,7 @@ import com.badlogic.gdx.utils.Align;
 import by.vit.boombony.gameworld.Initializable;
 import by.vit.boombony.helpers.Const;
 import by.vit.boombony.helpers.CoordinateUtil;
-import by.vit.boombony.screens.world.GlobalTxLibrary;
+import by.vit.boombony.texture.GlobalTxLibrary;
 
 public class CommonDialog extends Window implements Initializable {
     private static final float DEFAULT_BUTTON_PAD = 40;

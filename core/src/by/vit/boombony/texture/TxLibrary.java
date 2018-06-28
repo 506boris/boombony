@@ -1,4 +1,4 @@
-package by.vit.boombony.gameworld;
+package by.vit.boombony.texture;
 
 import com.badlogic.gdx.utils.Disposable;
 

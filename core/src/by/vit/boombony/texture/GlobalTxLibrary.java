@@ -1,8 +1,6 @@
-package by.vit.boombony.screens.world;
+package by.vit.boombony.texture;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-
-import by.vit.boombony.gameworld.BaseTxLibrary;
 
 public class GlobalTxLibrary extends BaseTxLibrary {
     private static final String GLOBAL_TAG = "global/";

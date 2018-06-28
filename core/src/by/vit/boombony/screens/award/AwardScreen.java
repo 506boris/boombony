@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import by.vit.boombony.gameobjects.Hero;
 import by.vit.boombony.screens.AbstractScreen;
 import by.vit.boombony.screens.ScreenManager;
+import by.vit.boombony.texture.AwardTxLibrary;
 
 public class AwardScreen extends AbstractScreen<AwardTxLibrary> {
 

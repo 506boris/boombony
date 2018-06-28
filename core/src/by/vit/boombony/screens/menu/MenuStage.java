@@ -3,9 +3,9 @@ package by.vit.boombony.screens.menu;
 import by.vit.boombony.events.ClickListener;
 import by.vit.boombony.gameobjects.TextureButton;
 import by.vit.boombony.screens.AbstractStage;
+import by.vit.boombony.texture.MenuTxLibrary;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 
 public class MenuStage extends AbstractStage<MenuTxLibrary> {
     private TextureButton startGameButton;

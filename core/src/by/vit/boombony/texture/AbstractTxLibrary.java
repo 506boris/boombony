@@ -1,4 +1,4 @@
-package by.vit.boombony.gameworld;
+package by.vit.boombony.texture;
 
 import by.vit.boombony.helpers.Const;
 import com.badlogic.gdx.Gdx;
@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractTxLibrary implements TxLibrary{
+public abstract class AbstractTxLibrary implements TxLibrary {
     private List<Texture> textures = new ArrayList();
 
 
