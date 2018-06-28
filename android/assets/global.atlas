@@ -1,0 +1,144 @@
+
+global.png
+size: 1024,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+activecell
+  rotate: false
+  xy: 2, 282
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+activecell_attack
+  rotate: false
+  xy: 2, 184
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+button_close_enabled
+  rotate: false
+  xy: 330, 340
+  size: 105, 38
+  orig: 105, 38
+  offset: 0, 0
+  index: -1
+button_close_pressed
+  rotate: false
+  xy: 330, 300
+  size: 105, 38
+  orig: 105, 38
+  offset: 0, 0
+  index: -1
+button_ok_enabled
+  rotate: false
+  xy: 198, 340
+  size: 130, 38
+  orig: 130, 38
+  offset: 0, 0
+  index: -1
+button_ok_pressed
+  rotate: false
+  xy: 198, 300
+  size: 130, 38
+  orig: 130, 38
+  offset: 0, 0
+  index: -1
+close_active
+  rotate: false
+  xy: 2, 44
+  size: 60, 40
+  orig: 60, 40
+  offset: 0, 0
+  index: -1
+close_disabled
+  rotate: false
+  xy: 437, 338
+  size: 60, 40
+  orig: 60, 40
+  offset: 0, 0
+  index: -1
+close_pressed
+  rotate: false
+  xy: 2, 2
+  size: 60, 40
+  orig: 60, 40
+  offset: 0, 0
+  index: -1
+dialog_bg_top
+  rotate: false
+  xy: 2, 380
+  size: 954, 620
+  orig: 954, 620
+  offset: 0, 0
+  index: -1
+next_step
+  rotate: false
+  xy: 958, 946
+  size: 53, 54
+  orig: 53, 54
+  offset: 0, 0
+  index: -1
+next_step_disabled
+  rotate: false
+  xy: 100, 226
+  size: 53, 54
+  orig: 53, 54
+  offset: 0, 0
+  index: -1
+step
+  rotate: false
+  xy: 100, 282
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+step-out
+  rotate: false
+  xy: 2, 86
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+
+global2.png
+size: 1024,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+dange_screen
+  rotate: false
+  xy: 2, 484
+  size: 800, 480
+  orig: 800, 480
+  offset: 0, 0
+  index: -1
+game_back
+  rotate: false
+  xy: 2, 484
+  size: 800, 480
+  orig: 800, 480
+  offset: 0, 0
+  index: -1
+loadingscreen
+  rotate: false
+  xy: 2, 2
+  size: 800, 480
+  orig: 800, 480
+  offset: 0, 0
+  index: -1
+
+global3.png
+size: 1024,512
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+menuscreen
+  rotate: false
+  xy: 2, 2
+  size: 800, 480
+  orig: 800, 480
+  offset: 0, 0
+  index: -1

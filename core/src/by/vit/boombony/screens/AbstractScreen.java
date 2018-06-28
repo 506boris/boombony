@@ -1,30 +1,20 @@
 package by.vit.boombony.screens;
 
-import by.vit.boombony.texture.TxLibrary;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 
-public abstract class AbstractScreen<T extends TxLibrary> implements Screen {
-    protected T txLibrary;
+public abstract class AbstractScreen implements Screen {
 
-    public AbstractScreen(T txLibrary) {
-        this.txLibrary = txLibrary;
+    public AbstractScreen() {
     }
 
     @Override
     public void dispose() {
         Gdx.input.setInputProcessor(null);
-        txLibrary.dispose();
     }
 
-    /**
-     * Don't call it manually.
-     */
-    public void loadTx() {
-        txLibrary.load();
-    }
+    public abstract void loadTx();
 
     @Override
     public void resize(int width, int height) {
@@ -50,10 +40,5 @@ public abstract class AbstractScreen<T extends TxLibrary> implements Screen {
     @Override
     public void hide() {
         Gdx.input.setInputProcessor(null);
-    }
-
-    @SuppressWarnings("unchecked")
-    public <T extends TxLibrary> T getTxLibrary() {
-        return (T) txLibrary;
     }
 }

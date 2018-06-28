@@ -1,0 +1,27 @@
+
+menu.png
+size: 1024,512
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+bg_screen
+  rotate: false
+  xy: 2, 2
+  size: 800, 480
+  orig: 800, 480
+  offset: 0, 0
+  index: -1
+menu_button
+  rotate: false
+  xy: 804, 328
+  size: 130, 38
+  orig: 130, 38
+  offset: 0, 0
+  index: -1
+splash_text
+  rotate: false
+  xy: 804, 368
+  size: 203, 114
+  orig: 203, 114
+  offset: 0, 0
+  index: -1

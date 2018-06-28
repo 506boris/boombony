@@ -3,22 +3,17 @@ package by.vit.boombony.screens.menu;
 import by.vit.boombony.events.ClickListener;
 import by.vit.boombony.gameobjects.TextureButton;
 import by.vit.boombony.screens.AbstractStage;
-import by.vit.boombony.texture.MenuTxLibrary;
+import by.vit.boombony.texture.TxLibraryPack;
 
 import com.badlogic.gdx.Gdx;
 
-public class MenuStage extends AbstractStage<MenuTxLibrary> {
+public class MenuStage extends AbstractStage {
     private TextureButton startGameButton;
     private MenuScreenView screenView;
 
-    // todo need to spli tx library for menu and main
-    public MenuStage(MenuTxLibrary txLibrary) {
-        super(txLibrary);
-    }
-
     @Override
     public void init() {
-        startGameButton = new TextureButton(txLibrary.buttonGo, Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
+        startGameButton = new TextureButton(TxLibraryPack.get().tx("menu_button"), Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
 
         startGameButton.addListener(new ClickListener() {
             @Override

@@ -5,36 +5,35 @@ import by.vit.boombony.helpers.Const;
 import by.vit.boombony.scenario.models.LevelScenario;
 import by.vit.boombony.screens.AbstractScreen;
 import by.vit.boombony.screens.ScreenManager;
-import by.vit.boombony.texture.GlobalTxLibrary;
-import by.vit.boombony.texture.WorldTxLibrary;
+import by.vit.boombony.texture.TexturePack;
+import by.vit.boombony.texture.TxLibraryPack;
+import by.vit.boombony.texture.WorldTileMapTxLibrary;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
-public class WorldScreen extends AbstractScreen<WorldTxLibrary> {
+public class WorldScreen extends AbstractScreen {
     private ScreenManager screenManager;
     private OrthographicCamera camera;
     private HUDStage hudStage;
     private InputMultiplexer inputMultiplexer;
     private WorldStage worldStage;
-    private GlobalTxLibrary globalTxLibrary;
+    private WorldTileMapTxLibrary worldTileMapTxLibrary;
 
     public WorldScreen(ScreenManager screenManager, LevelScenario levelScenario) {
-        super(new WorldTxLibrary(levelScenario));
+        this.worldTileMapTxLibrary = new WorldTileMapTxLibrary(levelScenario);
         this.screenManager = screenManager;
         this.hudStage = new HUDStage();
         this.inputMultiplexer = new InputMultiplexer();
-        this.worldStage = new WorldStage(this, txLibrary);
-        this.globalTxLibrary = new GlobalTxLibrary();
+        this.worldStage = new WorldStage(this, worldTileMapTxLibrary);
     }
 
     @Override
     public void loadTx() {
-        super.loadTx();
-        hudStage.loadTx();
-        globalTxLibrary.load();
+        this.worldTileMapTxLibrary.load();
+        TxLibraryPack.get().loadTx(TexturePack.WORLD);
     }
 
     @Override
@@ -74,7 +73,8 @@ public class WorldScreen extends AbstractScreen<WorldTxLibrary> {
     @Override
     public void dispose() {
         super.dispose();
-        txLibrary.dispose();
+        this.worldTileMapTxLibrary.dispose();
+        TxLibraryPack.get().dispose(TexturePack.WORLD);
     }
 
     public HUDStage getHudStage() {

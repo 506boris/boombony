@@ -4,14 +4,14 @@ import by.vit.boombony.Logger;
 import by.vit.boombony.common.map.MoveMapHelper;
 import by.vit.boombony.events.ClickListener;
 import by.vit.boombony.gameobjects.NPC;
-import by.vit.boombony.texture.BaseTxLibrary;
 import by.vit.boombony.gameworld.WorldObjectType;
 import by.vit.boombony.screens.world.WorldStage;
+import by.vit.boombony.texture.TxLibraryPack;
 
 public class NPCHelper {
 
-    public static NPC createNPC(BaseTxLibrary txLibrary, String name, WorldStage stage, int x, int y) {
-        NPC npc = new NPC(txLibrary.txRegion(name), WorldObjectType.NEUTRAL);
+    public static NPC createNPC(String name, WorldStage stage, int x, int y) {
+        NPC npc = new NPC(TxLibraryPack.get().tx(name), WorldObjectType.NEUTRAL);
         npc.addListener(new ClickListener() {
             @Override
             public void onClick() {

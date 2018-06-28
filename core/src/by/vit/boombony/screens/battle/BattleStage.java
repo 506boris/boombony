@@ -4,13 +4,11 @@ import by.vit.boombony.helpers.ScenarioManager;
 import by.vit.boombony.screens.AbstractStage;
 import by.vit.boombony.screens.ScreenManager;
 import by.vit.boombony.screens.world.WorldScreen;
-import by.vit.boombony.texture.BattleTxLibrary;
 
-public class BattleStage extends AbstractStage<BattleTxLibrary> {
+public class BattleStage extends AbstractStage {
     private ScreenManager screenManager;
 
-    public BattleStage(ScreenManager screenManager, BattleTxLibrary txLibrary) {
-        super(txLibrary);
+    public BattleStage(ScreenManager screenManager) {
         this.screenManager = screenManager;
     }
 

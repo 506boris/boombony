@@ -4,7 +4,8 @@ import by.vit.boombony.helpers.CoordinateUtil;
 import by.vit.boombony.screens.ScreenManager;
 import by.vit.boombony.screens.AbstractScreen;
 import by.vit.boombony.screens.menu.MenuScreen;
-import by.vit.boombony.texture.SplashTxLibrary;
+import by.vit.boombony.texture.TexturePack;
+import by.vit.boombony.texture.TxLibraryPack;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -14,7 +15,7 @@ import com.badlogic.gdx.utils.Timer;
  * Splash сцена. Просто первый скрин при старте,
  * на котором будет отображено лого - после этого идет меню.
  */
-public class SplashScreen extends AbstractScreen<SplashTxLibrary> {
+public class SplashScreen extends AbstractScreen {
     private final ScreenManager screenManager;
     private Sprite splashLabel;
     private SpriteBatch batch;
@@ -22,18 +23,28 @@ public class SplashScreen extends AbstractScreen<SplashTxLibrary> {
     private static final int SPLASH_SCREEN_DELAY = 0;//todo
 
     public SplashScreen(ScreenManager screenManager) {
-        super(new SplashTxLibrary());
         loadTx();
         this.screenManager = screenManager;
         this.batch = screenManager.getGame().getBatch();
     }
 
     @Override
+    public void loadTx() {
+        TxLibraryPack.get().loadTx(TexturePack.MENU);
+    }
+
+    @Override
     public void show() {
         // как только показали скрин Splash сразу начинаем загрузку след. скрин.
-        splashLabel = new Sprite(txLibrary.splashLabelTextureRegion);
+        splashLabel = new Sprite(TxLibraryPack.get().tx("splash_text"));
         splashLabel.setPosition(CoordinateUtil.centerWidth(splashLabel), CoordinateUtil.centerHeight(splashLabel));
         this.screenManager.init();
+    }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+        TxLibraryPack.get().dispose(TexturePack.MENU);
     }
 
     @Override

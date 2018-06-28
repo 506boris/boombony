@@ -5,7 +5,7 @@ import by.vit.boombony.gameobjects.Cell;
 import by.vit.boombony.gameobjects.Step;
 import by.vit.boombony.gameobjects.WorldObject;
 import by.vit.boombony.helpers.Coo;
-import by.vit.boombony.texture.WorldTxLibrary;
+import by.vit.boombony.texture.TxLibraryPack;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 
@@ -29,7 +29,7 @@ public final class WorldObjectUtil {
      *
      * @param currentSteps список координат, где мы должны прорисовать степы
      */
-    public static void drawSteps(List<Coo> currentSteps, int maxStepCount, WorldTxLibrary txLibrary) {
+    public static void drawSteps(List<Coo> currentSteps, int maxStepCount) {
         // currentSteps первый и последний элемент не должны прорисосываться в виде степов так как это герой и курсор.
         // currentSteps - степы в списке расположены с target к hero
         for (int i = currentSteps.size() - 1; i >= 0; i--) {
@@ -39,9 +39,9 @@ public final class WorldObjectUtil {
             Coo currentCoo = currentSteps.get(i);
             // если шаги выходят за максимальное колличество, которое имеет герой, то помечаем как out
             if (currentSteps.size() - (i + 1) <= maxStepCount) {
-                WorldTiledMap.cursorLayer.setCell(currentCoo.x, currentCoo.y, new Step(txLibrary.txRegion("step.png"), currentCoo).getCell());
+                WorldTiledMap.cursorLayer.setCell(currentCoo.x, currentCoo.y, new Step(TxLibraryPack.get().tx("step"), currentCoo).getCell());
             } else {
-                WorldTiledMap.cursorLayer.setCell(currentCoo.x, currentCoo.y, new Step(txLibrary.txRegion("step-out.png"), currentCoo).getCell());
+                WorldTiledMap.cursorLayer.setCell(currentCoo.x, currentCoo.y, new Step(TxLibraryPack.get().tx("step-out"), currentCoo).getCell());
             }
         }
     }
@@ -51,7 +51,7 @@ public final class WorldObjectUtil {
      *
      * @param currentSteps список координат, где мы должны прорисовать степы
      */
-    public static void drawSteps(List<Coo> currentSteps, WorldTxLibrary txLibrary) {
+    public static void drawSteps(List<Coo> currentSteps) {
         // currentSteps первый и последний элемент не должны прорисосываться в виде степов так как это герой и курсор.
         // currentSteps - степы в списке расположены с target к hero
         for (int i = currentSteps.size() - 1; i >= 0; i--) {
@@ -60,7 +60,7 @@ public final class WorldObjectUtil {
             }
             Coo currentCoo = currentSteps.get(i);
             // если шаги выходят за максимальное колличество, которое имеет герой, то помечаем как out
-            WorldTiledMap.cursorLayer.setCell(currentCoo.x, currentCoo.y, new Step(txLibrary.txRegion("step.png"), currentCoo).getCell());
+            WorldTiledMap.cursorLayer.setCell(currentCoo.x, currentCoo.y, new Step(TxLibraryPack.get().tx("step"), currentCoo).getCell());
         }
     }
 }

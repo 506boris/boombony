@@ -12,7 +12,7 @@ import com.badlogic.gdx.utils.Align;
 import by.vit.boombony.gameworld.Initializable;
 import by.vit.boombony.helpers.Const;
 import by.vit.boombony.helpers.CoordinateUtil;
-import by.vit.boombony.texture.GlobalTxLibrary;
+import by.vit.boombony.texture.TxLibraryPack;
 
 public class CommonDialog extends Window implements Initializable {
     private static final float DEFAULT_BUTTON_PAD = 40;
@@ -35,8 +35,8 @@ public class CommonDialog extends Window implements Initializable {
     }
 
     public void activateCloseButton() {
-        TextureRegion closeActive = GlobalTxLibrary.close_active;
-        TextureRegion closePressed = GlobalTxLibrary.close_pressed;
+        TextureRegion closeActive = TxLibraryPack.get().tx("close_active");
+        TextureRegion closePressed = TxLibraryPack.get().tx("close_pressed");
         ImageButton.ImageButtonStyle closeStyle = new ImageButton.ImageButtonStyle();
         closeStyle.imageUp = new TextureRegionDrawable(closeActive);
         closeStyle.imageDown = new TextureRegionDrawable(closePressed);

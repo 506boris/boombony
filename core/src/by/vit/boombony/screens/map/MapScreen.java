@@ -1,11 +1,12 @@
 package by.vit.boombony.screens.map;
 
-import by.vit.boombony.texture.TxLibrary;
 import by.vit.boombony.screens.AbstractScreen;
 
 public class MapScreen extends AbstractScreen {
-    public MapScreen(TxLibrary txLibrary) {
-        super(txLibrary);
+
+    @Override
+    public void loadTx() {
+
     }
 
     @Override

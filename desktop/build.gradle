@@ -8,6 +8,10 @@ sourceSets.main.java.srcDirs = [ "src/" ]
 project.ext.mainClassName = "by.vit.boombony.desktop.DesktopLauncher"
 project.ext.assetsDir = new File("../android/assets");
 
+dependencies {
+    compile "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
+}
+
 task run(dependsOn: classes, type: JavaExec) {
     main = project.mainClassName
     classpath = sourceSets.main.runtimeClasspath

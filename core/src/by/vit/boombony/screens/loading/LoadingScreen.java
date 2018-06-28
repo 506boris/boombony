@@ -1,29 +1,30 @@
 package by.vit.boombony.screens.loading;
 
 import by.vit.boombony.screens.AbstractScreen;
-import by.vit.boombony.texture.LoadingTxLibrary;
+import by.vit.boombony.texture.TexturePack;
+import by.vit.boombony.texture.TxLibraryPack;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class LoadingScreen extends AbstractScreen<LoadingTxLibrary> {
+public class LoadingScreen extends AbstractScreen {
     private SpriteBatch batch;
     private Sprite bgSprite;
-
-    public LoadingScreen() {
-        super(new LoadingTxLibrary());
-    }
 
     @Override
     public void show() {
         batch = new SpriteBatch();
 
-        bgSprite = new Sprite(txLibrary.bg);
+        bgSprite = TxLibraryPack.get().sprite("loadingscreen");
         bgSprite.setPosition(0, 0);
         bgSprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     }
 
+    @Override
+    public void loadTx() {
+        TxLibraryPack.get().loadTx(TexturePack.GLOBAL);
+    }
 
     @Override
     public void render(float delta) {

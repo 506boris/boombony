@@ -16,9 +16,10 @@ import by.vit.boombony.helpers.Const;
 import by.vit.boombony.helpers.Coo;
 import by.vit.boombony.helpers.CoordinateUtil;
 import by.vit.boombony.screens.AbstractStage;
-import by.vit.boombony.texture.WorldTxLibrary;
+import by.vit.boombony.texture.TxLibraryPack;
+import by.vit.boombony.texture.WorldTileMapTxLibrary;
 
-public abstract class BaseWorldStage extends AbstractStage<WorldTxLibrary> {
+public abstract class BaseWorldStage extends AbstractStage {
     private WorldScreen worldScreen;
     private Camera camera;
     private StepCursor cursor;
@@ -26,9 +27,10 @@ public abstract class BaseWorldStage extends AbstractStage<WorldTxLibrary> {
     private OrthogonalTiledMapRenderer tiledMapRenderer;
     private int mapWidth = 0;
     private int mapHeight = 0;
+    private WorldTileMapTxLibrary txLibrary;
 
-    public BaseWorldStage(WorldScreen worldScreen, WorldTxLibrary txLibrary) {
-        super(txLibrary);
+    public BaseWorldStage(WorldScreen worldScreen, WorldTileMapTxLibrary txLibrary) {
+        this.txLibrary = txLibrary;
         this.worldScreen = worldScreen;
     }
 
@@ -37,7 +39,7 @@ public abstract class BaseWorldStage extends AbstractStage<WorldTxLibrary> {
     @Override
     public void init() {
         this.camera = worldScreen.getCamera();
-        this.cursor = new StepCursor(txLibrary.txRegion("activecell.png"), txLibrary.txRegion("activecell_attack.png"));
+        this.cursor = new StepCursor(TxLibraryPack.get().tx("activecell"), TxLibraryPack.get().tx("activecell_attack"));
         initTiledMapRenderer();
     }
 
@@ -77,7 +79,7 @@ public abstract class BaseWorldStage extends AbstractStage<WorldTxLibrary> {
                 SearchPathUtil searchPathUtil = SearchPathUtil.get();
                 if (!searchPathUtil.isSearchingInProgress()) {
                     currentSteps = searchPathUtil.search(WorldTiledMap.objectLayer, targetObject.getCell().getCoo(), targetCoo);
-                    WorldObjectUtil.drawSteps(currentSteps, txLibrary);
+                    WorldObjectUtil.drawSteps(currentSteps);
                 }
             }
             return true;

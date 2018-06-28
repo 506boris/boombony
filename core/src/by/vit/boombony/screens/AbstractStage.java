@@ -3,17 +3,10 @@ package by.vit.boombony.screens;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 import by.vit.boombony.gameworld.Initializable;
-import by.vit.boombony.texture.TxLibrary;
 
-public abstract class AbstractStage<T extends TxLibrary> extends Stage implements Initializable {
-    protected T txLibrary;
+public abstract class AbstractStage extends Stage implements Initializable {
 
-    public AbstractStage(T txLibrary) {
-        this.txLibrary = txLibrary;
-    }
-
-    public void loadTx() {
-        this.txLibrary.load();
+    public AbstractStage() {
     }
 
     public void render(float delta) {

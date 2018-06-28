@@ -1,0 +1,167 @@
+
+world.png
+size: 1024,512
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+ButtonRage_normal
+  rotate: false
+  xy: 758, 224
+  size: 77, 74
+  orig: 77, 74
+  offset: 0, 0
+  index: -1
+Face_witch_Helga
+  rotate: false
+  xy: 2, 300
+  size: 106, 147
+  orig: 106, 147
+  offset: 0, 0
+  index: -1
+Face_witch_magnet
+  rotate: false
+  xy: 2, 151
+  size: 106, 147
+  orig: 106, 147
+  offset: 0, 0
+  index: -1
+face_Jim
+  rotate: false
+  xy: 110, 300
+  size: 106, 147
+  orig: 106, 147
+  offset: 0, 0
+  index: -1
+face_Severus
+  rotate: false
+  xy: 2, 2
+  size: 106, 147
+  orig: 106, 147
+  offset: 0, 0
+  index: -1
+face_Volkan
+  rotate: false
+  xy: 110, 151
+  size: 106, 147
+  orig: 106, 147
+  offset: 0, 0
+  index: -1
+face_Witch_Kimora
+  rotate: false
+  xy: 218, 300
+  size: 106, 147
+  orig: 106, 147
+  offset: 0, 0
+  index: -1
+face_Yanik_up
+  rotate: false
+  xy: 110, 2
+  size: 106, 147
+  orig: 106, 147
+  offset: 0, 0
+  index: -1
+face_Yodur
+  rotate: false
+  xy: 218, 151
+  size: 106, 147
+  orig: 106, 147
+  offset: 0, 0
+  index: -1
+face_viking_house_small_3_autumn
+  rotate: false
+  xy: 326, 300
+  size: 106, 147
+  orig: 106, 147
+  offset: 0, 0
+  index: -1
+face_viking_house_small_3_winter
+  rotate: false
+  xy: 218, 2
+  size: 106, 147
+  orig: 106, 147
+  offset: 0, 0
+  index: -1
+face_viking_lighthouse
+  rotate: false
+  xy: 326, 151
+  size: 106, 147
+  orig: 106, 147
+  offset: 0, 0
+  index: -1
+face_viking_makinghides_machine
+  rotate: false
+  xy: 434, 300
+  size: 106, 147
+  orig: 106, 147
+  offset: 0, 0
+  index: -1
+face_viking_mill
+  rotate: false
+  xy: 326, 2
+  size: 106, 147
+  orig: 106, 147
+  offset: 0, 0
+  index: -1
+face_werewolf
+  rotate: false
+  xy: 434, 151
+  size: 106, 147
+  orig: 106, 147
+  offset: 0, 0
+  index: -1
+face_white_beer
+  rotate: false
+  xy: 542, 300
+  size: 106, 147
+  orig: 106, 147
+  offset: 0, 0
+  index: -1
+face_witch_Etteila
+  rotate: false
+  xy: 434, 2
+  size: 106, 147
+  orig: 106, 147
+  offset: 0, 0
+  index: -1
+face_witch_Hestra
+  rotate: false
+  xy: 542, 151
+  size: 106, 147
+  orig: 106, 147
+  offset: 0, 0
+  index: -1
+face_witch_Wilma
+  rotate: false
+  xy: 650, 300
+  size: 106, 147
+  orig: 106, 147
+  offset: 0, 0
+  index: -1
+face_witch_martaold
+  rotate: false
+  xy: 542, 2
+  size: 106, 147
+  orig: 106, 147
+  offset: 0, 0
+  index: -1
+face_yotun
+  rotate: false
+  xy: 650, 151
+  size: 106, 147
+  orig: 106, 147
+  offset: 0, 0
+  index: -1
+face_zelgadis
+  rotate: false
+  xy: 758, 300
+  size: 106, 147
+  orig: 106, 147
+  offset: 0, 0
+  index: -1
+face_zloboglaz
+  rotate: false
+  xy: 650, 2
+  size: 106, 147
+  orig: 106, 147
+  offset: 0, 0
+  index: -1

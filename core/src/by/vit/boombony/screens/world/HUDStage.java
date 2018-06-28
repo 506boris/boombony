@@ -7,15 +7,11 @@ import by.vit.boombony.common.widgets.CommonDialog;
 import by.vit.boombony.common.widgets.DialogParams;
 import by.vit.boombony.gameobjects.TextureButton;
 import by.vit.boombony.screens.AbstractStage;
-import by.vit.boombony.texture.HUDTxLibrary;
+import by.vit.boombony.texture.TxLibraryPack;
 
-public class HUDStage extends AbstractStage<HUDTxLibrary> {
+public class HUDStage extends AbstractStage {
     private TextureButton nextStep;
     private CommonDialog commonDialog;
-
-    public HUDStage() {
-        super(new HUDTxLibrary());
-    }
 
     @Override
     public void init() {
@@ -36,7 +32,7 @@ public class HUDStage extends AbstractStage<HUDTxLibrary> {
 //        addActor(nextStep);
 
         DialogParams params = new DialogParams();
-        params.setBackgroundRegion(txLibrary.dialogBackground);
+        params.setBackgroundRegion(TxLibraryPack.get().tx("dialog_bg_top"));
         params.setBitmapFont(new BitmapFont());
         params.setTitleFontColor(Color.BLACK);
 

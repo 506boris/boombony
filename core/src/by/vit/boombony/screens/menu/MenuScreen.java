@@ -5,7 +5,8 @@ import by.vit.boombony.helpers.ScenarioManager;
 import by.vit.boombony.screens.AbstractScreen;
 import by.vit.boombony.screens.ScreenManager;
 import by.vit.boombony.screens.world.WorldScreen;
-import by.vit.boombony.texture.MenuTxLibrary;
+import by.vit.boombony.texture.TexturePack;
+import by.vit.boombony.texture.TxLibraryPack;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -13,14 +14,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 /**
  * Main menu
  */
-public class MenuScreen extends AbstractScreen<MenuTxLibrary> implements MenuScreenView {
+public class MenuScreen extends AbstractScreen implements MenuScreenView {
     private SpriteBatch batch;
     private MenuStage menuStage;
     private BaseBackground bgSprite;
     private ScreenManager screenManager;
 
     public MenuScreen(ScreenManager screenManager) {
-        super(new MenuTxLibrary());
         this.screenManager = screenManager;
     }
 
@@ -28,19 +28,24 @@ public class MenuScreen extends AbstractScreen<MenuTxLibrary> implements MenuScr
     public void show() {
 
         batch = screenManager.getGame().getBatch();
-        menuStage = new MenuStage(txLibrary);
+        menuStage = new MenuStage();
         menuStage.init();
         menuStage.setScreenView(this);
 
-        bgSprite = new BaseBackground(txLibrary.bg);
+        bgSprite = new BaseBackground(TxLibraryPack.get().tx("bg_screen"));
 
         Gdx.input.setInputProcessor(menuStage);
     }
 
     @Override
     public void loadTx() {
-        super.loadTx();
-        // todo menu.loadTx()
+        TxLibraryPack.get().loadTx(TexturePack.MENU);
+    }
+
+    @Override
+    public void dispose() {
+        menuStage.dispose();
+        TxLibraryPack.get().dispose(TexturePack.MENU);
     }
 
     @Override
@@ -57,10 +62,5 @@ public class MenuScreen extends AbstractScreen<MenuTxLibrary> implements MenuScr
 
         menuStage.render(delta);
         menuStage.draw();
-    }
-
-    @Override
-    public void dispose() {
-        menuStage.dispose();
     }
 }
