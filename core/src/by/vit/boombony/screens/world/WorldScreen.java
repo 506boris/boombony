@@ -33,7 +33,7 @@ public class WorldScreen extends AbstractScreen {
     @Override
     public void loadTx() {
         this.worldTileMapTxLibrary.load();
-        TxLibraryPack.get().loadTx(TexturePack.WORLD);
+        TxLibraryPack.loadTx(TexturePack.WORLD);
     }
 
     @Override
@@ -74,7 +74,7 @@ public class WorldScreen extends AbstractScreen {
     public void dispose() {
         super.dispose();
         this.worldTileMapTxLibrary.dispose();
-        TxLibraryPack.get().dispose(TexturePack.WORLD);
+        TxLibraryPack.dispose(TexturePack.WORLD);
     }
 
     public HUDStage getHudStage() {

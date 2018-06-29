@@ -30,13 +30,13 @@ public class SplashScreen extends AbstractScreen {
 
     @Override
     public void loadTx() {
-        TxLibraryPack.get().loadTx(TexturePack.MENU);
+        TxLibraryPack.loadTx(TexturePack.MENU);
     }
 
     @Override
     public void show() {
         // как только показали скрин Splash сразу начинаем загрузку след. скрин.
-        splashLabel = new Sprite(TxLibraryPack.get().tx("splash_text"));
+        splashLabel = new Sprite(TxLibraryPack.tx("splash_text"));
         splashLabel.setPosition(CoordinateUtil.centerWidth(splashLabel), CoordinateUtil.centerHeight(splashLabel));
         this.screenManager.init();
     }
@@ -44,7 +44,7 @@ public class SplashScreen extends AbstractScreen {
     @Override
     public void dispose() {
         super.dispose();
-        TxLibraryPack.get().dispose(TexturePack.MENU);
+        TxLibraryPack.dispose(TexturePack.MENU);
     }
 
     @Override

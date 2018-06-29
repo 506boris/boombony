@@ -15,15 +15,15 @@ public class TxLibraryPack {
     private TxLibraryPack() {
     }
 
-    public static TxLibraryPack get() {
+    private static TxLibraryPack get() {
         if (pack == null) {
             pack = new TxLibraryPack();
         }
         return pack;
     }
 
-    public TextureAtlas.AtlasRegion tx(String name) {
-        for (TextureAtlas textureAtlas : atlasMap.values()) {
+    public static TextureAtlas.AtlasRegion tx(String name) {
+        for (TextureAtlas textureAtlas : get().atlasMap.values()) {
             TextureAtlas.AtlasRegion atlasRegion = textureAtlas.findRegion(name);
             if (atlasRegion != null) {
                 return atlasRegion;
@@ -32,8 +32,8 @@ public class TxLibraryPack {
         return null;
     }
 
-    public Sprite sprite(String name) {
-        for (TextureAtlas textureAtlas : atlasMap.values()) {
+    public static Sprite sprite(String name) {
+        for (TextureAtlas textureAtlas : get().atlasMap.values()) {
             TextureAtlas.AtlasRegion atlasRegion = textureAtlas.findRegion(name);
             if (atlasRegion != null) {
                 return textureAtlas.createSprite(name);
@@ -42,16 +42,20 @@ public class TxLibraryPack {
         return null;
     }
 
-    public void loadTx(TexturePack texturePack) {
-        dispose(texturePack);
-        atlasMap.put(texturePack, new TextureAtlas(Gdx.files.internal(texturePack.packName() + ATLAS_EXT)));
+    public static void loadTx(TexturePack... texturePacks) {
+        for (TexturePack texturePack : texturePacks) {
+            dispose(texturePack);
+            get().atlasMap.put(texturePack, new TextureAtlas(Gdx.files.internal(texturePack.packName() + ATLAS_EXT)));
+        }
     }
 
-    public void dispose(TexturePack texturePack) {
-        TextureAtlas textureAtlas = this.atlasMap.get(texturePack);
-        if (textureAtlas != null) {
-            textureAtlas.dispose();
-            this.atlasMap.remove(texturePack);
+    public static void dispose(TexturePack... texturePacks) {
+        for (TexturePack texturePack : texturePacks) {
+            TextureAtlas textureAtlas = get().atlasMap.get(texturePack);
+            if (textureAtlas != null) {
+                textureAtlas.dispose();
+                get().atlasMap.remove(texturePack);
+            }
         }
     }
 }

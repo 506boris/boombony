@@ -35,8 +35,8 @@ public class CommonDialog extends Window implements Initializable {
     }
 
     public void activateCloseButton() {
-        TextureRegion closeActive = TxLibraryPack.get().tx("close_active");
-        TextureRegion closePressed = TxLibraryPack.get().tx("close_pressed");
+        TextureRegion closeActive = TxLibraryPack.tx("close_active");
+        TextureRegion closePressed = TxLibraryPack.tx("close_pressed");
         ImageButton.ImageButtonStyle closeStyle = new ImageButton.ImageButtonStyle();
         closeStyle.imageUp = new TextureRegionDrawable(closeActive);
         closeStyle.imageDown = new TextureRegionDrawable(closePressed);

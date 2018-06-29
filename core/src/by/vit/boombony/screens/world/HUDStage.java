@@ -32,7 +32,7 @@ public class HUDStage extends AbstractStage {
 //        addActor(nextStep);
 
         DialogParams params = new DialogParams();
-        params.setBackgroundRegion(TxLibraryPack.get().tx("dialog_bg_top"));
+        params.setBackgroundRegion(TxLibraryPack.tx("dialog_bg_top"));
         params.setBitmapFont(new BitmapFont());
         params.setTitleFontColor(Color.BLACK);
 

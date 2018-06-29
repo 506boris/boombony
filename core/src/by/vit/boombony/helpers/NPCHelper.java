@@ -11,7 +11,7 @@ import by.vit.boombony.texture.TxLibraryPack;
 public class NPCHelper {
 
     public static NPC createNPC(String name, WorldStage stage, int x, int y) {
-        NPC npc = new NPC(TxLibraryPack.get().tx(name), WorldObjectType.NEUTRAL);
+        NPC npc = new NPC(TxLibraryPack.tx(name), WorldObjectType.NEUTRAL);
         npc.addListener(new ClickListener() {
             @Override
             public void onClick() {

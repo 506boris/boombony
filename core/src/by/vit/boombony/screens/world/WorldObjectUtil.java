@@ -39,9 +39,9 @@ public final class WorldObjectUtil {
             Coo currentCoo = currentSteps.get(i);
             // если шаги выходят за максимальное колличество, которое имеет герой, то помечаем как out
             if (currentSteps.size() - (i + 1) <= maxStepCount) {
-                WorldTiledMap.cursorLayer.setCell(currentCoo.x, currentCoo.y, new Step(TxLibraryPack.get().tx("step"), currentCoo).getCell());
+                WorldTiledMap.cursorLayer.setCell(currentCoo.x, currentCoo.y, new Step(TxLibraryPack.tx("step"), currentCoo).getCell());
             } else {
-                WorldTiledMap.cursorLayer.setCell(currentCoo.x, currentCoo.y, new Step(TxLibraryPack.get().tx("step-out"), currentCoo).getCell());
+                WorldTiledMap.cursorLayer.setCell(currentCoo.x, currentCoo.y, new Step(TxLibraryPack.tx("step-out"), currentCoo).getCell());
             }
         }
     }
@@ -60,7 +60,7 @@ public final class WorldObjectUtil {
             }
             Coo currentCoo = currentSteps.get(i);
             // если шаги выходят за максимальное колличество, которое имеет герой, то помечаем как out
-            WorldTiledMap.cursorLayer.setCell(currentCoo.x, currentCoo.y, new Step(TxLibraryPack.get().tx("step"), currentCoo).getCell());
+            WorldTiledMap.cursorLayer.setCell(currentCoo.x, currentCoo.y, new Step(TxLibraryPack.tx("step"), currentCoo).getCell());
         }
     }
 }

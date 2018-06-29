@@ -28,7 +28,7 @@ public class BattleScreen extends AbstractScreen {
     @Override
     public void show() {
         batch = screenManager.getGame().getBatch();
-        bgSprite = new BaseBackground(TxLibraryPack.get().tx("battle_screen"));
+        bgSprite = new BaseBackground(TxLibraryPack.tx("battle_screen"));
         battleStage.init();
 
         Gdx.input.setInputProcessor(battleStage);
@@ -46,12 +46,12 @@ public class BattleScreen extends AbstractScreen {
 
     @Override
     public void loadTx() {
-        TxLibraryPack.get().loadTx(TexturePack.BATTLE);
+        TxLibraryPack.loadTx(TexturePack.BATTLE);
     }
 
     @Override
     public void dispose() {
         super.dispose();
-        TxLibraryPack.get().dispose(TexturePack.BATTLE);
+        TxLibraryPack.dispose(TexturePack.BATTLE);
     }
 }

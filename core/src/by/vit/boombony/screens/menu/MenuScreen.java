@@ -32,20 +32,20 @@ public class MenuScreen extends AbstractScreen implements MenuScreenView {
         menuStage.init();
         menuStage.setScreenView(this);
 
-        bgSprite = new BaseBackground(TxLibraryPack.get().tx("bg_screen"));
+        bgSprite = new BaseBackground(TxLibraryPack.tx("bg_screen"));
 
         Gdx.input.setInputProcessor(menuStage);
     }
 
     @Override
     public void loadTx() {
-        TxLibraryPack.get().loadTx(TexturePack.MENU);
+        TxLibraryPack.loadTx(TexturePack.MENU);
     }
 
     @Override
     public void dispose() {
         menuStage.dispose();
-        TxLibraryPack.get().dispose(TexturePack.MENU);
+        TxLibraryPack.dispose(TexturePack.MENU);
     }
 
     @Override

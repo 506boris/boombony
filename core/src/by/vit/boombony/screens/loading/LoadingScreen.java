@@ -16,14 +16,14 @@ public class LoadingScreen extends AbstractScreen {
     public void show() {
         batch = new SpriteBatch();
 
-        bgSprite = TxLibraryPack.get().sprite("loadingscreen");
+        bgSprite = TxLibraryPack.sprite("loadingscreen");
         bgSprite.setPosition(0, 0);
         bgSprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     }
 
     @Override
     public void loadTx() {
-        TxLibraryPack.get().loadTx(TexturePack.GLOBAL);
+        TxLibraryPack.loadTx(TexturePack.GLOBAL);
     }
 
     @Override

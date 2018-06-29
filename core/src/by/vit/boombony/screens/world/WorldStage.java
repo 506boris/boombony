@@ -78,13 +78,13 @@ public class WorldStage extends BaseWorldStage implements WorldObjectBehavior {
         super.init();
 
         DialogParams params = new DialogParams();
-        params.setBackgroundRegion(TxLibraryPack.get().tx("dialog_bg_top"));
+        params.setBackgroundRegion(TxLibraryPack.tx("dialog_bg_top"));
         params.setBitmapFont(new BitmapFont());
         params.setTitleFontColor(Color.BLACK);
 
         ButtonParams buttonParams = new ButtonParams();
-        buttonParams.setEnabledButtonRegion(TxLibraryPack.get().tx("button_ok_enabled"));
-        buttonParams.setPressedButtonRegion(TxLibraryPack.get().tx("button_ok_pressed"));
+        buttonParams.setEnabledButtonRegion(TxLibraryPack.tx("button_ok_enabled"));
+        buttonParams.setPressedButtonRegion(TxLibraryPack.tx("button_ok_pressed"));
 
         startBattleDialog = new StartBattleDialog(params);
         startBattleDialog.activateCloseButton();
@@ -97,7 +97,7 @@ public class WorldStage extends BaseWorldStage implements WorldObjectBehavior {
         });
         addActor(startBattleDialog);
 
-        hero = new Hero(TxLibraryPack.get().tx("face_Jim"));
+        hero = new Hero(TxLibraryPack.tx("face_Jim"));
         addActor(hero);
         MoveMapHelper.moveObject(hero, 0, 0);
 

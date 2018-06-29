@@ -13,7 +13,7 @@ public class MenuStage extends AbstractStage {
 
     @Override
     public void init() {
-        startGameButton = new TextureButton(TxLibraryPack.get().tx("menu_button"), Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
+        startGameButton = new TextureButton(TxLibraryPack.tx("menu_button"), Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
 
         startGameButton.addListener(new ClickListener() {
             @Override

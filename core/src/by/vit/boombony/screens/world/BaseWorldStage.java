@@ -39,7 +39,7 @@ public abstract class BaseWorldStage extends AbstractStage {
     @Override
     public void init() {
         this.camera = worldScreen.getCamera();
-        this.cursor = new StepCursor(TxLibraryPack.get().tx("activecell"), TxLibraryPack.get().tx("activecell_attack"));
+        this.cursor = new StepCursor();
         initTiledMapRenderer();
     }
 
